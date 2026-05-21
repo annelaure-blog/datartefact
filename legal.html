@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="images/round-dark.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal — Datartefact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+</head>
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="book.html" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+        <a href="book.html" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="about.html" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+        <a href="book.html" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="about.html" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full flex flex-col gap-6">
+    <h1 class="font-display text-7xl font-bold tracking-wide text-gray-900">Legal</h1>
+
+    <div class="border border-gray-900 p-10 flex flex-col gap-8 max-w-2xl">
+      <div>
+        <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Legal notice</span>
+        <p class="mt-6 text-base text-gray-900 leading-relaxed">
+          This website is a personal editorial project published by Anne-Laure Freant, residing in Spain. For any enquiry, please contact <a href="mailto:info@datartefact.com" class="underline hover:text-[#B69188] transition-colors">info@datartefact.com</a>.
+        </p>
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">
+          All content on this site — texts, images, and visual design — is the property of Anne-Laure Freant unless otherwise stated. Reproduction without permission is not permitted.
+        </p>
+      </div>
+      <div>
+        <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Privacy policy</span>
+        <p class="mt-6 text-base text-gray-900 leading-relaxed">
+          This site does not use cookies or tracking tools of any kind.
+        </p>
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">
+          The only personal data collected is your email address, if you choose to subscribe to the newsletter. This data is stored and processed by <a href="https://buttondown.com" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">Buttondown</a>, a GDPR-compliant email service. It will only be used to send occasional updates about the Datartefact project. You may unsubscribe at any time via the link included in every email, or by writing to <a href="mailto:info@datartefact.com" class="underline hover:text-[#B69188] transition-colors">info@datartefact.com</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© 2026 Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="about.html#newsletter" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+          <a href="legal.html" class="hover:text-[#B69188] transition-colors">Legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
