@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="images/round-dark.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Datartefact</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>@font-face { font-family: 'Stedelijk'; src: url('fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
   <style>
     .card-wrapper { perspective: 1200px; height: 320px; }
@@ -26,69 +27,120 @@
     .prose strong { font-weight: 600; }
   </style>
 </head>
-<body class="bg-white text-gray-900 font-sans antialiased min-h-screen flex flex-col">
-  <header class="border-b border-gray-900 sticky top-0 bg-white z-10">
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="font-display text-5xl font-bold tracking-tight text-gray-900">Datartefact</a>
-      <nav class="hidden md:flex gap-8 text-xl text-gray-900 font-medium font-sans">
-        <a href="index.html" class="hover:underline transition-colors">Index</a>
-        <a href="book.html" class="hover:underline transition-colors">Books</a>
-        <a href="instagram.html" class="hover:underline transition-colors">Instagram</a>
-        <a href="blog.html" class="hover:underline transition-colors">Blog</a>
-        <a href="about.html" class="hover:underline transition-colors">About</a>
-        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:underline transition-colors">Notebook</a>
+      <a href="book.html" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+        <a href="book.html" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="about.html" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+        <a href="book.html" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="about.html" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
       </nav>
     </div>
   </header>
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
-    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">About</h1>
+    <h1 class="font-display text-7xl font-bold tracking-wide text-gray-900 flex items-center gap-4">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="#202020"><path d="M18 18 L33.6 9 A18 18 0 1 0 33.6 27 Z"/></svg>
+      About
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="#202020"><path d="M18 18 L2.4 9 A18 18 0 1 1 2.4 27 Z"/></svg>
+    </h1>
   </section>
   <main class="max-w-6xl mx-auto px-6 pb-24 flex-1 w-full flex flex-col gap-6">
 
-    <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-4">
-      <div class="border-b md:border-b-0 md:border-r border-gray-900 p-10 flex items-start">
+    <div class="border border-gray-900 p-10">
         <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">The project</span>
-      </div>
-      <div class="md:col-span-3 p-10">
-        <h2 class="font-display text-4xl font-bold leading-none text-gray-900">Datartefact</h2>
-        <p class="mt-6 text-base text-gray-900 leading-relaxed max-w-prose">
-          Datartefact is an index of objects that carry data — cuneiform tablets, punch cards, shipping manifests, census forms. Each one is a record of how a society chose to measure, classify, and remember the world around it.
+        <h2 class="font-display text-4xl font-bold leading-none text-gray-900 mt-6">Datartefact</h2>
+        <p class="mt-6 text-base text-gray-900 leading-relaxed">
+          Datartefact is an ongoing research and creation project that started in 2022 when I discovered the concept of "datasculpture" through the work of artists <a href="https://www.lorenmadsen.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">Loren Madsen</a> and <a href="https://www.adriensegal.com/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">Adrien Segal</a> online. As an amateur ceramicist and <a href="https://etalab.cquest.org/comment-les-administrations-ont-collabore-a-louverture-des-donnees-du-coronavirus-le-cas-francais/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">open data enthusiast</a>, I started developing <a href="https://www.data-to-art.com/artist/anne-laure-freant/flood-necklace" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">craft projects to represent series of data about rivers and environmental history using clay</a>, and I started a <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">research notebook</a> to document my process.
         </p>
-        <p class="mt-4 text-base text-gray-900 leading-relaxed max-w-prose">
-          The project asks what it means to inherit these objects and the assumptions embedded in them. It takes the form of a book, an index, and an ongoing series of notes on where this conversation is happening today.
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">
+          Eventually, my research led to discovering the <a href="https://dataphys.org" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">dataphys.org</a> wiki and the dataphysicalization research community, as well as conducting short interviews with other data-sculptors. My vision grew into a more ambitious platform and editorial research — one that would go beyond the representation of contemporary data in material forms. <strong>I wanted to develop a historical, trans-disciplinary and empirical approach that would allow datartefacts to be considered as an anthropological category of objects: part of a long technical tendency that pre-dates what we now call 'data'.</strong>
+        </p>
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">
+          In 2025, the idea of writing a series of books emerged, with a first publication for Book 1 scheduled for the Fall of 2026. The website will also be enriched later with interactive tools and an index to explore 'datartefacts'.
+        </p>
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">
+          This is a fully independent, self-driven and self-funded project. I'm always happy to hear from artists, designers, teachers, researchers and crafters who enjoy this topic as much as I do — please reach out for any feedback, comments, or data-art suggestions.
         </p>
       </div>
-    </div>
 
     <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-4">
       <div class="border-b md:border-b-0 md:border-r border-gray-900 flex items-stretch">
         <img src="images/anne-laure.png" alt="Anne-Laure Freant" class="w-full object-cover object-top" />
       </div>
       <div class="md:col-span-3 p-10">
-        <h2 class="font-display text-4xl font-bold leading-none text-gray-900">Anne-Laure Freant</h2>
-        <p class="mt-6 text-base text-gray-900 leading-relaxed max-w-prose">
-          Anne-Laure is a researcher and writer working at the intersection of data history, material culture, and the politics of classification. She is the author of Datartefact, a guided index of objects that encode how past societies measured and counted the world.
+        <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">The author</span>
+        <h2 class="font-display text-4xl font-bold leading-none text-gray-900 mt-6">Anne-Laure Freant</h2>
+        <p class="mt-6 text-base text-gray-900 leading-relaxed">
+          Obsessed with blogs and information architecture online since the age of 14 and an early website made in 1998, I have always hesitated between becoming a journalist, an academic, a blogger, a photographer, an editor and a designer.
         </p>
-        <p class="mt-4 text-base text-gray-900 leading-relaxed max-w-prose">
-          Her work draws on archival research across Europe and asks what it means to inherit a dataset — and the assumptions embedded in it.
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">
+          I work in tech for more than a decade now, occupying various positions from technical content curation to editorial consultant for public digital services, and now, <a href="https://www.linkedin.com/in/annelaurefreant/" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#B69188] transition-colors">API technical writing and developer portal management</a>. I am from France and have lived in Canada for a few years, done an incredible year of vineyard work in New Zealand, and have moved to Spain last year with my daughter and partner.
         </p>
-        <div class="mt-10 flex gap-6 border-t border-gray-900 pt-8 text-sm font-sans">
-          <a href="#" class="hover:underline transition-colors">Instagram</a>
-          <a href="#" class="hover:underline transition-colors">X / Twitter</a>
-          <a href="mailto:annelaure.freant@gmail.com" class="hover:underline transition-colors">Email</a>
-        </div>
+      </div>
+    </div>
+
+    <div class="border border-gray-900 p-10">
+      <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Talk</span>
+      <h2 class="font-display text-4xl font-bold leading-none text-gray-900 mt-6">Datartefacts — Women + Data Zürich</h2>
+      <p class="mt-4 text-base text-gray-900 leading-relaxed">An online talk about the project, its origins, and the continuum of data-visualization and data-physicalization practices.</p>
+      <div class="mt-8 aspect-video">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/LR8moNOnUCk?start=418" title="Datartefacts — Women + Data Zürich" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div id="newsletter" class="border border-[#202020] bg-[#202020]">
+      <div class="p-12">
+        <h2 class="font-display text-5xl font-bold leading-tight text-white">Follow the project</h2>
+        <p class="mt-5 text-base text-gray-300 leading-relaxed">
+          New index entries, book updates, and notes on data history — sent occasionally, unsubscribe anytime.
+        </p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/datartefact" method="post" class="mt-8 flex flex-col sm:flex-row max-w-md">
+          <input type="email" name="email" id="bd-email-about" placeholder="your@email.com" required
+            class="flex-1 border border-white px-4 py-3 text-base font-sans bg-[#FFFBF5] text-gray-900 focus:outline-none placeholder-gray-400" />
+          <button type="submit"
+            class="bg-[#FFFBF5] text-[#202020] text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-[#202020] hover:text-white border border-white sm:border-l-0 transition-colors whitespace-nowrap">
+            Subscribe
+          </button>
+        </form>
+        <p class="mt-3 text-xs text-gray-500"><a href="https://buttondown.com/refer/datartefact" target="_blank" class="hover:underline">Powered by Buttondown</a></p>
       </div>
     </div>
 
   </main>
   <footer class="border-t border-gray-900 mt-auto">
-    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900">
-      <span>© 2026 Datartefact</span>
-      <div class="flex gap-6">
-        <a href="#" class="hover:underline transition-colors">X / Twitter</a>
-        <a href="#" class="hover:underline transition-colors">LinkedIn</a>
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© 2026 Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="#newsletter" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>

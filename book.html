@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="images/round-dark.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Books — Datartefact</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>@font-face { font-family: 'Stedelijk'; src: url('fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
   <style>
     .card-wrapper { perspective: 1200px; height: 320px; }
@@ -26,100 +27,167 @@
     .prose strong { font-weight: 600; }
   </style>
 </head>
-<body class="bg-white text-gray-900 font-sans antialiased min-h-screen flex flex-col">
-  <header class="border-b border-gray-900 sticky top-0 bg-white z-10">
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="font-display text-5xl font-bold tracking-tight text-gray-900">Datartefact</a>
-      <nav class="hidden md:flex gap-8 text-xl text-gray-900 font-medium font-sans">
-        <a href="index.html" class="hover:underline transition-colors">Index</a>
-        <a href="book.html" class="hover:underline transition-colors">Books</a>
-        <a href="instagram.html" class="hover:underline transition-colors">Instagram</a>
-        <a href="blog.html" class="hover:underline transition-colors">Blog</a>
-        <a href="about.html" class="hover:underline transition-colors">About</a>
-        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:underline transition-colors">Notebook</a>
+      <a href="book.html" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+        <a href="book.html" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="about.html" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+        <a href="book.html" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="about.html" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
       </nav>
     </div>
   </header>
-  <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
-    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Books</h1>
-    <p class="mt-3 text-gray-900 text-base max-w-xl">A series on data artefacts — the objects that carry, shape, and outlive the data they hold.</p>
+  <section class="max-w-6xl mx-auto px-6 pt-16 pb-4">
+    <h1 class="font-display text-7xl font-bold tracking-wide text-gray-900 flex items-center gap-4">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="#202020"><path d="M18 18 L33.6 9 A18 18 0 1 0 33.6 27 Z"/></svg>
+      Books
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="#202020"><path d="M18 18 L2.4 9 A18 18 0 1 1 2.4 27 Z"/></svg>
+    </h1>
   </section>
-  <main class="max-w-6xl mx-auto px-6 pb-24 flex-1 w-full flex flex-col gap-8">
+  <main class="max-w-6xl mx-auto px-6 pt-4 pb-24 flex-1 w-full flex flex-col gap-8">
     <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-3">
       <div class="border-b md:border-b-0 md:border-r border-gray-900 overflow-hidden">
         <img src="images/couv.png" alt="Datartefact — Book cover" class="w-full h-full object-cover">
       </div>
       <div class="md:col-span-2 p-10 flex flex-col justify-between">
         <div>
-          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 1</span>
-          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Datartefact</h2>
-          <p class="mt-2 font-display text-xl text-gray-900 leading-tight">Encoding and Recording the World</p>
+          <span class="inline-block bg-[#B69188] text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 1</span>
+          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Encoding and Recording the World</h2>
+          <p class="mt-3 font-sans text-xl text-gray-900 leading-tight">A Historical Journey Through Material Knowledge Systems</p>
           <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
           <p class="mt-6 text-base text-gray-900 leading-relaxed max-w-prose">
-            From cuneiform tablets to punch cards, every era leaves behind objects that encode how it measured, counted, and classified the world. This book is a guided index of those objects — what they recorded, what they concealed, and what they reveal about the systems that produced them.
-          </p>
-          <p class="mt-4 text-base text-gray-900 leading-relaxed max-w-prose">
-            Seven chapters. Seven artefacts. Each one a different way of asking: what did it mean, then, to make data?
+            Datartefacts are objects that function as documents, or systems of documents. Such objects embed, record and transmit information, and are always indicative of the cultural and political systems that created them. In this first book of the Datartefact series, we go through a historical journey from ancient artifacts (clay tokens, Inca khipus, first chronophotographs, etc.) to contemporary practices inspired by ancient material cultures and practices.
           </p>
         </div>
         <div class="mt-10 flex items-center gap-6 border-t border-gray-900 pt-8">
-          <span class="font-display text-4xl font-bold text-gray-900">€28</span>
-          <a href="#" class="inline-block bg-gray-900 text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-white hover:text-gray-900 border border-gray-900 transition-colors">Buy — coming soon</a>
+          <span class="inline-block bg-[#B69188] text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 border border-[#B69188] cursor-default select-none">Coming Fall 2026</span>
         </div>
       </div>
     </div>
-    <div class="border border-gray-900 border-t-0 overflow-hidden">
-      <img src="images/mockuptry.png" alt="Datartefact — Book 1 interior spread" class="w-full object-cover">
-    </div>
-
-    <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-3">
-      <div class="border-b md:border-b-0 md:border-r border-gray-900 bg-gray-100 flex items-center justify-center min-h-80">
-        <span class="text-xs text-gray-400 uppercase tracking-widest font-sans">Cover</span>
-      </div>
-      <div class="md:col-span-2 p-10 flex flex-col justify-between">
-        <div>
-          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 2</span>
-          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Title TBD</h2>
-          <p class="mt-2 font-display text-xl text-gray-900 leading-tight">Subtitle TBD</p>
-          <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
-          <p class="mt-6 text-base text-gray-400 leading-relaxed max-w-prose italic">
-            Coming soon.
-          </p>
-        </div>
-        <div class="mt-10 flex items-center gap-6 border-t border-gray-900 pt-8">
-          <span class="font-display text-4xl font-bold text-gray-900">€35</span>
-          <a href="#" class="inline-block bg-gray-900 text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-white hover:text-gray-900 border border-gray-900 transition-colors">Buy — coming soon</a>
-        </div>
+    <div class="border border-[#202020] bg-[#202020]">
+      <div class="p-12 text-center">
+        <p class="text-base text-gray-300 leading-relaxed">
+          "Encoding and Recording the World" Book 1 is scheduled to be published in the Fall 2026.<br>Subscribe here if you'd like to get notified once it's available!
+        </p>
+        <form action="https://buttondown.com/api/emails/embed-subscribe/datartefact" method="post" class="mt-8 flex flex-col sm:flex-row max-w-xl mx-auto">
+          <input type="email" name="email" id="bd-email-book" placeholder="your@email.com" required
+            class="flex-1 border border-white px-5 py-4 text-lg font-sans bg-[#FFFBF5] text-gray-900 focus:outline-none placeholder-gray-400" />
+          <button type="submit"
+            class="bg-[#FFFBF5] text-[#202020] text-sm font-semibold uppercase tracking-widest px-8 py-4 hover:bg-[#202020] hover:text-white border border-white sm:border-l-0 transition-colors whitespace-nowrap">
+            Join waitlist
+          </button>
+        </form>
+        <p class="mt-3 text-xs text-gray-500"><a href="https://buttondown.com/refer/datartefact" target="_blank" class="hover:underline">Powered by Buttondown</a></p>
       </div>
     </div>
 
-    <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-3">
-      <div class="border-b md:border-b-0 md:border-r border-gray-900 bg-gray-100 flex items-center justify-center min-h-80">
-        <span class="text-xs text-gray-400 uppercase tracking-widest font-sans">Cover</span>
+    <div class="border border-gray-900 border-t-0 overflow-hidden relative group">
+      <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+        <img src="images/book-spread1.png" alt="Datartefact — Book 1 interior spread" class="w-full flex-shrink-0 object-cover" />
+        <img src="images/toc.png" alt="Datartefact — Book 1 table of contents" class="w-full flex-shrink-0 object-cover" />
+        <img src="images/mock-cover.png" alt="Datartefact — Book 1 cover mockup" class="w-full flex-shrink-0 object-cover" />
       </div>
-      <div class="md:col-span-2 p-10 flex flex-col justify-between">
-        <div>
-          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 3</span>
-          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Title TBD</h2>
-          <p class="mt-2 font-display text-xl text-gray-900 leading-tight">Subtitle TBD</p>
-          <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
-          <p class="mt-6 text-base text-gray-400 leading-relaxed max-w-prose italic">
-            Coming soon.
-          </p>
+      <button onclick="carouselPrev()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#FFFBF5] border border-gray-900 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-900 hover:text-white">&#8592;</button>
+      <button onclick="carouselNext()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-[#FFFBF5] border border-gray-900 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-900 hover:text-white">&#8594;</button>
+      <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"></div>
+    </div>
+    <script>
+      const track = document.getElementById('carousel-track');
+      const dots = document.getElementById('carousel-dots');
+      let current = 0;
+      const total = track.children.length;
+
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'w-2 h-2 border border-white bg-transparent transition-colors';
+        dot.onclick = () => goTo(i);
+        dots.appendChild(dot);
+      }
+
+      function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        Array.from(dots.children).forEach((d, i) => {
+          d.className = i === current
+            ? 'w-2 h-2 border border-white bg-[#FFFBF5] transition-colors'
+            : 'w-2 h-2 border border-white bg-transparent transition-colors';
+        });
+      }
+
+      function carouselPrev() { goTo(current - 1); }
+      function carouselNext() { goTo(current + 1); }
+
+      goTo(0);
+
+      document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+    </script>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border border-gray-900 border-t-0 flex flex-col">
+        <div class="overflow-hidden min-h-48 relative">
+          <img src="images/book2.png" alt="Book 2 — Modelling and Teaching the World" class="w-full h-full object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 p-3">
+            <span class="text-xs font-sans uppercase tracking-widest text-white/70">Provisional cover</span>
+          </div>
         </div>
-        <div class="mt-10 flex items-center gap-6 border-t border-gray-900 pt-8">
-          <span class="font-display text-4xl font-bold text-gray-900">€35</span>
-          <a href="#" class="inline-block bg-gray-900 text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-white hover:text-gray-900 border border-gray-900 transition-colors">Buy — coming soon</a>
+        <div class="p-6 flex flex-col justify-between flex-1">
+          <div>
+            <span class="inline-block bg-[#B69188] text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 2</span>
+            <h2 class="font-display text-4xl font-bold leading-none text-gray-900 mt-6">Modelling and Understanding the World</h2>
+            <p class="mt-2 font-sans text-lg text-gray-900 leading-tight">Models and Material Representations in Scientific Research since the 1800s</p>
+            <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
+            <p class="mt-6 text-base text-gray-400 leading-relaxed italic">Coming in 2027</p>
+          </div>
+        </div>
+      </div>
+      <div class="border border-gray-900 border-t-0 flex flex-col">
+        <div class="overflow-hidden min-h-48 relative">
+          <img src="images/book3.png" alt="Book 3 — Crafting, Sculpting and Printing Data" class="w-full h-full object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 p-3">
+            <span class="text-xs font-sans uppercase tracking-widest text-white/70">Provisional cover</span>
+          </div>
+        </div>
+        <div class="p-6 flex flex-col justify-between flex-1">
+          <div>
+            <span class="inline-block bg-[#B69188] text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 3</span>
+            <h2 class="font-display text-4xl font-bold leading-none text-gray-900 mt-6">The Return to Matter</h2>
+            <p class="mt-2 font-sans text-lg text-gray-900 leading-tight">The Birth of Data Art and Dataphysicalization Practices since the 1980s</p>
+            <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
+            <p class="mt-6 text-base text-gray-400 leading-relaxed italic">Coming in 2028</p>
+          </div>
         </div>
       </div>
     </div>
   </main>
   <footer class="border-t border-gray-900 mt-auto">
-    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900">
-      <span>© 2026 Datartefact</span>
-      <div class="flex gap-6">
-        <a href="#" class="hover:underline transition-colors">X / Twitter</a>
-        <a href="#" class="hover:underline transition-colors">LinkedIn</a>
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© 2026 Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="about.html#newsletter" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
