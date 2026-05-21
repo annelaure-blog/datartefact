@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counting by Deborah Stone — Datartefact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('../fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+  <style>
+    .card-wrapper { perspective: 1200px; height: 320px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); }
+    .card-wrapper:hover .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+    .card-front:hover .card-title { text-decoration: underline; }
+    .prose a { text-decoration: underline; }
+    .prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; }
+    .prose p { font-size: 1.125rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .prose ul { font-size: 1.125rem; list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose ol { font-size: 1.125rem; list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose li { margin-bottom: 0.35rem; }
+    .prose strong { font-weight: 600; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-white z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="font-display text-5xl font-bold tracking-tight text-gray-900">Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-xl text-gray-900 font-medium font-sans">
+        <a href="../index.html" class="hover:underline transition-colors">Index</a>
+        <a href="../book.html" class="hover:underline transition-colors">Book</a>
+        <a href="../instagram.html" class="hover:underline transition-colors">Instagram</a>
+        <a href="../blog.html" class="hover:underline transition-colors">Blog</a>
+        <a href="../about.html" class="hover:underline transition-colors">About</a>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
+    <a href="../blog.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to blog</a>
+    <table class="w-full border border-gray-900 mt-8 border-collapse">
+      <tbody>
+        <tr>
+          <td class="p-6 w-1/4 align-top border-r border-gray-900">
+            <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book</span>
+            <p class="mt-4 text-xs text-gray-500">April 18, 2026</p>
+          </td>
+          <td class="p-6 w-3/4 align-top">
+            <span class="font-display text-6xl font-bold leading-none text-gray-900">Counting by Deborah Stone</span>
+            <p class="mt-4 text-base text-gray-900 leading-relaxed">Stone argues that every act of counting is an act of persuasion. A brisk, readable case for treating numbers as political objects rather than neutral facts.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mt-10 prose text-gray-900 text-base">
+      <p><strong>Counting: How We Use Numbers to Decide What Matters</strong>, Deborah Stone (Liveright, 2020).</p>
+<p>Deborah Stone&rsquo;s central claim is simple and devastating: there is no such thing as a count that is not also an argument. Every number encodes a decision about what to include, what to exclude, and what to treat as equivalent to what. These decisions are not technical. They are political.</p>
+<h2>The core argument</h2>
+<p>Stone builds her case through a series of everyday examples — counting the homeless, measuring poverty, tallying votes — and shows how the same phenomenon produces radically different numbers depending on who is doing the counting and what they are trying to prove.</p>
+<p>This is not an argument for relativism. It is an argument for honesty. Numbers are not wrong because they are political. They are dangerous when their politics are invisible.</p>
+<h2>Why it matters for this project</h2>
+<p>The book connects directly to the concerns of the index. A census is a count. A shipping manifest is a count. A casualty record is a count. In each case, the act of counting is inseparable from the act of deciding who and what counts.</p>
+<p>Stone gives you the vocabulary to articulate this without slipping into the lazy claim that all data is meaningless.</p>
+<h2>What it does well</h2>
+<p>The writing is clear and the examples are well chosen. Stone is a political scientist, not a historian, and the book is better for it — she is interested in mechanism rather than period. The chapter on counting people across time (how do you count a person who is in two places?) is particularly useful.</p>
+<h2>One limitation</h2>
+<p>The book is more diagnosis than remedy. It tells you convincingly that numbers are contested, but is less helpful on what to do about that once you know it. For that you need to go elsewhere — Hacking, Porter, or the Gitelman collection.</p>
+<p>Recommended without reservation for anyone working at the intersection of data and historical argument.</p>
+    </div>
+  </main>
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900">
+      <span>© 2026 Datartefact</span>
+      <div class="flex gap-6">
+        <a href="#" class="hover:underline transition-colors">X / Twitter</a>
+        <a href="#" class="hover:underline transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

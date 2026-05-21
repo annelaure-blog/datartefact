@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Datartefact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+  <style>
+    .card-wrapper { perspective: 1200px; height: 320px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); }
+    .card-wrapper:hover .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+    .card-front:hover .card-title { text-decoration: underline; }
+    .prose a { text-decoration: underline; }
+    .prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; }
+    .prose p { font-size: 1.125rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .prose ul { font-size: 1.125rem; list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose ol { font-size: 1.125rem; list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose li { margin-bottom: 0.35rem; }
+    .prose strong { font-weight: 600; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-white z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-display text-5xl font-bold tracking-tight text-gray-900">Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-xl text-gray-900 font-medium font-sans">
+        <a href="index.html" class="hover:underline transition-colors">Index</a>
+        <a href="book.html" class="hover:underline transition-colors">Books</a>
+        <a href="instagram.html" class="hover:underline transition-colors">Instagram</a>
+        <a href="blog.html" class="hover:underline transition-colors">Blog</a>
+        <a href="about.html" class="hover:underline transition-colors">About</a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:underline transition-colors">Notebook</a>
+      </nav>
+    </div>
+  </header>
+  <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
+    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Blog</h1>
+    <p class="mt-3 text-gray-900 text-base max-w-xl">Books, conferences, workshops, interviews — the topic alive in the world today.</p>
+  </section>
+  <main class="max-w-6xl mx-auto px-6 pb-24 flex-1 w-full border-t border-gray-900">
+      <a href="blog-posts/five-days-national-library.html" class="block border-b border-gray-900 py-10 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-10 group">
+        <div class="md:col-span-1">
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Field note</span>
+          <p class="mt-3 text-xs text-gray-500 font-sans">May 2, 2026</p>
+        </div>
+        <div class="md:col-span-3">
+          <h2 class="font-display text-4xl font-bold leading-none text-gray-900 group-hover:underline">Five days at the National Library</h2>
+          <p class="mt-4 text-base text-gray-900 leading-relaxed">What it's like to spend five days requesting folios, waiting for trolleys, and reading documents no one has touched in thirty years.</p>
+        </div>
+      </a>
+      <a href="blog-posts/counting-deborah-stone.html" class="block border-b border-gray-900 py-10 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-10 group">
+        <div class="md:col-span-1">
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book</span>
+          <p class="mt-3 text-xs text-gray-500 font-sans">April 18, 2026</p>
+        </div>
+        <div class="md:col-span-3">
+          <h2 class="font-display text-4xl font-bold leading-none text-gray-900 group-hover:underline">Counting by Deborah Stone</h2>
+          <p class="mt-4 text-base text-gray-900 leading-relaxed">Stone argues that every act of counting is an act of persuasion. A brisk, readable case for treating numbers as political objects rather than neutral facts.</p>
+        </div>
+      </a>
+      <a href="blog-posts/data-society-conference-2026.html" class="block border-b border-gray-900 py-10 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-10 group">
+        <div class="md:col-span-1">
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Conference</span>
+          <p class="mt-3 text-xs text-gray-500 font-sans">March 29, 2026</p>
+        </div>
+        <div class="md:col-span-3">
+          <h2 class="font-display text-4xl font-bold leading-none text-gray-900 group-hover:underline">Data and Society Conference 2026</h2>
+          <p class="mt-4 text-base text-gray-900 leading-relaxed">Notes from three days in New York. The most interesting thread was the question of when datasets should be destroyed, not just preserved.</p>
+        </div>
+      </a>
+      <a href="blog-posts/mara-singh-material-archives.html" class="block border-b border-gray-900 py-10 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-10 group">
+        <div class="md:col-span-1">
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Interview</span>
+          <p class="mt-3 text-xs text-gray-500 font-sans">March 10, 2026</p>
+        </div>
+        <div class="md:col-span-3">
+          <h2 class="font-display text-4xl font-bold leading-none text-gray-900 group-hover:underline">Mara Singh on material archives</h2>
+          <p class="mt-4 text-base text-gray-900 leading-relaxed">Singh has spent fifteen years photographing paper-based data systems before they are digitised. We talked about what is lost in the scan.</p>
+        </div>
+      </a>
+  </main>
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900">
+      <span>© 2026 Datartefact</span>
+      <div class="flex gap-6">
+        <a href="#" class="hover:underline transition-colors">X / Twitter</a>
+        <a href="#" class="hover:underline transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

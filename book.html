@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books — Datartefact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+  <style>
+    .card-wrapper { perspective: 1200px; height: 320px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); }
+    .card-wrapper:hover .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+    .card-front:hover .card-title { text-decoration: underline; }
+    .prose a { text-decoration: underline; }
+    .prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; }
+    .prose p { font-size: 1.125rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .prose ul { font-size: 1.125rem; list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose ol { font-size: 1.125rem; list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose li { margin-bottom: 0.35rem; }
+    .prose strong { font-weight: 600; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-white z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-display text-5xl font-bold tracking-tight text-gray-900">Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-xl text-gray-900 font-medium font-sans">
+        <a href="index.html" class="hover:underline transition-colors">Index</a>
+        <a href="book.html" class="hover:underline transition-colors">Books</a>
+        <a href="instagram.html" class="hover:underline transition-colors">Instagram</a>
+        <a href="blog.html" class="hover:underline transition-colors">Blog</a>
+        <a href="about.html" class="hover:underline transition-colors">About</a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:underline transition-colors">Notebook</a>
+      </nav>
+    </div>
+  </header>
+  <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
+    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Books</h1>
+    <p class="mt-3 text-gray-900 text-base max-w-xl">A series on data artefacts — the objects that carry, shape, and outlive the data they hold.</p>
+  </section>
+  <main class="max-w-6xl mx-auto px-6 pb-24 flex-1 w-full flex flex-col gap-8">
+    <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-3">
+      <div class="border-b md:border-b-0 md:border-r border-gray-900 overflow-hidden">
+        <img src="images/couv.png" alt="Datartefact — Book cover" class="w-full h-full object-cover">
+      </div>
+      <div class="md:col-span-2 p-10 flex flex-col justify-between">
+        <div>
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 1</span>
+          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Datartefact</h2>
+          <p class="mt-2 font-display text-xl text-gray-900 leading-tight">Encoding and Recording the World</p>
+          <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
+          <p class="mt-6 text-base text-gray-900 leading-relaxed max-w-prose">
+            From cuneiform tablets to punch cards, every era leaves behind objects that encode how it measured, counted, and classified the world. This book is a guided index of those objects — what they recorded, what they concealed, and what they reveal about the systems that produced them.
+          </p>
+          <p class="mt-4 text-base text-gray-900 leading-relaxed max-w-prose">
+            Seven chapters. Seven artefacts. Each one a different way of asking: what did it mean, then, to make data?
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-6 border-t border-gray-900 pt-8">
+          <span class="font-display text-4xl font-bold text-gray-900">€28</span>
+          <a href="#" class="inline-block bg-gray-900 text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-white hover:text-gray-900 border border-gray-900 transition-colors">Buy — coming soon</a>
+        </div>
+      </div>
+    </div>
+    <div class="border border-gray-900 border-t-0 overflow-hidden">
+      <img src="images/mockuptry.png" alt="Datartefact — Book 1 interior spread" class="w-full object-cover">
+    </div>
+
+    <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-3">
+      <div class="border-b md:border-b-0 md:border-r border-gray-900 bg-gray-100 flex items-center justify-center min-h-80">
+        <span class="text-xs text-gray-400 uppercase tracking-widest font-sans">Cover</span>
+      </div>
+      <div class="md:col-span-2 p-10 flex flex-col justify-between">
+        <div>
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 2</span>
+          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Title TBD</h2>
+          <p class="mt-2 font-display text-xl text-gray-900 leading-tight">Subtitle TBD</p>
+          <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
+          <p class="mt-6 text-base text-gray-400 leading-relaxed max-w-prose italic">
+            Coming soon.
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-6 border-t border-gray-900 pt-8">
+          <span class="font-display text-4xl font-bold text-gray-900">€35</span>
+          <a href="#" class="inline-block bg-gray-900 text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-white hover:text-gray-900 border border-gray-900 transition-colors">Buy — coming soon</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-gray-900 grid grid-cols-1 md:grid-cols-3">
+      <div class="border-b md:border-b-0 md:border-r border-gray-900 bg-gray-100 flex items-center justify-center min-h-80">
+        <span class="text-xs text-gray-400 uppercase tracking-widest font-sans">Cover</span>
+      </div>
+      <div class="md:col-span-2 p-10 flex flex-col justify-between">
+        <div>
+          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Book 3</span>
+          <h2 class="font-display text-5xl font-bold leading-none text-gray-900 mt-6">Title TBD</h2>
+          <p class="mt-2 font-display text-xl text-gray-900 leading-tight">Subtitle TBD</p>
+          <p class="mt-2 text-sm text-gray-500 font-sans uppercase tracking-widest">Anne-Laure Freant</p>
+          <p class="mt-6 text-base text-gray-400 leading-relaxed max-w-prose italic">
+            Coming soon.
+          </p>
+        </div>
+        <div class="mt-10 flex items-center gap-6 border-t border-gray-900 pt-8">
+          <span class="font-display text-4xl font-bold text-gray-900">€35</span>
+          <a href="#" class="inline-block bg-gray-900 text-white text-sm font-semibold uppercase tracking-widest px-8 py-3 hover:bg-white hover:text-gray-900 border border-gray-900 transition-colors">Buy — coming soon</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900">
+      <span>© 2026 Datartefact</span>
+      <div class="flex gap-6">
+        <a href="#" class="hover:underline transition-colors">X / Twitter</a>
+        <a href="#" class="hover:underline transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
