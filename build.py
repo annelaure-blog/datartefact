@@ -6,19 +6,150 @@ Run: python build.py
 
 from __future__ import annotations
 
+import json
+import re
 import yaml
+from urllib.parse import urlparse
 import markdown as md_lib
 from datetime import date, datetime
 from pathlib import Path
+from process_images import process_all as process_images
 
 
 CONTENT_DIR = Path("content")
 POSTS_DIR = Path("posts")
 BLOG_DIR = Path("blog")
 BLOG_POSTS_DIR = Path("blog-posts")
-INDEX_FILE = Path("index.html")
+INDEX_FILE = Path("collection.html")
 
 MD = md_lib.Markdown(extensions=["extra", "smarty"])
+
+_chapters_raw = json.loads(Path("chapters.json").read_text(encoding="utf-8"))
+CHAPTERS = {int(b): {int(c): t for c, t in chaps.items()} for b, chaps in _chapters_raw.items()}
+
+def chapter_title(book, chapter) -> str:
+    try:
+        return CHAPTERS[int(book)][int(chapter)]
+    except (KeyError, TypeError, ValueError):
+        return ""
+
+
+def _url_label(url: str) -> str:
+    try:
+        host = urlparse(url).netloc.removeprefix("www.")
+        return host if host else url
+    except Exception:
+        return url
+
+
+def parse_sources(raw) -> list[tuple[str, str]]:
+    if not raw:
+        return []
+    items = raw if isinstance(raw, list) else [s.strip() for s in raw.split("|") if s.strip()]
+    result = []
+    for item in items:
+        if isinstance(item, dict):
+            url = item.get("url", "")
+            label = item.get("label", "") or _url_label(url)
+            result.append((label, url))
+        elif isinstance(item, str) and item.strip():
+            item = item.strip()
+            if "::" in item:
+                label, url = item.split("::", 1)
+                result.append((label.strip(), url.strip()))
+            else:
+                result.append((_url_label(item), item))
+    return result
+
+
+def parse_year(date_val) -> int | None:
+    if date_val is None:
+        return None
+    if isinstance(date_val, (int, float)):
+        return int(date_val)
+    if isinstance(date_val, (date, datetime)):
+        return date_val.year
+    m = re.search(r'(?<!\d)(\d{3,4})(?!\d)', str(date_val))
+    return int(m.group(1)) if m else None
+
+
+def render_timeline_entry(entry: dict, margin_top: int) -> str:
+    type_key = entry.get("type", "article")
+    title = entry.get("title", "Untitled")
+    author = entry.get("author", "")
+    description = entry.get("description", "")
+    slug = entry["slug"]
+    book = entry.get("book")
+    chapter = entry.get("chapter")
+    ch_title = chapter_title(book, chapter)
+    chapter_str = f"Chapter {chapter} · {ch_title}" if ch_title else (f"Chapter {chapter}" if chapter else "")
+
+    raw_date = entry.get("date")
+    if isinstance(raw_date, (int, float)):
+        year_label = str(int(raw_date))
+    elif isinstance(raw_date, str) and raw_date:
+        year_label = raw_date
+    elif isinstance(raw_date, (date, datetime)):
+        year_label = str(raw_date.year)
+    else:
+        year_label = "—"
+
+    image = entry.get("image", "")
+    if image:
+        dithered = f"images/dithered/{Path(image).stem}.png"
+        img_html = f'<img src="{dithered}" alt="{title}" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">'
+    else:
+        img_html = '<div class="bg-gray-100 border-r border-gray-900 flex-shrink-0 flex items-center justify-center" style="width:160px;height:200px;"><span class="text-xs text-gray-400">—</span></div>'
+
+    return f"""\
+      <div class="timeline-entry flex items-start" data-chapter="{chapter or ''}" data-type="{type_key}" data-book="{book or ''}" style="margin-top: {margin_top}px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">{year_label}</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/{slug}.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          {img_html}
+          <div class="p-5 flex-1 min-w-0">
+            {f'<span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">{chapter_str}</span>' if chapter_str else ''}
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">{title}</h3>
+            {f'<p class="text-sm text-gray-500 mt-2">{author}</p>' if author else ''}
+            {f'<p class="text-base text-gray-600 mt-3 leading-relaxed">{description}</p>' if description else ''}
+          </div>
+        </a>
+      </div>"""
+
+
+def build_timeline(entries: list[dict]) -> str:
+    PX_PER_YEAR = 1.5
+    MIN_GAP = 80
+    FIRST_TOP = 40
+
+    dated, undated = [], []
+    for e in entries:
+        y = parse_year(e.get("date"))
+        if y is not None:
+            dated.append((y, e))
+        else:
+            undated.append(e)
+    dated.sort(key=lambda x: x[0])
+
+    rows = []
+    prev_year = None
+    for year, entry in dated:
+        if prev_year is None:
+            margin = FIRST_TOP
+        else:
+            gap = max(0, year - prev_year)
+            margin = max(MIN_GAP, int(gap * PX_PER_YEAR))
+        rows.append(render_timeline_entry(entry, margin))
+        prev_year = year
+
+    for entry in undated:
+        rows.append(render_timeline_entry(entry, MIN_GAP))
+
+    return "\n".join(rows)
 
 
 # ---------------------------------------------------------------------------
@@ -72,28 +203,53 @@ def type_label(key: str) -> str:
 # HTML snippets
 # ---------------------------------------------------------------------------
 
-NAV = """  <header class="border-b border-gray-900 sticky top-0 bg-white z-10">
+_ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>'
+_NAV_LINKS = """\
+        <a href="{p}book" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="{p}collection" class="hover:text-[#B69188] transition-colors">Collection</a>
+        <a href="{p}about" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram """ + _ARROW + """</a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook """ + _ARROW + """</a>"""
+
+def _build_nav(prefix: str) -> str:
+    links = _NAV_LINKS.format(p=prefix)
+    logo_img = f'<img src="{prefix}images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />'
+    return f"""  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="../index.html" class="font-display text-5xl font-bold tracking-tight text-gray-900">Datartefact</a>
-      <nav class="hidden md:flex gap-8 text-xl text-gray-900 font-medium font-sans">
-        <a href="../index.html" class="hover:underline transition-colors">Index</a>
-        <a href="../book.html" class="hover:underline transition-colors">Books</a>
-        <a href="../instagram.html" class="hover:underline transition-colors">Instagram</a>
-        <a href="../blog.html" class="hover:underline transition-colors">Blog</a>
-        <a href="../about.html" class="hover:underline transition-colors">About</a>
-        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:underline transition-colors">Notebook</a>
+      <a href="{prefix}book" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]">{logo_img}Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+{links}
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+{links}
       </nav>
     </div>
   </header>"""
 
-NAV_INDEX = NAV.replace('href="../index.html"', 'href="index.html"').replace('href="../book.html"', 'href="book.html"').replace('href="../instagram.html"', 'href="instagram.html"').replace('href="../blog.html"', 'href="blog.html"').replace('href="../about.html"', 'href="about.html"')
+NAV       = _build_nav("../")
+NAV_INDEX = _build_nav("")
 
-FOOTER = """  <footer class="border-t border-gray-900 mt-auto">
-    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900">
-      <span>© {year} Datartefact</span>
-      <div class="flex gap-6">
-        <a href="#" class="hover:underline transition-colors">X / Twitter</a>
-        <a href="#" class="hover:underline transition-colors">LinkedIn</a>
+def build_footer(year: int, prefix: str = "") -> str:
+    return f"""  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© {year} Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="#newsletter" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+          <a href="{prefix}legal" class="hover:text-[#B69188] transition-colors">Legal</a>
+        </div>
       </div>
     </div>
   </footer>"""
@@ -108,7 +264,7 @@ HTML_HEAD = """\
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = {{ theme: {{ extend: {{ fontFamily: {{ sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] }} }} }} }}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>@font-face {{ font-family: 'Stedelijk'; src: url('{font_path}fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }}</style>
   <style>
     .card-wrapper {{ perspective: 1200px; height: 320px; }}
@@ -127,7 +283,15 @@ HTML_HEAD = """\
     .prose strong {{ font-weight: 600; }}
   </style>
 </head>
-<body class="bg-white text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {{
+      var toggle = document.getElementById('menu-toggle');
+      if (toggle) toggle.addEventListener('click', function() {{
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      }});
+    }});
+  </script>
 """
 
 
@@ -140,15 +304,21 @@ def render_card(entry: dict) -> str:
     label = type_label(type_key)
     date_str = fmt_date(entry.get("date_obj") or entry.get("date"))
     title = entry.get("title", "Untitled")
+    author = entry.get("author", "")
     description = entry.get("description", "")
     slug = entry["slug"]
     book = entry.get("book")
     chapter = entry.get("chapter")
-    book_chapter = f"Book {book} · Chapter {chapter}" if book and chapter else ""
+    ch_title = chapter_title(book, chapter)
+    chapter_str = f"Chapter {chapter} · {ch_title}" if ch_title else (f"Chapter {chapter}" if chapter else "")
+    book_chapter = f"Book {book} · {chapter_str}" if book and chapter_str else ""
+    meta_parts = [p for p in [author, date_str] if p]
+    meta_line = " · ".join(meta_parts)
 
     image = entry.get("image", "")
     if image:
-        back_content = f'<img src="{image}" alt="{title}" class="w-full h-full object-cover">'
+        dithered = f"images/dithered/{Path(image).stem}.png"
+        back_content = f'<img src="{dithered}" alt="{title}" class="w-full h-full object-cover">'
     else:
         back_content = f'<div class="w-full h-full bg-gray-900 flex items-center justify-center"><span class="text-white text-xs font-semibold uppercase tracking-widest">No image yet</span></div>'
 
@@ -159,21 +329,33 @@ def render_card(entry: dict) -> str:
           <a href="posts/{slug}.html" class="card-front overflow-hidden">
             {back_content}
           </a>
-          <a href="posts/{slug}.html" class="card-back p-8 block bg-white overflow-hidden">
+          <a href="posts/{slug}.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">{label}</span>
-              {f'<span class="text-xs text-gray-900">{book_chapter}</span>' if book_chapter else ''}
+              {f'<span class="text-xs font-semibold uppercase tracking-widest text-gray-900">{book_chapter}</span>' if book_chapter else ''}
             </div>
             <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">{title}</h2>
+            <div class="mt-2 space-y-0.5">
+              {f'<p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> {author}</p>' if author else ''}
+              {f'<p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> {date_str}</p>' if date_str else ''}
+            </div>
             <p class="mt-3 text-sm text-gray-900 leading-snug">{description}</p>
           </a>
         </div>
       </div>"""
 
 
-def build_filter_tabs(types: list[str]) -> str:
+def build_filter_tabs(entries: list[dict]) -> str:
     EXCLUDE_FROM_FILTERS = {"article"}
-    tabs = [('all', 'All')] + [(t, type_label(t)) for t in sorted(set(types)) if t not in EXCLUDE_FROM_FILTERS]
+    types = [e.get("type", "article") for e in entries]
+    tabs = [('all', 'All')]
+    tabs += [(f'type:{t}', type_label(t)) for t in sorted(set(types)) if t not in EXCLUDE_FROM_FILTERS]
+
+    for book_num in sorted(CHAPTERS):
+        for ch_num in sorted(CHAPTERS[book_num]):
+            ch_t = CHAPTERS[book_num][ch_num]
+            label = f"Chapter {ch_num} · {ch_t}"
+            tabs.append((f'chapter:{ch_num}', label))
+
     buttons = []
     for i, (key, label) in enumerate(tabs):
         active = 'bg-gray-900 text-white border-gray-900' if i == 0 else 'text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white'
@@ -185,15 +367,15 @@ def build_filter_tabs(types: list[str]) -> str:
 
 
 def build_index(entries: list[dict]) -> str:
-    types = [e.get("type", "article") for e in entries]
     cards = "\n".join(render_card(e) for e in entries)
-    tabs = build_filter_tabs(types)
+    tabs = build_filter_tabs(entries)
+    timeline_html = build_timeline(entries)
     year = datetime.now().year
 
-    return HTML_HEAD.format(title="Index", font_path="") + f"""\
+    return HTML_HEAD.format(title="Collection", font_path="") + f"""\
 {NAV_INDEX}
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
-    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Index</h1>
+    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Collection</h1>
     <div class="mt-8 border border-gray-900 grid grid-cols-1 md:grid-cols-4">
       <div class="border-b md:border-b-0 md:border-r border-gray-900 p-6 flex items-start">
         <span class="text-xs font-semibold uppercase tracking-widest text-gray-900 font-sans">Datartefact, n.</span>
@@ -204,29 +386,47 @@ def build_index(entries: list[dict]) -> str:
     </div>
   </section>
   <section class="max-w-6xl mx-auto px-6 pb-4">
-    <div class="flex gap-2 flex-wrap" id="filters">
+    <div class="flex items-start justify-between flex-wrap gap-4">
+      <div class="flex gap-2 flex-wrap" id="filters">
 {tabs}
+      </div>
+      <div class="flex gap-0 border border-gray-900 flex-shrink-0">
+        <button onclick="setView('grid')" id="btn-grid"
+          class="px-4 py-1.5 text-sm font-medium bg-gray-900 text-white transition-all">Grid</button>
+        <button onclick="setView('timeline')" id="btn-timeline"
+          class="px-4 py-1.5 text-sm font-medium text-gray-900 border-l border-gray-900 hover:bg-gray-900 hover:text-white transition-all">Timeline</button>
+      </div>
     </div>
   </section>
-  <section class="max-w-6xl mx-auto px-6 pb-8">
-    <input id="search" type="text" placeholder="Search…" autocomplete="off"
-      class="border border-gray-900 px-4 py-1.5 text-sm font-sans bg-white text-gray-900 placeholder-gray-400 focus:outline-none w-full" />
-  </section>
+
   <main class="w-full pb-24 flex-1 px-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-gray-900" id="card-grid">
 {cards}
     </div>
+    <div id="timeline-view" class="hidden max-w-4xl mx-auto pt-4 pb-16">
+      <div class="relative" style="padding-left: 96px; padding-bottom: 60px;">
+        <div class="absolute border-l border-gray-900" style="left: 87px; top: 0; bottom: 0;"></div>
+{timeline_html}
+      </div>
+    </div>
   </main>
-{FOOTER.format(year=year)}
+{build_footer(year)}
   <script>
     let activeFilter = 'all';
-    let searchQuery = '';
 
     function updateDisplay() {{
-      document.querySelectorAll('#card-grid .card-wrapper').forEach(card => {{
-        const matchesFilter = activeFilter === 'all' || card.dataset.type === activeFilter;
-        const matchesSearch = searchQuery === '' || card.dataset.search.includes(searchQuery);
-        card.style.display = (matchesFilter && matchesSearch) ? '' : 'none';
+      ['#card-grid .card-wrapper', '#timeline-view .timeline-entry'].forEach(sel => {{
+        document.querySelectorAll(sel).forEach(item => {{
+          let matches = true;
+          if (activeFilter !== 'all') {{
+            if (activeFilter.startsWith('chapter:')) {{
+              matches = item.dataset.chapter == activeFilter.split(':')[1];
+            }} else if (activeFilter.startsWith('type:')) {{
+              matches = item.dataset.type === activeFilter.split(':')[1];
+            }}
+          }}
+          item.style.display = matches ? '' : 'none';
+        }});
       }});
     }}
 
@@ -236,29 +436,36 @@ def build_index(entries: list[dict]) -> str:
         const active = btn.dataset.filter === type;
         btn.classList.toggle('bg-gray-900', active);
         btn.classList.toggle('text-white', active);
-        btn.classList.toggle('border-gray-900', active);
-        btn.classList.toggle('text-gray-500', !active);
-        btn.classList.toggle('border-gray-200', !active);
       }});
       updateDisplay();
     }}
 
-    function filterBy(key, value) {{
-      document.querySelectorAll('#card-grid .card-wrapper').forEach(card => {{
-        card.style.display = (card.dataset[key] == value) ? '' : 'none';
-      }});
+    function setView(view) {{
+      const grid = document.getElementById('card-grid');
+      const tl = document.getElementById('timeline-view');
+      const btnGrid = document.getElementById('btn-grid');
+      const btnTl = document.getElementById('btn-timeline');
+      if (view === 'grid') {{
+        grid.classList.remove('hidden');
+        tl.classList.add('hidden');
+        btnGrid.classList.add('bg-gray-900', 'text-white');
+        btnGrid.classList.remove('text-gray-900');
+        btnTl.classList.remove('bg-gray-900', 'text-white');
+        btnTl.classList.add('text-gray-900');
+      }} else {{
+        grid.classList.add('hidden');
+        tl.classList.remove('hidden');
+        btnTl.classList.add('bg-gray-900', 'text-white');
+        btnTl.classList.remove('text-gray-900');
+        btnGrid.classList.remove('bg-gray-900', 'text-white');
+        btnGrid.classList.add('text-gray-900');
+      }}
     }}
 
-    document.getElementById('search').addEventListener('input', function() {{
-      searchQuery = this.value.trim().toLowerCase();
-      updateDisplay();
-    }});
-
-    // Apply filter from URL params on load
     (function() {{
       const params = new URLSearchParams(window.location.search);
-      if (params.get('book'))    filterBy('book', params.get('book'));
-      if (params.get('chapter')) filterBy('chapter', params.get('chapter'));
+      if (params.get('chapter')) filter('chapter:' + params.get('chapter'));
+      else filter('all');
     }})();
   </script>
 </body>
@@ -273,8 +480,9 @@ def build_index(entries: list[dict]) -> str:
 def build_post(entry: dict) -> str:
     MD.reset()
     type_key = entry.get("type", "article")
-    label = type_label(type_key)
     title = entry.get("title", "Untitled")
+    author = entry.get("author", "")
+    date_str = fmt_date(entry.get("date_obj") or entry.get("date"))
     description = entry.get("description", "")
     body_html = MD.convert(entry["body"])
     year = datetime.now().year
@@ -288,36 +496,55 @@ def build_post(entry: dict) -> str:
     if chapter:
         chips_html += f'<span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1">Chapter {chapter}</span>'
 
-    image_html = f'<img src="../{image}" alt="{title}" class="w-full mt-4 max-h-56 object-cover">' if image else ""
-    book_chip = f'<a href="../index.html?book={book}" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book {book}</a>' if book else ""
-    chapter_chip = f'<a href="../index.html?chapter={chapter}" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 hover:bg-gray-900 hover:text-white transition-colors">Chapter {chapter}</a>' if chapter else ""
+    dithered_image = f"images/dithered/{Path(image).stem}.png" if image else ""
+    image_copyright = entry.get("image_copyright", "")
+    copyright_html = f'<p class="mt-2 mb-4 text-xs text-gray-400 italic">{image_copyright}</p>' if image_copyright else ""
+    image_html = (f'<img src="../{dithered_image}" alt="{title}" class="w-full border-b border-gray-900">{copyright_html}') if dithered_image else ""
+    ch_title = chapter_title(book, chapter)
+    chapter_label = f"Chapter {chapter} · {ch_title}" if ch_title else f"Chapter {chapter}"
+    book_chip = f'<a href="../collection.html?book={book}" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book {book}</a>' if book else ""
+    chapter_chip = f'<a href="../collection.html?chapter={chapter}" class="inline-block border border-gray-900 text-xs font-bold uppercase tracking-widest px-3 py-1 hover:bg-gray-900 hover:text-white transition-colors">{chapter_label}</a>' if chapter else ""
+
+    sources = parse_sources(entry.get("sources"))
+    if sources:
+        _arrow = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>'
+        _links = "\n".join(
+            f'        <li><a href="{url}" target="_blank" rel="noopener noreferrer" class="hover:underline">{label} {_arrow}</a></li>'
+            for label, url in sources
+        )
+        sources_html = f"""    <div class="mt-12 border-t border-gray-200 pt-8 font-sans">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Further reading</p>
+      <ul class="space-y-2 text-sm text-gray-900">
+{_links}
+      </ul>
+    </div>"""
+    else:
+        sources_html = ""
 
     return HTML_HEAD.format(title=title, font_path="../") + f"""\
 {NAV}
   <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
-    <a href="../index.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to index</a>
-    <table class="w-full border border-gray-900 mt-8 border-collapse">
-      <tbody>
-        <tr>
-          <td class="p-6 w-1/4 align-top border-r border-gray-900">
-            <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">{label}</span>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {book_chip}{chapter_chip}
-            </div>
-          </td>
-          <td class="p-6 w-3/4 align-top">
-            <span class="font-display text-6xl font-bold leading-none text-gray-900">{title}</span>
-            {f'<p class="mt-4 text-base text-gray-900 leading-relaxed">{description}</p>' if description else ''}
-            {image_html}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <a href="../collection.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to collection</a>
+    <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
+      <div class="p-6 md:w-1/4 border-b md:border-b-0 md:border-r border-gray-900">
+        <div class="flex flex-wrap gap-2">
+          {book_chip}{chapter_chip}
+        </div>
+        {f'<p class="mt-4 text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> {author}</p>' if author else ''}
+        {f'<p class="mt-1 text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> {date_str}</p>' if date_str else ''}
+      </div>
+      <div class="p-6 md:w-3/4">
+        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">{title}</span>
+        {f'<p class="mt-4 text-base text-gray-900 leading-relaxed">{description}</p>' if description else ''}
+      </div>
+    </div>
+    {image_html}
     <div class="mt-10 prose text-gray-900 text-base">
       {body_html}
     </div>
+{sources_html}
   </main>
-{FOOTER.format(year=year)}
+{build_footer(year, prefix="../")}
 </body>
 </html>
 """
@@ -371,7 +598,7 @@ def build_instagram() -> str:
   </section>
   {grid}
   {embed_script}
-{FOOTER.format(year=year)}
+{build_footer(year)}
 </body>
 </html>
 """
@@ -429,7 +656,7 @@ def build_blog_post(entry: dict) -> str:
       {body_html}
     </div>
   </main>
-{FOOTER.format(year=year)}
+{build_footer(year)}
 </body>
 </html>
 """
@@ -465,7 +692,7 @@ def build_blog(entries: list[dict]) -> str:
   <main class="max-w-6xl mx-auto px-6 pb-24 flex-1 w-full border-t border-gray-900">
 {feed}
   </main>
-{FOOTER.format(year=year)}
+{build_footer(year)}
 </body>
 </html>
 """
@@ -510,7 +737,7 @@ def build_book() -> str:
       </div>
     </div>
   </main>
-{FOOTER.format(year=year)}
+{build_footer(year)}
 </body>
 </html>
 """
@@ -565,7 +792,7 @@ def build_about() -> str:
     </div>
 
   </main>
-{FOOTER.format(year=year)}
+{build_footer(year)}
 </body>
 </html>
 """
@@ -577,6 +804,7 @@ def build_about() -> str:
 
 def main() -> None:
     POSTS_DIR.mkdir(exist_ok=True)
+    process_images()
 
     entries = load_entries()
     if not entries:
@@ -584,32 +812,13 @@ def main() -> None:
         return
 
     INDEX_FILE.write_text(build_index(entries), encoding="utf-8")
-    print(f"Built index.html ({len(entries)} entries)")
+    print(f"Built collection.html ({len(entries)} entries)")
 
     for entry in entries:
         slug = entry["slug"]
         out = POSTS_DIR / f"{slug}.html"
         out.write_text(build_post(entry), encoding="utf-8")
         print(f"  Built posts/{slug}.html")
-
-    Path("instagram.html").write_text(build_instagram(), encoding="utf-8")
-    print("Built instagram.html")
-
-    BLOG_POSTS_DIR.mkdir(exist_ok=True)
-    blog_entries = load_blog_entries()
-    Path("blog.html").write_text(build_blog(blog_entries), encoding="utf-8")
-    print(f"Built blog.html ({len(blog_entries)} entries)")
-    for entry in blog_entries:
-        slug = entry["slug"]
-        out = BLOG_POSTS_DIR / f"{slug}.html"
-        out.write_text(build_blog_post(entry), encoding="utf-8")
-        print(f"  Built blog-posts/{slug}.html")
-
-    Path("book.html").write_text(build_book(), encoding="utf-8")
-    print("Built book.html")
-
-    Path("about.html").write_text(build_about(), encoding="utf-8")
-    print("Built about.html")
 
     print("Done.")
 

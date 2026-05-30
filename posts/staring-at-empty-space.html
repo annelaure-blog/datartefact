@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staring At Empty Space — Datartefact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('../fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+  <style>
+    .card-wrapper { perspective: 1200px; height: 320px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); }
+    .card-wrapper:hover .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+    .card-front:hover .card-title { text-decoration: underline; }
+    .prose a { text-decoration: underline; }
+    .prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; }
+    .prose p { font-size: 1.125rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .prose ul { font-size: 1.125rem; list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose ol { font-size: 1.125rem; list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose li { margin-bottom: 0.35rem; }
+    .prose strong { font-weight: 600; }
+  </style>
+</head>
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var toggle = document.getElementById('menu-toggle');
+      if (toggle) toggle.addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+    });
+  </script>
+  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../book" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="../images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+        <a href="../book" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="../collection" class="hover:text-[#B69188] transition-colors">Collection</a>
+        <a href="../about" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+        <a href="../book" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="../collection" class="hover:text-[#B69188] transition-colors">Collection</a>
+        <a href="../about" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
+    <a href="../collection.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to collection</a>
+    <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
+      <div class="p-6 md:w-1/4 border-b md:border-b-0 md:border-r border-gray-900">
+        <div class="flex flex-wrap gap-2">
+          <a href="../collection.html?book=1" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book 1</a><a href="../collection.html?chapter=5" class="inline-block border border-gray-900 text-xs font-bold uppercase tracking-widest px-3 py-1 hover:bg-gray-900 hover:text-white transition-colors">Chapter 5 · Photography as Autographic Systems</a>
+        </div>
+        <p class="mt-4 text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Lea Wurthmann</p>
+        <p class="mt-1 text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2023</p>
+      </div>
+      <div class="p-6 md:w-3/4">
+        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">Staring At Empty Space</span>
+        
+      </div>
+    </div>
+    <img src="../images/dithered/empty-spaces.png" alt="Staring At Empty Space" class="w-full border-b border-gray-900"><p class="mt-2 mb-4 text-xs text-gray-400 italic">Image Lea Wurthmann (reproduced with permission)</p>
+    <div class="mt-10 prose text-gray-900 text-base">
+      <p>&ldquo;In 1995 NASA used the Hubble Space Telescope for an unusual mission. It observed an area of the sky which was seemingly empty, emitting almost no light and radiation. After ten days the telescope revealed age-old stars and galaxies that filled the supposed emptiness. The Hubble Deep Field Image (R. Williams &amp; the HDF Team, NASA/ESA) provided humankind with an unprecedented view into the depth of the universe.Staring at Empty Spaces deconstructs scientific discoveries by exploring the creation of the Hubble Deep Field image. It emphasizes the carefully planned character of the endeavour, shifting away from viewing it as an accidental moment, and aims to provide a tangible understanding of the image-making process.&rdquo;</p>
+<p>&ldquo;Staring at Empty Spaces&rdquo;, by designer Lea Wurthmann is an exceptional kind of datartefact: it exposes, through a physical object, the composition of a representation (e.g. an image), while also exposing the method (from electromagnetic sensors to computing process) used to produce that image. </p>
+<p>As such, &ldquo;Staring at Empty Spaces&rdquo; definitely fits within the category of &ldquo;objects that functions as a document&rdquo;, and even in this case, as a meta-document: one that illuminates the history of sciences and techniques about how another &ldquo;document&rdquo; (the Hubble Deep Field Image) was produced.</p>
+<p>The physical form chosen by Lea Wurthmann exposes the complexity of the process that led to the final image by revealing, one by one, the 342 long electromagnetic exposures that were converted, processed and assembled to produce the final representation, one that makes that part of the universe visible to the human eye. 
+In this sense, the work operates <strong>as a reverse autographic system</strong>: it returns to the level of the “initial traces” from which a composite image was algorithmically reconstructed.</p>
+    </div>
+    <div class="mt-12 border-t border-gray-200 pt-8 font-sans">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Further reading</p>
+      <ul class="space-y-2 text-sm text-gray-900">
+        <li><a href="https://leawurthmann.com/staring-at-empty-spaces/" target="_blank" rel="noopener noreferrer" class="hover:underline">leawurthmann.com <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a></li>
+      </ul>
+    </div>
+  </main>
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© 2026 Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="#newsletter" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+          <a href="../legal" class="hover:text-[#B69188] transition-colors">Legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

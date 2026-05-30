@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collection — Datartefact</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+  <style>
+    .card-wrapper { perspective: 1200px; height: 320px; }
+    .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1); }
+    .card-wrapper:hover .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+    .card-front:hover .card-title { text-decoration: underline; }
+    .prose a { text-decoration: underline; }
+    .prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; }
+    .prose p { font-size: 1.125rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .prose ul { font-size: 1.125rem; list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose ol { font-size: 1.125rem; list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .prose li { margin-bottom: 0.35rem; }
+    .prose strong { font-weight: 600; }
+  </style>
+</head>
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var toggle = document.getElementById('menu-toggle');
+      if (toggle) toggle.addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+    });
+  </script>
+  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="book" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+        <a href="book" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="collection" class="hover:text-[#B69188] transition-colors">Collection</a>
+        <a href="about" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+        <a href="book" class="hover:text-[#B69188] transition-colors">Books</a>
+        <a href="collection" class="hover:text-[#B69188] transition-colors">Collection</a>
+        <a href="about" class="hover:text-[#B69188] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+  <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
+    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Collection</h1>
+    <div class="mt-8 border border-gray-900 grid grid-cols-1 md:grid-cols-4">
+      <div class="border-b md:border-b-0 md:border-r border-gray-900 p-6 flex items-start">
+        <span class="text-xs font-semibold uppercase tracking-widest text-gray-900 font-sans">Datartefact, n.</span>
+      </div>
+      <div class="md:col-span-3 p-6">
+        <p class="text-base text-gray-900 leading-relaxed">Objects that function as documents, or systems of documents, by showing, encoding and recording information.</p>
+      </div>
+    </div>
+  </section>
+  <section class="max-w-6xl mx-auto px-6 pb-4">
+    <div class="flex items-start justify-between flex-wrap gap-4">
+      <div class="flex gap-2 flex-wrap" id="filters">
+      <button onclick="filter('all')" data-filter="all" class="filter-btn bg-gray-900 text-white border-gray-900 px-4 py-1.5 rounded-full text-sm font-medium border transition-all">All</button>
+      <button onclick="filter('chapter:1')" data-filter="chapter:1" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 1 · Mesopotamian Clay Tokens</button>
+      <button onclick="filter('chapter:2')" data-filter="chapter:2" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 2 · Material Geographies</button>
+      <button onclick="filter('chapter:3')" data-filter="chapter:3" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 3 · Stitching the World</button>
+      <button onclick="filter('chapter:4')" data-filter="chapter:4" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 4 · Deciphering Khipus</button>
+      <button onclick="filter('chapter:5')" data-filter="chapter:5" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 5 · Photography as Autographic Systems</button>
+      <button onclick="filter('chapter:6')" data-filter="chapter:6" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 6 · Analog Instruments</button>
+      <button onclick="filter('chapter:7')" data-filter="chapter:7" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 7 · Databooks</button>
+      <button onclick="filter('chapter:8')" data-filter="chapter:8" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 8 · Punched & Stacked</button>
+      </div>
+      <div class="flex gap-0 border border-gray-900 flex-shrink-0">
+        <button onclick="setView('grid')" id="btn-grid"
+          class="px-4 py-1.5 text-sm font-medium bg-gray-900 text-white transition-all">Grid</button>
+        <button onclick="setView('timeline')" id="btn-timeline"
+          class="px-4 py-1.5 text-sm font-medium text-gray-900 border-l border-gray-900 hover:bg-gray-900 hover:text-white transition-all">Timeline</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="w-full pb-24 flex-1 px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-gray-900" id="card-grid">
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="flight of the gull bronze model  book 1 book 1 chapter 5">
+        <div class="card-inner">
+          <a href="posts/chronophotography-model.html" class="card-front overflow-hidden">
+            <img src="images/dithered/marey.png" alt="Flight of the Gull Bronze Model" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/chronophotography-model.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 5 · Photography as Autographic Systems</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Flight of the Gull Bronze Model</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Etienne-Jules Marey</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1870s</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="1" data-search="bulla (clay round seal)  book 1 book 1 chapter 1">
+        <div class="card-inner">
+          <a href="posts/bulla.html" class="card-front overflow-hidden">
+            <img src="images/dithered/bulla.png" alt="Bulla (Clay Round Seal)" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/bulla.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 1 · Mesopotamian Clay Tokens</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Bulla (Clay Round Seal)</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Sumerian agriculturalists</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 5 000 BC onward</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="nilometer  book 1 book 1 chapter 6">
+        <div class="card-inner">
+          <a href="posts/nilometer.html" class="card-front overflow-hidden">
+            <img src="images/dithered/nilometer.png" alt="Nilometer" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/nilometer.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 6 · Analog Instruments</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Nilometer</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Civil engineers of Ancient Egypt</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 860 CE onward</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="1" data-search="mesopotamian clay tokens  book 1 book 1 chapter 1">
+        <div class="card-inner">
+          <a href="posts/clay-tokens.html" class="card-front overflow-hidden">
+            <img src="images/dithered/clay-tokens.png" alt="Mesopotamian Clay Tokens" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/clay-tokens.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 1 · Mesopotamian Clay Tokens</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Mesopotamian Clay Tokens</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Sumerian agriculturalists</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 10 000 BC onward</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="cyanometer  book 1 book 1 chapter 6">
+        <div class="card-inner">
+          <a href="posts/cyanometer.html" class="card-front overflow-hidden">
+            <img src="images/dithered/cyanometer.png" alt="Cyanometer" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/cyanometer.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 6 · Analog Instruments</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Cyanometer</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Horace-Bénédict de Saussure</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1765</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="korean rain gauge ch'ŭgugi  book 1 book 1 chapter 6">
+        <div class="card-inner">
+          <a href="posts/korean-rain-gauge.html" class="card-front overflow-hidden">
+            <img src="images/dithered/gauge.png" alt="Korean Rain Gauge Ch'ŭgugi" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/korean-rain-gauge.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 6 · Analog Instruments</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Korean Rain Gauge Ch'ŭgugi</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Joseon kingdom's Research Institute of Astronomy Geography Calendar and Weather</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1441</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="westtown samplers  book 1 book 1 chapter 3">
+        <div class="card-inner">
+          <a href="posts/westtown-globe.html" class="card-front overflow-hidden">
+            <img src="images/dithered/globe.png" alt="Westtown Samplers" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/westtown-globe.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 3 · Stitching the World</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Westtown Samplers</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Westtown School - by Girls in Sewing Class</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1800-1830</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="secchi disk  book 1 book 1 chapter 6">
+        <div class="card-inner">
+          <a href="posts/secchi-disk.html" class="card-front overflow-hidden">
+            <img src="images/dithered/secchi.png" alt="Secchi Disk" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/secchi-disk.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 6 · Analog Instruments</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Secchi Disk</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Angelo Secchi</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1865</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="staring at empty space  book 1 book 1 chapter 5">
+        <div class="card-inner">
+          <a href="posts/staring-at-empty-space.html" class="card-front overflow-hidden">
+            <img src="images/dithered/empty-spaces.png" alt="Staring At Empty Space" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/staring-at-empty-space.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 5 · Photography as Autographic Systems</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Staring At Empty Space</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Lea Wurthmann</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2023</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="light sculptures: matter of impermanence  book 1 book 1 chapter 5">
+        <div class="card-inner">
+          <a href="posts/matter-of-impermanence.html" class="card-front overflow-hidden">
+            <img src="images/dithered/matter.png" alt="Light Sculptures: Matter of Impermanence" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/matter-of-impermanence.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 5 · Photography as Autographic Systems</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Light Sculptures: Matter of Impermanence</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Dexter Callender III</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2024</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="timeline-view" class="hidden max-w-4xl mx-auto pt-4 pb-16">
+      <div class="relative" style="padding-left: 96px; padding-bottom: 60px;">
+        <div class="absolute border-l border-gray-900" style="left: 87px; top: 0; bottom: 0;"></div>
+      <div class="timeline-entry flex items-start" data-chapter="1" data-type="article" data-book="1" style="margin-top: 40px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">5 000 BC onward</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/bulla.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/bulla.png" alt="Bulla (Clay Round Seal)" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 1 · Mesopotamian Clay Tokens</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Bulla (Clay Round Seal)</h3>
+            <p class="text-sm text-gray-500 mt-2">Sumerian agriculturalists</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="1" data-type="article" data-book="1" style="margin-top: 80px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">10 000 BC onward</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/clay-tokens.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/clay-tokens.png" alt="Mesopotamian Clay Tokens" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 1 · Mesopotamian Clay Tokens</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Mesopotamian Clay Tokens</h3>
+            <p class="text-sm text-gray-500 mt-2">Sumerian agriculturalists</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 1290px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">860 CE onward</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/nilometer.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/nilometer.png" alt="Nilometer" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Nilometer</h3>
+            <p class="text-sm text-gray-500 mt-2">Civil engineers of Ancient Egypt</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 871px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">1441</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/korean-rain-gauge.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/gauge.png" alt="Korean Rain Gauge Ch'ŭgugi" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Korean Rain Gauge Ch'ŭgugi</h3>
+            <p class="text-sm text-gray-500 mt-2">Joseon kingdom's Research Institute of Astronomy Geography Calendar and Weather</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 486px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">1765</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/cyanometer.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/cyanometer.png" alt="Cyanometer" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Cyanometer</h3>
+            <p class="text-sm text-gray-500 mt-2">Horace-Bénédict de Saussure</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="3" data-type="article" data-book="1" style="margin-top: 80px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">1800-1830</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/westtown-globe.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/globe.png" alt="Westtown Samplers" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 3 · Stitching the World</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Westtown Samplers</h3>
+            <p class="text-sm text-gray-500 mt-2">Westtown School - by Girls in Sewing Class</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 97px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">1865</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/secchi-disk.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/secchi.png" alt="Secchi Disk" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Secchi Disk</h3>
+            <p class="text-sm text-gray-500 mt-2">Angelo Secchi</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="5" data-type="article" data-book="1" style="margin-top: 80px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">1870s</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/chronophotography-model.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/marey.png" alt="Flight of the Gull Bronze Model" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 5 · Photography as Autographic Systems</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Flight of the Gull Bronze Model</h3>
+            <p class="text-sm text-gray-500 mt-2">Etienne-Jules Marey</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="5" data-type="article" data-book="1" style="margin-top: 229px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">2023</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/staring-at-empty-space.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/empty-spaces.png" alt="Staring At Empty Space" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 5 · Photography as Autographic Systems</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Staring At Empty Space</h3>
+            <p class="text-sm text-gray-500 mt-2">Lea Wurthmann</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="timeline-entry flex items-start" data-chapter="5" data-type="article" data-book="1" style="margin-top: 80px;">
+        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
+          <span class="text-sm font-bold text-gray-900 font-sans">2024</span>
+        </div>
+        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
+          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
+        </div>
+        <a href="posts/matter-of-impermanence.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
+          <img src="images/dithered/matter.png" alt="Light Sculptures: Matter of Impermanence" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
+          <div class="p-5 flex-1 min-w-0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 5 · Photography as Autographic Systems</span>
+            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Light Sculptures: Matter of Impermanence</h3>
+            <p class="text-sm text-gray-500 mt-2">Dexter Callender III</p>
+            
+          </div>
+        </a>
+      </div>
+      </div>
+    </div>
+  </main>
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© 2026 Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="#newsletter" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+          <a href="legal" class="hover:text-[#B69188] transition-colors">Legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    let activeFilter = 'all';
+
+    function updateDisplay() {
+      ['#card-grid .card-wrapper', '#timeline-view .timeline-entry'].forEach(sel => {
+        document.querySelectorAll(sel).forEach(item => {
+          let matches = true;
+          if (activeFilter !== 'all') {
+            if (activeFilter.startsWith('chapter:')) {
+              matches = item.dataset.chapter == activeFilter.split(':')[1];
+            } else if (activeFilter.startsWith('type:')) {
+              matches = item.dataset.type === activeFilter.split(':')[1];
+            }
+          }
+          item.style.display = matches ? '' : 'none';
+        });
+      });
+    }
+
+    function filter(type) {
+      activeFilter = type;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const active = btn.dataset.filter === type;
+        btn.classList.toggle('bg-gray-900', active);
+        btn.classList.toggle('text-white', active);
+      });
+      updateDisplay();
+    }
+
+    function setView(view) {
+      const grid = document.getElementById('card-grid');
+      const tl = document.getElementById('timeline-view');
+      const btnGrid = document.getElementById('btn-grid');
+      const btnTl = document.getElementById('btn-timeline');
+      if (view === 'grid') {
+        grid.classList.remove('hidden');
+        tl.classList.add('hidden');
+        btnGrid.classList.add('bg-gray-900', 'text-white');
+        btnGrid.classList.remove('text-gray-900');
+        btnTl.classList.remove('bg-gray-900', 'text-white');
+        btnTl.classList.add('text-gray-900');
+      } else {
+        grid.classList.add('hidden');
+        tl.classList.remove('hidden');
+        btnTl.classList.add('bg-gray-900', 'text-white');
+        btnTl.classList.remove('text-gray-900');
+        btnGrid.classList.remove('bg-gray-900', 'text-white');
+        btnGrid.classList.add('text-gray-900');
+      }
+    }
+
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('chapter')) filter('chapter:' + params.get('chapter'));
+      else filter('all');
+    })();
+  </script>
+</body>
+</html>
