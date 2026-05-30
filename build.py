@@ -206,7 +206,6 @@ def type_label(key: str) -> str:
 _ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>'
 _NAV_LINKS = """\
         <a href="{p}book" class="hover:text-[#B69188] transition-colors">Books</a>
-        <a href="{p}collection" class="hover:text-[#B69188] transition-colors">Collection</a>
         <a href="{p}about" class="hover:text-[#B69188] transition-colors">About</a>
         <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram """ + _ARROW + """</a>
         <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook """ + _ARROW + """</a>"""
