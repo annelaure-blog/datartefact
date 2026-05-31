@@ -85,7 +85,7 @@ def csv_to_md():
                 skipped += 1
                 continue
 
-            write_md(out_path, meta, "(write your content here)")
+            write_md(out_path, meta, "")
             print(f"  Created: {slug}.md")
             created += 1
 
@@ -114,7 +114,7 @@ def update_md():
                 print(f"  Updated: {slug}.md")
                 updated += 1
             else:
-                write_md(out_path, meta, "(write your content here)")
+                write_md(out_path, meta, "")
                 print(f"  Created: {slug}.md")
                 created += 1
 

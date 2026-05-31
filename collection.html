@@ -61,40 +61,45 @@
   </header>
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
     <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Collection</h1>
-    <div class="mt-8 border border-gray-900 grid grid-cols-1 md:grid-cols-4">
-      <div class="border-b md:border-b-0 md:border-r border-gray-900 p-6 flex items-start">
-        <span class="text-xs font-semibold uppercase tracking-widest text-gray-900 font-sans">Datartefact, n.</span>
-      </div>
-      <div class="md:col-span-3 p-6">
-        <p class="text-base text-gray-900 leading-relaxed">Objects that function as documents, or systems of documents, by showing, encoding and recording information.</p>
-      </div>
+    <div class="mt-5 max-w-2xl">
+      <p class="text-sm text-gray-600 leading-snug">The Collection is the companion archive to the <em>Datartefact</em> book series, bringing together the artifacts, instruments, recording systems, and material objects discussed throughout the project. Spanning early accounting devices, cartographic objects, textiles, scientific instruments, photography, sound recording, and computation, it explores how objects themselves can function as documents, or as systems of documents used to encode, store, measure, and transmit knowledge.</p>
+      <p class="mt-2 text-sm text-gray-600 leading-snug">The collection can be browsed through a grid view or along a chronological timeline connecting artifacts across centuries and disciplines. Conceived as an expanding research archive, it will continue to grow over time alongside the development of the books.</p>
     </div>
   </section>
-  <section class="max-w-6xl mx-auto px-6 pb-4">
-    <div class="flex items-start justify-between flex-wrap gap-4">
-      <div class="flex gap-2 flex-wrap" id="filters">
-      <button onclick="filter('all')" data-filter="all" class="filter-btn bg-gray-900 text-white border-gray-900 px-4 py-1.5 rounded-full text-sm font-medium border transition-all">All</button>
-      <button onclick="filter('chapter:1')" data-filter="chapter:1" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 1 · Mesopotamian Clay Tokens</button>
-      <button onclick="filter('chapter:2')" data-filter="chapter:2" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 2 · Material Geographies</button>
-      <button onclick="filter('chapter:3')" data-filter="chapter:3" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 3 · Stitching the World</button>
-      <button onclick="filter('chapter:4')" data-filter="chapter:4" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 4 · Deciphering Khipus</button>
-      <button onclick="filter('chapter:5')" data-filter="chapter:5" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 5 · Photography as Autographic Systems</button>
-      <button onclick="filter('chapter:6')" data-filter="chapter:6" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 6 · Analog Instruments</button>
-      <button onclick="filter('chapter:7')" data-filter="chapter:7" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 7 · Databooks</button>
-      <button onclick="filter('chapter:8')" data-filter="chapter:8" class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium border transition-all">Chapter 8 · Punched & Stacked</button>
-      </div>
-      <div class="flex gap-0 border border-gray-900 flex-shrink-0">
-        <button onclick="setView('grid')" id="btn-grid"
-          class="px-4 py-1.5 text-sm font-medium bg-gray-900 text-white transition-all">Grid</button>
-        <button onclick="setView('timeline')" id="btn-timeline"
-          class="px-4 py-1.5 text-sm font-medium text-gray-900 border-l border-gray-900 hover:bg-gray-900 hover:text-white transition-all">Timeline</button>
-      </div>
-    </div>
+  <div id="filter-badge" class="hidden max-w-6xl mx-auto px-6 pb-3 flex justify-center">
+    <button onclick="clearFilter()" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">← All entries</button>
+  </div>
+  <section class="max-w-6xl mx-auto px-6 pb-4 flex justify-center gap-2">
+      <button onclick="setView('grid')" id="btn-grid"
+        class="border border-gray-900 px-6 py-2 text-sm font-medium bg-gray-900 text-white transition-all">Grid</button>
+      <button onclick="shuffleGrid()" id="btn-shuffle"
+        class="border border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white transition-all">⇄ Shuffle</button>
+      <button onclick="setView('timeline-h')" id="btn-timeline-h"
+        class="border border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white transition-all">↔ Timeline</button>
   </section>
 
   <main class="w-full pb-24 flex-1 px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-gray-900" id="card-grid">
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="flight of the gull bronze model  book 1 book 1 chapter 5">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="card-grid">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="4" data-search="monte sierpe "band of holes" exceptional topographical site in peru containing approximately 5,000 regularly spaced holes in the ground, used for goods exchange and accounting during the inca empire. book 1 book 1 chapter 4">
+        <div class="card-inner">
+          <a href="posts/monte-sierpe.html" class="card-front overflow-hidden">
+            <img src="images/dithered/monte.png" alt="Monte Sierpe "Band of Holes"" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/monte-sierpe.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 4 · Deciphering Khipus</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Monte Sierpe "Band of Holes"</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Chincha Kingdom & Inca Empire</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1100-1600</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Exceptional topographical site in Peru containing approximately 5,000 regularly spaced holes in the ground, used for goods exchange and accounting during the Inca Empire.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="flight of the gull bronze model a bronze model made in italy from marey's chronophotographic work analyzing the flight of birds. book 1 book 1 chapter 5">
         <div class="card-inner">
           <a href="posts/chronophotography-model.html" class="card-front overflow-hidden">
             <img src="images/dithered/marey.png" alt="Flight of the Gull Bronze Model" class="w-full h-full object-cover">
@@ -106,13 +111,13 @@
             <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Flight of the Gull Bronze Model</h2>
             <div class="mt-2 space-y-0.5">
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Etienne-Jules Marey</p>
-              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1870s</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1870</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">A bronze model made in Italy from Marey's chronophotographic work analyzing the flight of birds.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="1" data-search="bulla (clay round seal)  book 1 book 1 chapter 1">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="1" data-search="bulla (clay round seal) clay envelop in which the accounting tokens were initially placed, then only imprinted on. book 1 book 1 chapter 1">
         <div class="card-inner">
           <a href="posts/bulla.html" class="card-front overflow-hidden">
             <img src="images/dithered/bulla.png" alt="Bulla (Clay Round Seal)" class="w-full h-full object-cover">
@@ -124,13 +129,13 @@
             <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Bulla (Clay Round Seal)</h2>
             <div class="mt-2 space-y-0.5">
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Sumerian agriculturalists</p>
-              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 5 000 BC onward</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 3700 BCE - 3000 BCE</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Clay envelop in which the accounting tokens were initially placed, then only imprinted on.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="nilometer  book 1 book 1 chapter 6">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="nilometer a specific type of architecture that was built along the nile for the egyptian authorities to monitor the level and turbidity of the river. book 1 book 1 chapter 6">
         <div class="card-inner">
           <a href="posts/nilometer.html" class="card-front overflow-hidden">
             <img src="images/dithered/nilometer.png" alt="Nilometer" class="w-full h-full object-cover">
@@ -142,13 +147,85 @@
             <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Nilometer</h2>
             <div class="mt-2 space-y-0.5">
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Civil engineers of Ancient Egypt</p>
-              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 860 CE onward</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2000 BCE - 1900</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">A specific type of architecture that was built along the Nile for the Egyptian authorities to monitor the level and turbidity of the river.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="1" data-search="mesopotamian clay tokens  book 1 book 1 chapter 1">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="aster the aster books show a fraction of the 1 million sattelite pictures taken by scientists for a global study on glaciers into 4,000 printed volumes. book 1 book 1 chapter 5">
+        <div class="card-inner">
+          <a href="posts/aster.html" class="card-front overflow-hidden">
+            <img src="images/dithered/aster.png" alt="Aster" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/aster.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 5 · Photography as Autographic Systems</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Aster</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Grégoire Eloy</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2021</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">The Aster books show a fraction of the 1 million sattelite pictures taken by scientists for a global study on glaciers into 4,000 printed volumes.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="paracas polychrome mantle ceremonial paracas mantle encoding territorial, genealogical, and possibly calendrical information. book 1 book 1 chapter 3">
+        <div class="card-inner">
+          <a href="posts/paracas.html" class="card-front overflow-hidden">
+            <img src="images/dithered/paracas.png" alt="Paracas Polychrome Mantle" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/paracas.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 3 · Stitching the World</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Paracas Polychrome Mantle</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Nazca Culture (central Andes)</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 100–300</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Ceremonial Paracas mantle encoding territorial, genealogical, and possibly calendrical information.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="mississippi embroidered map reproduced from an ancient atlas for the visually impaired, the map is a tactile, white on white embroidered map of the mississippi river. book 1 book 1 chapter 3">
+        <div class="card-inner">
+          <a href="posts/mississippi-map.html" class="card-front overflow-hidden">
+            <img src="images/dithered/mississippi.png" alt="Mississippi Embroidered Map" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/mississippi-map.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 3 · Stitching the World</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Mississippi Embroidered Map</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Anne Lacambre</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2023</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Reproduced from an ancient atlas for the visually impaired, the map is a tactile, white on white embroidered map of the Mississippi river.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="8" data-search="jaquard loom punched cards programmable paper cards linked in sequences to control jacquard looms, allowing complex textile patterns to be mechanically encoded, stored, and reproduced. book 1 book 1 chapter 8">
+        <div class="card-inner">
+          <a href="posts/jaquard-cards.html" class="card-front overflow-hidden">
+            <img src="images/dithered/loom.png" alt="Jaquard Loom Punched Cards" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/jaquard-cards.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 8 · Punched & Stacked</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Jaquard Loom Punched Cards</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Joseph Marie Jacquard</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1805</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Programmable paper cards linked in sequences to control Jacquard looms, allowing complex textile patterns to be mechanically encoded, stored, and reproduced.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="1" data-search="mesopotamian clay tokens accounting tokens that were used for farming goods exchange and accounting in mesopotamia. the tokens were used for thousands of years and led to the invention of cuneiform writing. book 1 book 1 chapter 1">
         <div class="card-inner">
           <a href="posts/clay-tokens.html" class="card-front overflow-hidden">
             <img src="images/dithered/clay-tokens.png" alt="Mesopotamian Clay Tokens" class="w-full h-full object-cover">
@@ -160,13 +237,13 @@
             <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Mesopotamian Clay Tokens</h2>
             <div class="mt-2 space-y-0.5">
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Sumerian agriculturalists</p>
-              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 10 000 BC onward</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 10 000 BCE - 3000 BCE</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Accounting tokens that were used for farming goods exchange and accounting in Mesopotamia. The tokens were used for thousands of years and led to the invention of cuneiform writing.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="cyanometer  book 1 book 1 chapter 6">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="cyanometer an analog color gradient circle designed to document, in a standardized manner, the different colors of the sky. book 1 book 1 chapter 6">
         <div class="card-inner">
           <a href="posts/cyanometer.html" class="card-front overflow-hidden">
             <img src="images/dithered/cyanometer.png" alt="Cyanometer" class="w-full h-full object-cover">
@@ -180,11 +257,47 @@
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Horace-Bénédict de Saussure</p>
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1765</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">An analog color gradient circle designed to document, in a standardized manner, the different colors of the sky.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="korean rain gauge ch'ŭgugi  book 1 book 1 chapter 6">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="crochet topography the artist has created a method to retrieve elevation data and transform them into printed pattern, then used to crochet specific topographies. book 1 book 1 chapter 3">
+        <div class="card-inner">
+          <a href="posts/crochet-topography.html" class="card-front overflow-hidden">
+            <img src="images/dithered/crochet.png" alt="Crochet Topography" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/crochet-topography.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 3 · Stitching the World</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Crochet Topography</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Noriko Takahama</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2026</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">The artist has created a method to retrieve elevation data and transform them into printed pattern, then used to crochet specific topographies.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="a number between zero and one a number between zero and one is a conceptual sculpture by iranian-american artist siah armajani, consisting of a stack of paper printouts of an imaginary number—10^-205,714,079—one requiring 25,974 sheets and twenty-eight hours to print. book 1 book 1 chapter 5">
+        <div class="card-inner">
+          <a href="posts/zero-number.html" class="card-front overflow-hidden">
+            <img src="images/dithered/zero.png" alt="A Number Between Zero and One" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/zero-number.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 5 · Photography as Autographic Systems</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">A Number Between Zero and One</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Siah Armajani</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1969</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">A Number Between Zero and One is a conceptual sculpture by Iranian-American artist Siah Armajani, consisting of a stack of paper printouts of an imaginary number—10^-205,714,079—one requiring 25,974 sheets and twenty-eight hours to print.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="korean rain gauge ch'ŭgugi known as the 'most ancient rain gauge in the world', the korean rain gauge system was one of the first state-wide rain measuring system. book 1 book 1 chapter 6">
         <div class="card-inner">
           <a href="posts/korean-rain-gauge.html" class="card-front overflow-hidden">
             <img src="images/dithered/gauge.png" alt="Korean Rain Gauge Ch'ŭgugi" class="w-full h-full object-cover">
@@ -198,11 +311,47 @@
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Joseon kingdom's Research Institute of Astronomy Geography Calendar and Weather</p>
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1441</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Known as the 'most ancient rain gauge in the world', the Korean rain gauge system was one of the first state-wide rain measuring system.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="westtown samplers  book 1 book 1 chapter 3">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="2" data-search="mattang the mattang is an abstract stick chart presentation of how swells refract around an island and meet in a series of nodes. they were used a teaching and mnemonic devices, not for navigation. book 1 book 1 chapter 2">
+        <div class="card-inner">
+          <a href="posts/mattang.html" class="card-front overflow-hidden">
+            <img src="images/dithered/mattang.png" alt="Mattang" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/mattang.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 2 · Material Geographies</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Mattang</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Marshallese navigators</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1800-1950</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">The mattang is an abstract stick chart presentation of how swells refract around an island and meet in a series of nodes. They were used a teaching and mnemonic devices, not for navigation.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="4" data-search="inca-style khipu inca-style khipus illustrating one of the most important book in the history of khipus deciphering, in which l. locke determined khipus were numerical devices encoded in base 10. the book was published in 1912. book 1 book 1 chapter 4">
+        <div class="card-inner">
+          <a href="posts/khipus.html" class="card-front overflow-hidden">
+            <img src="images/dithered/khipus.png" alt="Inca-Style Khipu" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/khipus.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 4 · Deciphering Khipus</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Inca-Style Khipu</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Leland L. Locke's book</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1300-1500</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Inca-style khipus illustrating one of the most important book in the history of khipus deciphering, in which L. Locke determined khipus were numerical devices encoded in base 10. The book was published in 1912.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="westtown samplers silk globes made by young girls who attended sewing classes at the westtown school in pennsylvania, usa. book 1 book 1 chapter 3">
         <div class="card-inner">
           <a href="posts/westtown-globe.html" class="card-front overflow-hidden">
             <img src="images/dithered/globe.png" alt="Westtown Samplers" class="w-full h-full object-cover">
@@ -216,11 +365,29 @@
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Westtown School - by Girls in Sewing Class</p>
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1800-1830</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Silk globes made by young girls who attended sewing classes at the Westtown School in Pennsylvania, USA.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="secchi disk  book 1 book 1 chapter 6">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="4" data-search="inequalities quipus the project compares through two inca-style quipus, the well-being of latin america and scandinavia. it encodes gendered data from the oecd better life index. book 1 book 1 chapter 4">
+        <div class="card-inner">
+          <a href="posts/inequality-quipus.html" class="card-front overflow-hidden">
+            <img src="images/dithered/inequality.png" alt="Inequalities Quipus" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/inequality-quipus.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 4 · Deciphering Khipus</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Inequalities Quipus</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Ewa Tuteja</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2021</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">The project compares through two inca-style quipus, the well-being of Latin America and Scandinavia. It encodes gendered data from the OECD Better Life Index.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="6" data-search="secchi disk an analog device used to measure water's turbidity levels by immersing a disk in lakes, seas and rivers. book 1 book 1 chapter 6">
         <div class="card-inner">
           <a href="posts/secchi-disk.html" class="card-front overflow-hidden">
             <img src="images/dithered/secchi.png" alt="Secchi Disk" class="w-full h-full object-cover">
@@ -234,11 +401,11 @@
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Angelo Secchi</p>
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1865</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">An analog device used to measure water's turbidity levels by immersing a disk in lakes, seas and rivers.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="staring at empty space  book 1 book 1 chapter 5">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="staring at empty space a physical installation that showcases the 352 electromagnetic captures required by nasa to produce the 1995 deep space image. book 1 book 1 chapter 5">
         <div class="card-inner">
           <a href="posts/staring-at-empty-space.html" class="card-front overflow-hidden">
             <img src="images/dithered/empty-spaces.png" alt="Staring At Empty Space" class="w-full h-full object-cover">
@@ -252,11 +419,29 @@
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Lea Wurthmann</p>
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2023</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">A physical installation that showcases the 352 electromagnetic captures required by NASA to produce the 1995 Deep Space image.</p>
           </a>
         </div>
       </div>
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="light sculptures: matter of impermanence  book 1 book 1 chapter 5">
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="3" data-search="ammassalik coastline sculpture a sculpted guide to a stretch of coast north of ammassalik, made by a local hunter to explain navigation to the danish expedition captain gustav holm, who later wrote his deep despise for inuit geographical artefacts. book 1 book 1 chapter 3">
+        <div class="card-inner">
+          <a href="posts/greeland-wood-map.html" class="card-front overflow-hidden">
+            <img src="images/dithered/inuit-map.png" alt="Ammassalik Coastline Sculpture" class="w-full h-full object-cover">
+          </a>
+          <a href="posts/greeland-wood-map.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-widest text-gray-900">Book 1 · Chapter 3 · Stitching the World</span>
+            </div>
+            <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">Ammassalik Coastline Sculpture</h2>
+            <div class="mt-2 space-y-0.5">
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Kunit fra Umivik (Inuit hunter from Greenland)</p>
+              <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1885</p>
+            </div>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">A sculpted guide to a stretch of coast north of Ammassalik, made by a local hunter to explain navigation to the Danish expedition captain Gustav Holm, who later wrote his deep despise for Inuit geographical artefacts.</p>
+          </a>
+        </div>
+      </div>
+      <div class="card-wrapper border border-gray-900" data-type="article" data-book="1" data-chapter="5" data-search="light sculptures: matter of impermanence glass sculptures designed from photographic captures of light patterns moving through architecture during the day, from a selection of buildings in boston (usa). book 1 book 1 chapter 5">
         <div class="card-inner">
           <a href="posts/matter-of-impermanence.html" class="card-front overflow-hidden">
             <img src="images/dithered/matter.png" alt="Light Sculptures: Matter of Impermanence" class="w-full h-full object-cover">
@@ -270,184 +455,320 @@
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Dexter Callender III</p>
               <p class="text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 2024</p>
             </div>
-            <p class="mt-3 text-sm text-gray-900 leading-snug"></p>
+            <p class="mt-3 text-sm text-gray-900 leading-snug">Glass sculptures designed from photographic captures of light patterns moving through architecture during the day, from a selection of buildings in Boston (USA).</p>
           </a>
         </div>
       </div>
+      </div>
     </div>
-    <div id="timeline-view" class="hidden max-w-4xl mx-auto pt-4 pb-16">
-      <div class="relative" style="padding-left: 96px; padding-bottom: 60px;">
-        <div class="absolute border-l border-gray-900" style="left: 87px; top: 0; bottom: 0;"></div>
-      <div class="timeline-entry flex items-start" data-chapter="1" data-type="article" data-book="1" style="margin-top: 40px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">5 000 BC onward</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/bulla.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/bulla.png" alt="Bulla (Clay Round Seal)" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 1 · Mesopotamian Clay Tokens</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Bulla (Clay Round Seal)</h3>
-            <p class="text-sm text-gray-500 mt-2">Sumerian agriculturalists</p>
-            
+    <div id="timeline-h-view" class="hidden pt-6 pb-16 px-0">
+      <div class="relative">
+        <button id="tl-h-prev" class="hidden md:flex absolute left-0 top-0 bottom-0 z-20 items-center px-3 bg-gradient-to-r from-[#FFFBF5] to-transparent" aria-label="Scroll left">
+          <span class="border border-gray-900 bg-[#FFFBF5] w-8 h-8 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-lg">←</span>
+        </button>
+        <button id="tl-h-next" class="hidden md:flex absolute right-0 top-0 bottom-0 z-20 items-center px-3 bg-gradient-to-l from-[#FFFBF5] to-transparent" aria-label="Scroll right">
+          <span class="border border-gray-900 bg-[#FFFBF5] w-8 h-8 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-lg">→</span>
+        </button>
+        <div id="tl-h-scroll" class="overflow-x-auto overflow-y-hidden" style="height:460px; cursor:grab; scrollbar-width:none;">
+          <div class="relative flex items-start" style="min-width:max-content; height:100%; padding-right:80px;">
+            <div class="absolute pointer-events-none" style="top:34px; left:0; right:0; height:1px; background:#202020;"></div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="1" data-type="article" data-book="1" style="width:240px; margin-left:80px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">10 000 BCE - 3000 BCE</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/clay-tokens.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/clay-tokens.png" alt="Mesopotamian Clay Tokens" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.1 · Mesopotamian Clay Tokens</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Mesopotamian Clay Tokens</h3>
+                <p class="text-xs text-gray-500 mt-1">Sumerian agriculturalists</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Accounting tokens that were used for farming goods exchange and accounting in Mesopotamia. The tokens were used for thousands of years and led to the invention of cuneiform writing.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="1" data-type="article" data-book="1" style="margin-top: 80px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">10 000 BC onward</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/clay-tokens.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/clay-tokens.png" alt="Mesopotamian Clay Tokens" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 1 · Mesopotamian Clay Tokens</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Mesopotamian Clay Tokens</h3>
-            <p class="text-sm text-gray-500 mt-2">Sumerian agriculturalists</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="1" data-type="article" data-book="1" style="width:240px; margin-left:500px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">3700 BCE - 3000 BCE</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/bulla.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/bulla.png" alt="Bulla (Clay Round Seal)" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.1 · Mesopotamian Clay Tokens</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Bulla (Clay Round Seal)</h3>
+                <p class="text-xs text-gray-500 mt-1">Sumerian agriculturalists</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Clay envelop in which the accounting tokens were initially placed, then only imprinted on.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 1290px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">860 CE onward</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/nilometer.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/nilometer.png" alt="Nilometer" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Nilometer</h3>
-            <p class="text-sm text-gray-500 mt-2">Civil engineers of Ancient Egypt</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="6" data-type="article" data-book="1" style="width:240px; margin-left:500px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2000 BCE - 1900</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/nilometer.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/nilometer.png" alt="Nilometer" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.6 · Analog Instruments</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Nilometer</h3>
+                <p class="text-xs text-gray-500 mt-1">Civil engineers of Ancient Egypt</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">A specific type of architecture that was built along the Nile for the Egyptian authorities to monitor the level and turbidity of the river.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 871px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">1441</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/korean-rain-gauge.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/gauge.png" alt="Korean Rain Gauge Ch'ŭgugi" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Korean Rain Gauge Ch'ŭgugi</h3>
-            <p class="text-sm text-gray-500 mt-2">Joseon kingdom's Research Institute of Astronomy Geography Calendar and Weather</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="3" data-type="article" data-book="1" style="width:240px; margin-left:500px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">100–300</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/paracas.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/paracas.png" alt="Paracas Polychrome Mantle" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.3 · Stitching the World</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Paracas Polychrome Mantle</h3>
+                <p class="text-xs text-gray-500 mt-1">Nazca Culture (central Andes)</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Ceremonial Paracas mantle encoding territorial, genealogical, and possibly calendrical information.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 486px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">1765</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/cyanometer.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/cyanometer.png" alt="Cyanometer" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Cyanometer</h3>
-            <p class="text-sm text-gray-500 mt-2">Horace-Bénédict de Saussure</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="4" data-type="article" data-book="1" style="width:240px; margin-left:500px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1100-1600</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/monte-sierpe.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/monte.png" alt="Monte Sierpe "Band of Holes"" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.4 · Deciphering Khipus</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Monte Sierpe "Band of Holes"</h3>
+                <p class="text-xs text-gray-500 mt-1">Chincha Kingdom & Inca Empire</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Exceptional topographical site in Peru containing approximately 5,000 regularly spaced holes in the ground, used for goods exchange and accounting during the Inca Empire.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="3" data-type="article" data-book="1" style="margin-top: 80px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">1800-1830</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/westtown-globe.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/globe.png" alt="Westtown Samplers" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 3 · Stitching the World</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Westtown Samplers</h3>
-            <p class="text-sm text-gray-500 mt-2">Westtown School - by Girls in Sewing Class</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="4" data-type="article" data-book="1" style="width:240px; margin-left:160px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1300-1500</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/khipus.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/khipus.png" alt="Inca-Style Khipu" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.4 · Deciphering Khipus</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Inca-Style Khipu</h3>
+                <p class="text-xs text-gray-500 mt-1">Leland L. Locke's book</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Inca-style khipus illustrating one of the most important book in the history of khipus deciphering, in which L. Locke determined khipus were numerical devices encoded in base 10. The book was published in 1912.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="6" data-type="article" data-book="1" style="margin-top: 97px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">1865</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/secchi-disk.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/secchi.png" alt="Secchi Disk" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 6 · Analog Instruments</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Secchi Disk</h3>
-            <p class="text-sm text-gray-500 mt-2">Angelo Secchi</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="6" data-type="article" data-book="1" style="width:240px; margin-left:112px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1441</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/korean-rain-gauge.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/gauge.png" alt="Korean Rain Gauge Ch'ŭgugi" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.6 · Analog Instruments</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Korean Rain Gauge Ch'ŭgugi</h3>
+                <p class="text-xs text-gray-500 mt-1">Joseon kingdom's Research Institute of Astronomy Geography Calendar and Weather</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Known as the 'most ancient rain gauge in the world', the Korean rain gauge system was one of the first state-wide rain measuring system.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="5" data-type="article" data-book="1" style="margin-top: 80px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">1870s</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/chronophotography-model.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/marey.png" alt="Flight of the Gull Bronze Model" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 5 · Photography as Autographic Systems</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Flight of the Gull Bronze Model</h3>
-            <p class="text-sm text-gray-500 mt-2">Etienne-Jules Marey</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="6" data-type="article" data-book="1" style="width:240px; margin-left:259px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1765</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/cyanometer.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/cyanometer.png" alt="Cyanometer" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.6 · Analog Instruments</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Cyanometer</h3>
+                <p class="text-xs text-gray-500 mt-1">Horace-Bénédict de Saussure</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">An analog color gradient circle designed to document, in a standardized manner, the different colors of the sky.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="5" data-type="article" data-book="1" style="margin-top: 229px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">2023</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/staring-at-empty-space.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/empty-spaces.png" alt="Staring At Empty Space" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 5 · Photography as Autographic Systems</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Staring At Empty Space</h3>
-            <p class="text-sm text-gray-500 mt-2">Lea Wurthmann</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="2" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1800-1950</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/mattang.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/mattang.png" alt="Mattang" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.2 · Material Geographies</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Mattang</h3>
+                <p class="text-xs text-gray-500 mt-1">Marshallese navigators</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">The mattang is an abstract stick chart presentation of how swells refract around an island and meet in a series of nodes. They were used a teaching and mnemonic devices, not for navigation.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <div class="timeline-entry flex items-start" data-chapter="5" data-type="article" data-book="1" style="margin-top: 80px;">
-        <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
-          <span class="text-sm font-bold text-gray-900 font-sans">2024</span>
-        </div>
-        <div class="flex-shrink-0 flex justify-center pt-2 relative z-10" style="width: 16px;">
-          <div class="w-3.5 h-3.5 rounded-full border-2 border-gray-900" style="background:#FFFBF5;"></div>
-        </div>
-        <a href="posts/matter-of-impermanence.html" class="ml-6 flex border border-gray-900 hover:border-[#B69188] transition-colors group" style="max-width: 560px; flex: 1 1 auto;">
-          <img src="images/dithered/matter.png" alt="Light Sculptures: Matter of Impermanence" class="object-cover border-r border-gray-900 flex-shrink-0" style="width:160px;height:200px;">
-          <div class="p-5 flex-1 min-w-0">
-            <span class="text-sm font-semibold uppercase tracking-widest text-gray-500 block truncate">Chapter 5 · Photography as Autographic Systems</span>
-            <h3 class="font-display text-2xl font-bold mt-2 leading-tight text-gray-900 group-hover:underline">Light Sculptures: Matter of Impermanence</h3>
-            <p class="text-sm text-gray-500 mt-2">Dexter Callender III</p>
-            
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="3" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1800-1830</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/westtown-globe.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/globe.png" alt="Westtown Samplers" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.3 · Stitching the World</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Westtown Samplers</h3>
+                <p class="text-xs text-gray-500 mt-1">Westtown School - by Girls in Sewing Class</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Silk globes made by young girls who attended sewing classes at the Westtown School in Pennsylvania, USA.</p>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="8" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1805</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/jaquard-cards.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/loom.png" alt="Jaquard Loom Punched Cards" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.8 · Punched & Stacked</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Jaquard Loom Punched Cards</h3>
+                <p class="text-xs text-gray-500 mt-1">Joseph Marie Jacquard</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Programmable paper cards linked in sequences to control Jacquard looms, allowing complex textile patterns to be mechanically encoded, stored, and reproduced.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="6" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1865</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/secchi-disk.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/secchi.png" alt="Secchi Disk" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.6 · Analog Instruments</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Secchi Disk</h3>
+                <p class="text-xs text-gray-500 mt-1">Angelo Secchi</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">An analog device used to measure water's turbidity levels by immersing a disk in lakes, seas and rivers.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="5" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1870</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/chronophotography-model.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/marey.png" alt="Flight of the Gull Bronze Model" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.5 · Photography as Autographic Systems</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Flight of the Gull Bronze Model</h3>
+                <p class="text-xs text-gray-500 mt-1">Etienne-Jules Marey</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">A bronze model made in Italy from Marey's chronophotographic work analyzing the flight of birds.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="3" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1885</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/greeland-wood-map.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/inuit-map.png" alt="Ammassalik Coastline Sculpture" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.3 · Stitching the World</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Ammassalik Coastline Sculpture</h3>
+                <p class="text-xs text-gray-500 mt-1">Kunit fra Umivik (Inuit hunter from Greenland)</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">A sculpted guide to a stretch of coast north of Ammassalik, made by a local hunter to explain navigation to the Danish expedition captain Gustav Holm, who later wrote his deep despise for Inuit geographical artefacts.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="5" data-type="article" data-book="1" style="width:240px; margin-left:67px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">1969</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/zero-number.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/zero.png" alt="A Number Between Zero and One" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.5 · Photography as Autographic Systems</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">A Number Between Zero and One</h3>
+                <p class="text-xs text-gray-500 mt-1">Siah Armajani</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">A Number Between Zero and One is a conceptual sculpture by Iranian-American artist Siah Armajani, consisting of a stack of paper printouts of an imaginary number—10^-205,714,079—one requiring 25,974 sheets and twenty-eight hours to print.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="5" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2021</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/aster.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/aster.png" alt="Aster" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.5 · Photography as Autographic Systems</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Aster</h3>
+                <p class="text-xs text-gray-500 mt-1">Grégoire Eloy</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">The Aster books show a fraction of the 1 million sattelite pictures taken by scientists for a global study on glaciers into 4,000 printed volumes.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="4" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2021</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/inequality-quipus.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/inequality.png" alt="Inequalities Quipus" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.4 · Deciphering Khipus</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Inequalities Quipus</h3>
+                <p class="text-xs text-gray-500 mt-1">Ewa Tuteja</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">The project compares through two inca-style quipus, the well-being of Latin America and Scandinavia. It encodes gendered data from the OECD Better Life Index.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="3" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2023</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/mississippi-map.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/mississippi.png" alt="Mississippi Embroidered Map" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.3 · Stitching the World</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Mississippi Embroidered Map</h3>
+                <p class="text-xs text-gray-500 mt-1">Anne Lacambre</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Reproduced from an ancient atlas for the visually impaired, the map is a tactile, white on white embroidered map of the Mississippi river.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="5" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2023</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/staring-at-empty-space.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/empty-spaces.png" alt="Staring At Empty Space" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.5 · Photography as Autographic Systems</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Staring At Empty Space</h3>
+                <p class="text-xs text-gray-500 mt-1">Lea Wurthmann</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">A physical installation that showcases the 352 electromagnetic captures required by NASA to produce the 1995 Deep Space image.</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="5" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2024</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/matter-of-impermanence.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/matter.png" alt="Light Sculptures: Matter of Impermanence" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.5 · Photography as Autographic Systems</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Light Sculptures: Matter of Impermanence</h3>
+                <p class="text-xs text-gray-500 mt-1">Dexter Callender III</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">Glass sculptures designed from photographic captures of light patterns moving through architecture during the day, from a selection of buildings in Boston (USA).</p>
+              </div>
+            </a>
+          </div>
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="3" data-type="article" data-book="1" style="width:240px; margin-left:64px; padding-top:52px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">2026</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:12px;height:12px;top:28px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:40px;height:12px;"></div>
+            <a href="posts/crochet-topography.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              <img src="images/dithered/crochet.png" alt="Crochet Topography" class="w-full object-cover flex-shrink-0" style="height:130px;">
+              <div class="p-3">
+                <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">Ch.3 · Stitching the World</span>
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">Crochet Topography</h3>
+                <p class="text-xs text-gray-500 mt-1">Noriko Takahama</p>
+                <p class="text-xs text-gray-600 mt-2 leading-snug">The artist has created a method to retrieve elevation data and transform them into printed pattern, then used to crochet specific topographies.</p>
+              </div>
+            </a>
+          </div>
+          </div>
+        </div>
+        <p class="text-center text-xs text-gray-400 mt-3 font-sans">Scroll to explore →</p>
       </div>
     </div>
   </main>
@@ -471,15 +792,12 @@
     let activeFilter = 'all';
 
     function updateDisplay() {
-      ['#card-grid .card-wrapper', '#timeline-view .timeline-entry'].forEach(sel => {
+      ['#card-grid .card-wrapper', '#timeline-h-view .timeline-h-entry'].forEach(sel => {
         document.querySelectorAll(sel).forEach(item => {
           let matches = true;
           if (activeFilter !== 'all') {
-            if (activeFilter.startsWith('chapter:')) {
-              matches = item.dataset.chapter == activeFilter.split(':')[1];
-            } else if (activeFilter.startsWith('type:')) {
-              matches = item.dataset.type === activeFilter.split(':')[1];
-            }
+            if (activeFilter.startsWith('chapter:')) matches = item.dataset.chapter == activeFilter.split(':')[1];
+            else if (activeFilter.startsWith('type:'))  matches = item.dataset.type === activeFilter.split(':')[1];
           }
           item.style.display = matches ? '' : 'none';
         });
@@ -493,30 +811,65 @@
         btn.classList.toggle('bg-gray-900', active);
         btn.classList.toggle('text-white', active);
       });
+      const badge = document.getElementById('filter-badge');
+      if (badge) badge.classList.toggle('hidden', type === 'all');
       updateDisplay();
     }
 
-    function setView(view) {
-      const grid = document.getElementById('card-grid');
-      const tl = document.getElementById('timeline-view');
-      const btnGrid = document.getElementById('btn-grid');
-      const btnTl = document.getElementById('btn-timeline');
-      if (view === 'grid') {
-        grid.classList.remove('hidden');
-        tl.classList.add('hidden');
-        btnGrid.classList.add('bg-gray-900', 'text-white');
-        btnGrid.classList.remove('text-gray-900');
-        btnTl.classList.remove('bg-gray-900', 'text-white');
-        btnTl.classList.add('text-gray-900');
-      } else {
-        grid.classList.add('hidden');
-        tl.classList.remove('hidden');
-        btnTl.classList.add('bg-gray-900', 'text-white');
-        btnTl.classList.remove('text-gray-900');
-        btnGrid.classList.remove('bg-gray-900', 'text-white');
-        btnGrid.classList.add('text-gray-900');
-      }
+    function clearFilter() {
+      history.replaceState(null, '', window.location.pathname);
+      filter('all');
     }
+
+    function setView(view) {
+      const views = { grid: 'card-grid', 'timeline-h': 'timeline-h-view' };
+      const btns  = { grid: 'btn-grid', 'timeline-h': 'btn-timeline-h' };
+      Object.entries(views).forEach(([v, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('hidden', v !== view);
+      });
+      Object.entries(btns).forEach(([v, id]) => {
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.classList.toggle('bg-gray-900', v === view);
+        btn.classList.toggle('text-white',  v === view);
+        btn.classList.toggle('text-gray-900', v !== view);
+      });
+    }
+
+    function shuffleGrid() {
+      setView('grid');
+      const grid = document.getElementById('card-grid');
+      const cards = Array.from(grid.querySelectorAll('.card-wrapper'));
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      cards.forEach(c => grid.appendChild(c));
+    }
+
+    // Horizontal timeline: arrows + drag-to-scroll
+    (function() {
+      const scroll = document.getElementById('tl-h-scroll');
+      if (!scroll) return;
+      const prev = document.getElementById('tl-h-prev');
+      const next = document.getElementById('tl-h-next');
+      function updateArrows() {
+        const atStart = scroll.scrollLeft <= 0;
+        const atEnd   = scroll.scrollLeft >= scroll.scrollWidth - scroll.clientWidth - 1;
+        prev.style.display = atStart ? 'none' : '';
+        next.style.display = atEnd   ? 'none' : '';
+      }
+      updateArrows();
+      scroll.addEventListener('scroll', updateArrows);
+      prev.addEventListener('click', () => scroll.scrollBy({ left: -480, behavior: 'smooth' }));
+      next.addEventListener('click', () => scroll.scrollBy({ left:  480, behavior: 'smooth' }));
+      let down = false, startX, startScroll;
+      scroll.addEventListener('mousedown',  e => { down = true; startX = e.pageX; startScroll = scroll.scrollLeft; scroll.style.cursor = 'grabbing'; });
+      scroll.addEventListener('mouseleave', ()  => { down = false; scroll.style.cursor = 'grab'; });
+      scroll.addEventListener('mouseup',    ()  => { down = false; scroll.style.cursor = 'grab'; });
+      scroll.addEventListener('mousemove',  e  => { if (!down) return; e.preventDefault(); scroll.scrollLeft = startScroll - (e.pageX - startX); });
+    })();
 
     (function() {
       const params = new URLSearchParams(window.location.search);

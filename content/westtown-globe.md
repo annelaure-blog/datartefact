@@ -2,6 +2,8 @@
 title: Westtown Samplers
 date: 1800-1830
 author: Westtown School - by Girls in Sewing Class
+description: Silk globes made by young girls who attended sewing classes at the Westtown
+  School in Pennsylvania, USA.
 slug: westtown-globe
 book: 1
 chapter: 3
@@ -13,4 +15,4 @@ sources:
 - https://www.themagazineantiques.com/article/silk-globes-the-world-on-a-string/
 ---
 
-(write your content here)
+

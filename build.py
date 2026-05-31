@@ -69,8 +69,15 @@ def parse_year(date_val) -> int | None:
         return int(date_val)
     if isinstance(date_val, (date, datetime)):
         return date_val.year
-    m = re.search(r'(?<!\d)(\d{3,4})(?!\d)', str(date_val))
-    return int(m.group(1)) if m else None
+    s = str(date_val)
+    s_clean = re.sub(r'(\d)\s+(\d)', r'\1\2', s)  # collapse "5 000" → "5000"
+    m = re.search(r'(?<!\d)(\d{3,5})(?!\d)', s_clean)
+    if not m:
+        return None
+    year = int(m.group(1))
+    if re.search(r'\bBC\b|\bBCE\b', s, re.IGNORECASE):
+        year = -year
+    return year
 
 
 def render_timeline_entry(entry: dict, margin_top: int) -> str:
@@ -118,6 +125,101 @@ def render_timeline_entry(entry: dict, margin_top: int) -> str:
             {f'<p class="text-base text-gray-600 mt-3 leading-relaxed">{description}</p>' if description else ''}
           </div>
         </a>
+      </div>"""
+
+
+def render_timeline_h_entry(entry: dict, margin_left: int) -> str:
+    CARD_WIDTH = 240
+    YEAR_H    = 28    # reserved above spine for year label
+    DOT_SIZE  = 12
+    CONN_H    = 12
+    SPINE_TOP = YEAR_H + DOT_SIZE // 2          # 34px — spine centre
+    CARD_TOP  = SPINE_TOP + DOT_SIZE // 2 + CONN_H  # 52px — top of card
+
+    type_key    = entry.get("type", "article")
+    title       = entry.get("title", "Untitled")
+    author      = entry.get("author", "")
+    description = entry.get("description", "")
+    slug        = entry["slug"]
+    book        = entry.get("book")
+    chapter     = entry.get("chapter")
+    ch_title    = chapter_title(book, chapter)
+    chapter_str = f"Ch.{chapter} · {ch_title}" if ch_title else (f"Ch.{chapter}" if chapter else "")
+
+    raw_date = entry.get("date")
+    if isinstance(raw_date, (int, float)):        year_label = str(int(raw_date))
+    elif isinstance(raw_date, str) and raw_date:  year_label = raw_date
+    elif isinstance(raw_date, (date, datetime)):  year_label = str(raw_date.year)
+    else:                                         year_label = "—"
+
+    image = entry.get("image", "")
+    if image:
+        dithered = f"images/dithered/{Path(image).stem}.png"
+        img_html = f'<img src="{dithered}" alt="{title}" class="w-full object-cover flex-shrink-0" style="height:130px;">'
+    else:
+        img_html = '<div class="w-full flex-shrink-0 bg-gray-100 flex items-center justify-center" style="height:130px;"><span class="text-xs text-gray-400">—</span></div>'
+
+    return f"""\
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="{chapter or ''}" data-type="{type_key}" data-book="{book or ''}" style="width:{CARD_WIDTH}px; margin-left:{margin_left}px; padding-top:{CARD_TOP}px;">
+            <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">{year_label}</div>
+            <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:{DOT_SIZE}px;height:{DOT_SIZE}px;top:{SPINE_TOP - DOT_SIZE // 2}px;left:50%;transform:translateX(-50%);"></div>
+            <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:{SPINE_TOP + DOT_SIZE // 2}px;height:{CONN_H}px;"></div>
+            <a href="posts/{slug}.html" class="block border border-gray-900 hover:border-[#B69188] transition-colors group">
+              {img_html}
+              <div class="p-3">
+                {f'<span class="text-xs text-gray-500 font-semibold uppercase tracking-widest block leading-snug">{chapter_str}</span>' if chapter_str else ''}
+                <h3 class="font-display text-lg font-bold leading-tight mt-1 text-gray-900 group-hover:underline">{title}</h3>
+                {f'<p class="text-xs text-gray-500 mt-1">{author}</p>' if author else ''}
+                {f'<p class="text-xs text-gray-600 mt-2 leading-snug">{description}</p>' if description else ''}
+              </div>
+            </a>
+          </div>"""
+
+
+def build_timeline_h(entries: list[dict]) -> str:
+    PX_PER_YEAR = 0.8
+    MIN_GAP     = 64
+    MAX_GAP     = 500
+    FIRST_LEFT  = 80
+    YEAR_H      = 28
+    DOT_SIZE    = 12
+    SPINE_TOP   = YEAR_H + DOT_SIZE // 2   # 34
+    CONTAINER_H = 460
+
+    dated, undated = [], []
+    for e in entries:
+        y = parse_year(e.get("date"))
+        if y is not None:
+            dated.append((y, e))
+        else:
+            undated.append(e)
+    dated.sort(key=lambda x: x[0])
+
+    rows = []
+    prev_year = None
+    for year, entry in dated:
+        ml = FIRST_LEFT if prev_year is None else min(MAX_GAP, max(MIN_GAP, int(max(0, year - prev_year) * PX_PER_YEAR)))
+        rows.append(render_timeline_h_entry(entry, ml))
+        prev_year = year
+    for entry in undated:
+        rows.append(render_timeline_h_entry(entry, MIN_GAP))
+
+    entries_html = "\n".join(rows)
+    return f"""\
+      <div class="relative">
+        <button id="tl-h-prev" class="hidden md:flex absolute left-0 top-0 bottom-0 z-20 items-center px-3 bg-gradient-to-r from-[#FFFBF5] to-transparent" aria-label="Scroll left">
+          <span class="border border-gray-900 bg-[#FFFBF5] w-8 h-8 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-lg">←</span>
+        </button>
+        <button id="tl-h-next" class="hidden md:flex absolute right-0 top-0 bottom-0 z-20 items-center px-3 bg-gradient-to-l from-[#FFFBF5] to-transparent" aria-label="Scroll right">
+          <span class="border border-gray-900 bg-[#FFFBF5] w-8 h-8 flex items-center justify-center text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-lg">→</span>
+        </button>
+        <div id="tl-h-scroll" class="overflow-x-auto overflow-y-hidden" style="height:{CONTAINER_H}px; cursor:grab; scrollbar-width:none;">
+          <div class="relative flex items-start" style="min-width:max-content; height:100%; padding-right:{FIRST_LEFT}px;">
+            <div class="absolute pointer-events-none" style="top:{SPINE_TOP}px; left:0; right:0; height:1px; background:#202020;"></div>
+{entries_html}
+          </div>
+        </div>
+        <p class="text-center text-xs text-gray-400 mt-3 font-sans">Scroll to explore →</p>
       </div>"""
 
 
@@ -323,7 +425,7 @@ def render_card(entry: dict) -> str:
 
     search_text = f"{title} {description} {label} book {book or ''} chapter {chapter or ''}".lower()
     return f"""\
-      <div class="card-wrapper border-b border-r border-gray-900" data-type="{type_key}" data-book="{book or ''}" data-chapter="{chapter or ''}" data-search="{search_text}">
+      <div class="card-wrapper border border-gray-900" data-type="{type_key}" data-book="{book or ''}" data-chapter="{chapter or ''}" data-search="{search_text}">
         <div class="card-inner">
           <a href="posts/{slug}.html" class="card-front overflow-hidden">
             {back_content}
@@ -366,47 +468,39 @@ def build_filter_tabs(entries: list[dict]) -> str:
 
 
 def build_index(entries: list[dict]) -> str:
-    cards = "\n".join(render_card(e) for e in entries)
-    tabs = build_filter_tabs(entries)
-    timeline_html = build_timeline(entries)
-    year = datetime.now().year
+    cards      = "\n".join(render_card(e) for e in entries)
+    timeline_h = build_timeline_h(entries)
+    year       = datetime.now().year
 
     return HTML_HEAD.format(title="Collection", font_path="") + f"""\
 {NAV_INDEX}
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
     <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Collection</h1>
-    <div class="mt-8 border border-gray-900 grid grid-cols-1 md:grid-cols-4">
-      <div class="border-b md:border-b-0 md:border-r border-gray-900 p-6 flex items-start">
-        <span class="text-xs font-semibold uppercase tracking-widest text-gray-900 font-sans">Datartefact, n.</span>
-      </div>
-      <div class="md:col-span-3 p-6">
-        <p class="text-base text-gray-900 leading-relaxed">Objects that function as documents, or systems of documents, by showing, encoding and recording information.</p>
-      </div>
+    <div class="mt-5 max-w-2xl">
+      <p class="text-sm text-gray-600 leading-snug">The Collection is the companion archive to the <em>Datartefact</em> book series, bringing together the artifacts, instruments, recording systems, and material objects discussed throughout the project. Spanning early accounting devices, cartographic objects, textiles, scientific instruments, photography, sound recording, and computation, it explores how objects themselves can function as documents, or as systems of documents used to encode, store, measure, and transmit knowledge.</p>
+      <p class="mt-2 text-sm text-gray-600 leading-snug">The collection can be browsed through a grid view or along a chronological timeline connecting artifacts across centuries and disciplines. Conceived as an expanding research archive, it will continue to grow over time alongside the development of the books.</p>
     </div>
   </section>
-  <section class="max-w-6xl mx-auto px-6 pb-4">
-    <div class="flex items-start justify-between flex-wrap gap-4">
-      <div class="flex gap-2 flex-wrap" id="filters">
-{tabs}
-      </div>
-      <div class="flex gap-0 border border-gray-900 flex-shrink-0">
-        <button onclick="setView('grid')" id="btn-grid"
-          class="px-4 py-1.5 text-sm font-medium bg-gray-900 text-white transition-all">Grid</button>
-        <button onclick="setView('timeline')" id="btn-timeline"
-          class="px-4 py-1.5 text-sm font-medium text-gray-900 border-l border-gray-900 hover:bg-gray-900 hover:text-white transition-all">Timeline</button>
-      </div>
-    </div>
+  <div id="filter-badge" class="hidden max-w-6xl mx-auto px-6 pb-3 flex justify-center">
+    <button onclick="clearFilter()" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">← All entries</button>
+  </div>
+  <section class="max-w-6xl mx-auto px-6 pb-4 flex justify-center gap-2">
+      <button onclick="setView('grid')" id="btn-grid"
+        class="border border-gray-900 px-6 py-2 text-sm font-medium bg-gray-900 text-white transition-all">Grid</button>
+      <button onclick="shuffleGrid()" id="btn-shuffle"
+        class="border border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white transition-all">⇄ Shuffle</button>
+      <button onclick="setView('timeline-h')" id="btn-timeline-h"
+        class="border border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white transition-all">↔ Timeline</button>
   </section>
 
   <main class="w-full pb-24 flex-1 px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-gray-900" id="card-grid">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="card-grid">
 {cards}
-    </div>
-    <div id="timeline-view" class="hidden max-w-4xl mx-auto pt-4 pb-16">
-      <div class="relative" style="padding-left: 96px; padding-bottom: 60px;">
-        <div class="absolute border-l border-gray-900" style="left: 87px; top: 0; bottom: 0;"></div>
-{timeline_html}
       </div>
+    </div>
+    <div id="timeline-h-view" class="hidden pt-6 pb-16 px-0">
+{timeline_h}
     </div>
   </main>
 {build_footer(year)}
@@ -414,15 +508,12 @@ def build_index(entries: list[dict]) -> str:
     let activeFilter = 'all';
 
     function updateDisplay() {{
-      ['#card-grid .card-wrapper', '#timeline-view .timeline-entry'].forEach(sel => {{
+      ['#card-grid .card-wrapper', '#timeline-h-view .timeline-h-entry'].forEach(sel => {{
         document.querySelectorAll(sel).forEach(item => {{
           let matches = true;
           if (activeFilter !== 'all') {{
-            if (activeFilter.startsWith('chapter:')) {{
-              matches = item.dataset.chapter == activeFilter.split(':')[1];
-            }} else if (activeFilter.startsWith('type:')) {{
-              matches = item.dataset.type === activeFilter.split(':')[1];
-            }}
+            if (activeFilter.startsWith('chapter:')) matches = item.dataset.chapter == activeFilter.split(':')[1];
+            else if (activeFilter.startsWith('type:'))  matches = item.dataset.type === activeFilter.split(':')[1];
           }}
           item.style.display = matches ? '' : 'none';
         }});
@@ -436,30 +527,65 @@ def build_index(entries: list[dict]) -> str:
         btn.classList.toggle('bg-gray-900', active);
         btn.classList.toggle('text-white', active);
       }});
+      const badge = document.getElementById('filter-badge');
+      if (badge) badge.classList.toggle('hidden', type === 'all');
       updateDisplay();
     }}
 
-    function setView(view) {{
-      const grid = document.getElementById('card-grid');
-      const tl = document.getElementById('timeline-view');
-      const btnGrid = document.getElementById('btn-grid');
-      const btnTl = document.getElementById('btn-timeline');
-      if (view === 'grid') {{
-        grid.classList.remove('hidden');
-        tl.classList.add('hidden');
-        btnGrid.classList.add('bg-gray-900', 'text-white');
-        btnGrid.classList.remove('text-gray-900');
-        btnTl.classList.remove('bg-gray-900', 'text-white');
-        btnTl.classList.add('text-gray-900');
-      }} else {{
-        grid.classList.add('hidden');
-        tl.classList.remove('hidden');
-        btnTl.classList.add('bg-gray-900', 'text-white');
-        btnTl.classList.remove('text-gray-900');
-        btnGrid.classList.remove('bg-gray-900', 'text-white');
-        btnGrid.classList.add('text-gray-900');
-      }}
+    function clearFilter() {{
+      history.replaceState(null, '', window.location.pathname);
+      filter('all');
     }}
+
+    function setView(view) {{
+      const views = {{ grid: 'card-grid', 'timeline-h': 'timeline-h-view' }};
+      const btns  = {{ grid: 'btn-grid', 'timeline-h': 'btn-timeline-h' }};
+      Object.entries(views).forEach(([v, id]) => {{
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('hidden', v !== view);
+      }});
+      Object.entries(btns).forEach(([v, id]) => {{
+        const btn = document.getElementById(id);
+        if (!btn) return;
+        btn.classList.toggle('bg-gray-900', v === view);
+        btn.classList.toggle('text-white',  v === view);
+        btn.classList.toggle('text-gray-900', v !== view);
+      }});
+    }}
+
+    function shuffleGrid() {{
+      setView('grid');
+      const grid = document.getElementById('card-grid');
+      const cards = Array.from(grid.querySelectorAll('.card-wrapper'));
+      for (let i = cards.length - 1; i > 0; i--) {{
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }}
+      cards.forEach(c => grid.appendChild(c));
+    }}
+
+    // Horizontal timeline: arrows + drag-to-scroll
+    (function() {{
+      const scroll = document.getElementById('tl-h-scroll');
+      if (!scroll) return;
+      const prev = document.getElementById('tl-h-prev');
+      const next = document.getElementById('tl-h-next');
+      function updateArrows() {{
+        const atStart = scroll.scrollLeft <= 0;
+        const atEnd   = scroll.scrollLeft >= scroll.scrollWidth - scroll.clientWidth - 1;
+        prev.style.display = atStart ? 'none' : '';
+        next.style.display = atEnd   ? 'none' : '';
+      }}
+      updateArrows();
+      scroll.addEventListener('scroll', updateArrows);
+      prev.addEventListener('click', () => scroll.scrollBy({{ left: -480, behavior: 'smooth' }}));
+      next.addEventListener('click', () => scroll.scrollBy({{ left:  480, behavior: 'smooth' }}));
+      let down = false, startX, startScroll;
+      scroll.addEventListener('mousedown',  e => {{ down = true; startX = e.pageX; startScroll = scroll.scrollLeft; scroll.style.cursor = 'grabbing'; }});
+      scroll.addEventListener('mouseleave', ()  => {{ down = false; scroll.style.cursor = 'grab'; }});
+      scroll.addEventListener('mouseup',    ()  => {{ down = false; scroll.style.cursor = 'grab'; }});
+      scroll.addEventListener('mousemove',  e  => {{ if (!down) return; e.preventDefault(); scroll.scrollLeft = startScroll - (e.pageX - startX); }});
+    }})();
 
     (function() {{
       const params = new URLSearchParams(window.location.search);
@@ -498,7 +624,7 @@ def build_post(entry: dict) -> str:
     dithered_image = f"images/dithered/{Path(image).stem}.png" if image else ""
     image_copyright = entry.get("image_copyright", "")
     copyright_html = f'<p class="mt-2 mb-4 text-xs text-gray-400 italic">{image_copyright}</p>' if image_copyright else ""
-    image_html = (f'<img src="../{dithered_image}" alt="{title}" class="w-full border-b border-gray-900">{copyright_html}') if dithered_image else ""
+    image_html = (f'<img src="../{dithered_image}" alt="{title}" class="w-full">{copyright_html}') if dithered_image else ""
     ch_title = chapter_title(book, chapter)
     chapter_label = f"Chapter {chapter} · {ch_title}" if ch_title else f"Chapter {chapter}"
     book_chip = f'<a href="../collection.html?book={book}" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book {book}</a>' if book else ""
@@ -511,7 +637,7 @@ def build_post(entry: dict) -> str:
             f'        <li><a href="{url}" target="_blank" rel="noopener noreferrer" class="hover:underline">{label} {_arrow}</a></li>'
             for label, url in sources
         )
-        sources_html = f"""    <div class="mt-12 border-t border-gray-200 pt-8 font-sans">
+        sources_html = f"""    <div class="mt-12 font-sans">
       <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Further reading</p>
       <ul class="space-y-2 text-sm text-gray-900">
 {_links}

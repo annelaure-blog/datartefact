@@ -1,7 +1,10 @@
 ---
 title: Mesopotamian Clay Tokens
-date: 10 000 BC onward
+date: 10 000 BCE - 3000 BCE
 author: Sumerian agriculturalists
+description: Accounting tokens that were used for farming goods exchange and accounting
+  in Mesopotamia. The tokens were used for thousands of years and led to the invention
+  of cuneiform writing.
 slug: clay-tokens
 book: 1
 chapter: 1
@@ -14,4 +17,4 @@ sources:
 - https://sites.utexas.edu/dsb/
 ---
 
-(write your content here)
+

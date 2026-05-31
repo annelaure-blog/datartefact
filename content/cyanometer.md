@@ -2,6 +2,8 @@
 title: Cyanometer
 date: '1765'
 author: Horace-Bénédict de Saussure
+description: An analog color gradient circle designed to document, in a standardized
+  manner, the different colors of the sky.
 slug: cyanometer
 book: 1
 chapter: 6
@@ -11,4 +13,4 @@ sources:
 - https://en.wikipedia.org/wiki/Cyanometer
 ---
 
-(write your content here)
+

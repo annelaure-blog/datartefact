@@ -1,7 +1,9 @@
 ---
 title: Bulla (Clay Round Seal)
-date: 5 000 BC onward
+date: 3700 BCE - 3000 BCE
 author: Sumerian agriculturalists
+description: Clay envelop in which the accounting tokens were initially placed, then
+  only imprinted on.
 slug: bulla
 book: 1
 chapter: 1
@@ -13,4 +15,4 @@ sources:
 - https://sites.utexas.edu/dsb/tokens/the-evolution-of-writing/
 ---
 
-(write your content here)
+

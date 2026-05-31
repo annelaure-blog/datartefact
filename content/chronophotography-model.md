@@ -1,7 +1,9 @@
 ---
 title: Flight of the Gull Bronze Model
-date: 1870s
+date: '1870'
 author: Etienne-Jules Marey
+description: A bronze model made in Italy from Marey's chronophotographic work analyzing
+  the flight of birds.
 slug: chronophotography-model
 book: 1
 chapter: 5
@@ -11,4 +13,4 @@ sources:
 - https://en.wikipedia.org/wiki/Chronophotography
 ---
 
-(write your content here)
+

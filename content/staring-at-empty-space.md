@@ -2,6 +2,8 @@
 title: Staring At Empty Space
 date: '2023'
 author: Lea Wurthmann
+description: A physical installation that showcases the 352 electromagnetic captures
+  required by NASA to produce the 1995 Deep Space image.
 slug: staring-at-empty-space
 book: 1
 chapter: 5
@@ -10,8 +12,6 @@ image_copyright: Image Lea Wurthmann (reproduced with permission)
 sources:
 - https://leawurthmann.com/staring-at-empty-spaces/
 ---
-
-"In 1995 NASA used the Hubble Space Telescope for an unusual mission. It observed an area of the sky which was seemingly empty, emitting almost no light and radiation. After ten days the telescope revealed age-old stars and galaxies that filled the supposed emptiness. The Hubble Deep Field Image (R. Williams & the HDF Team, NASA/ESA) provided humankind with an unprecedented view into the depth of the universe.Staring at Empty Spaces deconstructs scientific discoveries by exploring the creation of the Hubble Deep Field image. It emphasizes the carefully planned character of the endeavour, shifting away from viewing it as an accidental moment, and aims to provide a tangible understanding of the image-making process."
 
 "Staring at Empty Spaces", by designer Lea Wurthmann is an exceptional kind of datartefact: it exposes, through a physical object, the composition of a representation (e.g. an image), while also exposing the method (from electromagnetic sensors to computing process) used to produce that image. 
 
