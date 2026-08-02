@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ammassalik Coastline Sculpture — Datartefact</title>
+  <title>Mara Singh on material archives — Datartefact</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +35,14 @@
       });
     });
   </script>
+  <style>
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      body { background: white; }
+      .prose { max-width: 100%; }
+      img { max-width: 100%; }
+    }
+  </style>
   <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="../book" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="../images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
@@ -64,31 +72,39 @@
     </div>
   </header>
   <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
-    <a href="../collection.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to collection</a>
+    <div class="flex items-center justify-between no-print">
+      <a href="../notes.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Research Notes</a>
+      <button onclick="window.print()" class="text-sm text-gray-900 border border-gray-900 px-4 py-1.5 hover:bg-gray-900 hover:text-white transition-colors uppercase tracking-widest font-semibold">Export to PDF</button>
+    </div>
     <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
       <div class="p-6 md:w-1/4 border-b md:border-b-0 md:border-r border-gray-900">
         <div class="flex flex-wrap gap-2">
-          <a href="../collection.html?book=1" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book 1</a><a href="../collection.html?chapter=3" class="inline-block border border-gray-900 text-xs font-bold uppercase tracking-widest px-3 py-1 hover:bg-gray-900 hover:text-white transition-colors">Chapter 3 · Stitching the World</a>
+          <span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 mb-2">Interview</span>
         </div>
-        <p class="mt-4 text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Kunit fra Umivik (Inuit hunter from Greenland)</p>
-        <p class="mt-1 text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1885</p>
+        <p class="mt-4 text-xs text-gray-500">March 10, 2026</p>
       </div>
       <div class="p-6 md:w-3/4">
-        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">Ammassalik Coastline Sculpture</span>
-        <p class="mt-4 text-base text-gray-900 leading-relaxed">A sculpted guide to a stretch of coast north of Ammassalik, made by a local hunter to explain navigation to the Danish expedition captain Gustav Holm, who later wrote his deep despise for Inuit geographical artefacts.</p>
+        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">Mara Singh on material archives</span>
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">Singh has spent fifteen years photographing paper-based data systems before they are digitised. We talked about what is lost in the scan.</p>
       </div>
     </div>
-    <img src="../images/dithered/inuit-map.png" alt="Ammassalik Coastline Sculpture" class="w-full"><p class="mt-2 mb-4 text-xs text-gray-400 italic">Image:© Greenland National Museum and Archives</p>
-    <div class="mt-10 prose text-gray-900 text-base">
-      
+    
+    <div class="mt-10 prose text-gray-900 text-base max-w-3xl mx-auto">
+      <p>Mara Singh is a documentary photographer based in London. Since 2010 she has worked with archives across South Asia, East Africa, and the UK, photographing paper-based administrative systems — registers, ledgers, card indices — in the months before they are digitised or destroyed. Her work has been exhibited at the V&amp;A and the Jeu de Paume.</p>
+<p>We spoke over email in February 2026.</p>
+<hr />
+<p><strong>Your work is often described as archival photography, but you resist that label. Why?</strong></p>
+<p>Because archival photography implies that what I&rsquo;m doing is documentation — preserving a record of the thing before it disappears. But I&rsquo;m not trying to replace the original. I&rsquo;m trying to make visible what the digitisation process will erase: the physical evidence of use.</p>
+<p>When you scan a ledger, you get a very good image of the page. You do not get the weight of it, the smell, the water damage on the binding, the pencil annotations in the margins that were too faint to appear in the scan. You do not get the sense of how many times the page was turned. Digitisation is not preservation. It is a translation, and every translation loses something.</p>
+<p><strong>What does a high volume of use look like in a document?</strong></p>
+<p>The edges of pages wear down first. The most-referenced entries are the ones where you see the lightest, most abraded surface — the ink survives because it&rsquo;s embedded, but the paper fibres around it are gone. You can read a document&rsquo;s usage history in its physical degradation.</p>
+<p>Indexes are particularly interesting. In a card index, the most-used cards are the thinnest. They have been handled thousands of times. The least-used cards are often pristine — you can read them clearly, but that clarity is also evidence of neglect.</p>
+<p><strong>Does the digitisation process itself leave traces?</strong></p>
+<p>Always. You can tell when a document has been scanned because of the handling required — the cover shows wear patterns consistent with the book being held open flat, which is not how it would have been held during normal reading. The spine sometimes cracks. There is a category of archival damage that is caused specifically by the act of preserving.</p>
+<p><strong>What do you want people to take from your photographs?</strong></p>
+<p>I want them to feel the loss of something they didn&rsquo;t know was there. Most people assume digitisation is straightforwardly good — the document is saved, it&rsquo;s accessible, anyone can read it. I don&rsquo;t want to argue that digitisation is bad. I want to argue that it is not enough to describe a process as preservation without asking: what, precisely, are we preserving, and at what cost?</p>
     </div>
-    <div class="mt-12 font-sans">
-      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Further reading</p>
-      <ul class="space-y-2 text-sm text-gray-900">
-        <li><a href="https://storymaps.arcgis.com/stories/b6250ff800c84550bea540aef7ce35cd" target="_blank" rel="noopener noreferrer" class="hover:underline">storymaps.arcgis.com <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a></li>
-        <li><a href="https://press.uchicago.edu/books/HOC/HOC_V2_B3/Volume2_Book3.html" target="_blank" rel="noopener noreferrer" class="hover:underline">press.uchicago.edu <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a></li>
-      </ul>
-    </div>
+
   </main>
   <footer class="border-t border-gray-900 mt-auto">
     <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">

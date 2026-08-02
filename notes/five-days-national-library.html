@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ammassalik Coastline Sculpture — Datartefact</title>
+  <title>Five days at the National Library — Datartefact</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +35,14 @@
       });
     });
   </script>
+  <style>
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      body { background: white; }
+      .prose { max-width: 100%; }
+      img { max-width: 100%; }
+    }
+  </style>
   <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="../book" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]"><img src="../images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />Datartefact</a>
@@ -64,31 +72,39 @@
     </div>
   </header>
   <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
-    <a href="../collection.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to collection</a>
+    <div class="flex items-center justify-between no-print">
+      <a href="../notes.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Research Notes</a>
+      <button onclick="window.print()" class="text-sm text-gray-900 border border-gray-900 px-4 py-1.5 hover:bg-gray-900 hover:text-white transition-colors uppercase tracking-widest font-semibold">Export to PDF</button>
+    </div>
     <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
       <div class="p-6 md:w-1/4 border-b md:border-b-0 md:border-r border-gray-900">
         <div class="flex flex-wrap gap-2">
-          <a href="../collection.html?book=1" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book 1</a><a href="../collection.html?chapter=3" class="inline-block border border-gray-900 text-xs font-bold uppercase tracking-widest px-3 py-1 hover:bg-gray-900 hover:text-white transition-colors">Chapter 3 · Stitching the World</a>
+          <span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 mb-2">Field note</span>
         </div>
-        <p class="mt-4 text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> Kunit fra Umivik (Inuit hunter from Greenland)</p>
-        <p class="mt-1 text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> 1885</p>
+        <p class="mt-4 text-xs text-gray-500">May 2, 2026</p>
       </div>
       <div class="p-6 md:w-3/4">
-        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">Ammassalik Coastline Sculpture</span>
-        <p class="mt-4 text-base text-gray-900 leading-relaxed">A sculpted guide to a stretch of coast north of Ammassalik, made by a local hunter to explain navigation to the Danish expedition captain Gustav Holm, who later wrote his deep despise for Inuit geographical artefacts.</p>
+        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">Five days at the National Library</span>
+        <p class="mt-4 text-base text-gray-900 leading-relaxed">What it's like to spend five days requesting folios, waiting for trolleys, and reading documents no one has touched in thirty years.</p>
       </div>
     </div>
-    <img src="../images/dithered/inuit-map.png" alt="Ammassalik Coastline Sculpture" class="w-full"><p class="mt-2 mb-4 text-xs text-gray-400 italic">Image:© Greenland National Museum and Archives</p>
-    <div class="mt-10 prose text-gray-900 text-base">
-      
+    
+    <div class="mt-10 prose text-gray-900 text-base max-w-3xl mx-auto">
+      <p>The first thing you notice is the trolleys. Every document you request arrives on a metal trolley — sometimes one, sometimes a stack — pushed by a staff member who has no idea what is on it. That indifference is not negligence. It is professionalism. The document does not matter to them. It matters to you.</p>
+<h2>The request system</h2>
+<p>The National Library runs a slip-based request system for its oldest holdings. You fill in a paper form — author, title, shelfmark, date range — and submit it at a desk. Nothing is instant. You are told to return in the afternoon.</p>
+<p>This waiting is not wasted time. It is part of the work. You plan your next requests. You read the catalogue more carefully. You think about what you are actually looking for, which is rarely what you thought you were looking for when you arrived.</p>
+<h2>What the catalogue reveals</h2>
+<p>The catalogue is its own data artefact. It was compiled over decades, in layers, by different hands using different conventions. A shelfmark assigned in 1887 sits next to one assigned in 1994. The classification logic shifts across time — sometimes alphabetical, sometimes thematic, sometimes following no visible principle at all.</p>
+<p>Reading the catalogue is itself an act of interpretation. The gaps are as informative as the entries.</p>
+<h2>What you find</h2>
+<p>On day three I requested a set of ledgers from a colonial customs administration. They had not been requested since 1974, according to the access record taped to the inside cover. The ledger itself was intact — columns of goods, weights, duties, names — but the access record was a second layer of data: who had looked, when, for what purpose.</p>
+<p>No one had thought to study the access record. It was administrative residue. But it told a story about what questions researchers had been asking, and when they stopped asking them.</p>
+<h2>The value of going in person</h2>
+<p>You cannot replicate this digitally. Not because the images would be lower quality — they would not — but because the physical handling changes what you notice. The weight of a ledger tells you something about its intended permanence. The quality of the paper tells you something about the resources available. The smell tells you something about the conditions of storage.</p>
+<p>These are not marginal details. They are part of the document&rsquo;s meaning.</p>
     </div>
-    <div class="mt-12 font-sans">
-      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Further reading</p>
-      <ul class="space-y-2 text-sm text-gray-900">
-        <li><a href="https://storymaps.arcgis.com/stories/b6250ff800c84550bea540aef7ce35cd" target="_blank" rel="noopener noreferrer" class="hover:underline">storymaps.arcgis.com <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a></li>
-        <li><a href="https://press.uchicago.edu/books/HOC/HOC_V2_B3/Volume2_Book3.html" target="_blank" rel="noopener noreferrer" class="hover:underline">press.uchicago.edu <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a></li>
-      </ul>
-    </div>
+
   </main>
   <footer class="border-t border-gray-900 mt-auto">
     <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">

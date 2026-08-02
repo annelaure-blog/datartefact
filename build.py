@@ -20,6 +20,8 @@ CONTENT_DIR = Path("content")
 POSTS_DIR = Path("posts")
 BLOG_DIR = Path("blog")
 BLOG_POSTS_DIR = Path("blog-posts")
+NOTES_DIR = Path("notes")
+NOTES_FILE = Path("notes.html")
 INDEX_FILE = Path("collection.html")
 
 MD = md_lib.Markdown(extensions=["extra", "smarty"])
@@ -309,6 +311,7 @@ _ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inl
 _NAV_LINKS = """\
         <a href="{p}book" class="hover:text-[#B69188] transition-colors">Books</a>
         <a href="{p}collection" class="hover:text-[#B69188] transition-colors">Collection</a>
+        <a href="{p}notes" class="hover:text-[#B69188] transition-colors">Research Notes</a>
         <a href="{p}about" class="hover:text-[#B69188] transition-colors">About</a>
         <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram """ + _ARROW + """</a>
         <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook """ + _ARROW + """</a>"""
@@ -746,74 +749,141 @@ def load_blog_entries() -> list[dict]:
             meta["date_obj"] = raw_date if isinstance(raw_date, date) else raw_date.date()
         else:
             meta["date_obj"] = None
+        tags_raw = meta.get("tags", meta.get("category", ""))
+        if isinstance(tags_raw, list):
+            meta["tags"] = [str(t).strip() for t in tags_raw if t]
+        elif tags_raw:
+            meta["tags"] = [t.strip() for t in str(tags_raw).split(",") if t.strip()]
+        else:
+            meta["tags"] = []
+        meta.setdefault("image", "")
         entries.append(meta)
     entries.sort(key=lambda e: e["date_obj"] or date.min, reverse=True)
     return entries
 
 
-def build_blog_post(entry: dict) -> str:
+def build_note_post(entry: dict) -> str:
     MD.reset()
     title = entry.get("title", "Untitled")
-    category = entry.get("category", "")
+    tags = entry.get("tags", [])
     description = entry.get("description", "")
     body_html = MD.convert(entry["body"])
     date_str = fmt_date(entry.get("date_obj") or entry.get("date"))
     year = datetime.now().year
+    image = entry.get("image", "")
+
+    tags_html = "".join(
+        f'<span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 mb-2">{t}</span>'
+        for t in tags
+    )
+
+    dithered_image = f"images/dithered/{Path(image).stem}.png" if image else ""
+    image_copyright = entry.get("image_copyright", "")
+    copyright_html = f'<p class="mt-2 mb-4 text-xs text-gray-400 italic">{image_copyright}</p>' if image_copyright else ""
+    image_html = (
+        f'<img src="../{dithered_image}" alt="{title}" class="w-full mt-0">{copyright_html}'
+    ) if dithered_image else ""
+
+    sources = parse_sources(entry.get("sources"))
+    if sources:
+        _arrow = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>'
+        _links = "\n".join(
+            f'        <li><a href="{url}" target="_blank" rel="noopener noreferrer" class="hover:underline">{label} {_arrow}</a></li>'
+            for label, url in sources
+        )
+        sources_html = f"""    <div class="mt-12 font-sans max-w-3xl mx-auto">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Further reading</p>
+      <ul class="space-y-2 text-sm text-gray-900">
+{_links}
+      </ul>
+    </div>"""
+    else:
+        sources_html = ""
+
+    print_css = """  <style>
+    @media print {
+      header, footer, .no-print { display: none !important; }
+      body { background: white; }
+      .prose { max-width: 100%; }
+      img { max-width: 100%; }
+    }
+  </style>"""
 
     return HTML_HEAD.format(title=title, font_path="../") + f"""\
+{print_css}
 {NAV}
   <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
-    <a href="../blog.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to blog</a>
-    <table class="w-full border border-gray-900 mt-8 border-collapse">
-      <tbody>
-        <tr>
-          <td class="p-6 w-1/4 align-top border-r border-gray-900">
-            <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">{category}</span>
-            <p class="mt-4 text-xs text-gray-500">{date_str}</p>
-          </td>
-          <td class="p-6 w-3/4 align-top">
-            <span class="font-display text-6xl font-bold leading-none text-gray-900">{title}</span>
-            {f'<p class="mt-4 text-base text-gray-900 leading-relaxed">{description}</p>' if description else ''}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="mt-10 prose text-gray-900 text-base">
+    <div class="flex items-center justify-between no-print">
+      <a href="../notes.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Research Notes</a>
+      <button onclick="window.print()" class="text-sm text-gray-900 border border-gray-900 px-4 py-1.5 hover:bg-gray-900 hover:text-white transition-colors uppercase tracking-widest font-semibold">Export to PDF</button>
+    </div>
+    <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
+      <div class="p-6 md:w-1/4 border-b md:border-b-0 md:border-r border-gray-900">
+        <div class="flex flex-wrap gap-2">
+          {tags_html}
+        </div>
+        {f'<p class="mt-4 text-xs text-gray-500">{date_str}</p>' if date_str else ''}
+      </div>
+      <div class="p-6 md:w-3/4">
+        <span class="font-display text-4xl md:text-6xl font-bold leading-none text-gray-900">{title}</span>
+        {f'<p class="mt-4 text-base text-gray-900 leading-relaxed">{description}</p>' if description else ''}
+      </div>
+    </div>
+    {image_html}
+    <div class="mt-10 prose text-gray-900 text-base max-w-3xl mx-auto">
       {body_html}
     </div>
+{sources_html}
   </main>
-{build_footer(year)}
+{build_footer(year, prefix="../")}
 </body>
 </html>
 """
 
 
-def build_blog(entries: list[dict]) -> str:
+def build_blog_post(entry: dict) -> str:
+    return build_note_post(entry)
+
+
+def build_notes_index(entries: list[dict]) -> str:
     year = datetime.now().year
 
     rows = []
     for post in entries:
         slug = post["slug"]
         date_str = fmt_date(post.get("date_obj") or post.get("date"))
+        tags = post.get("tags", [])
+        tags_html = "".join(
+            f'<span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 mb-1">{t}</span>'
+            for t in tags
+        )
+        image = post.get("image", "")
+        dithered = f"images/dithered/{Path(image).stem}.png" if image else ""
+        img_col = (
+            f'<div class="md:col-span-1 border-t md:border-t-0 md:border-l border-gray-900 overflow-hidden">'
+            f'<img src="{dithered}" alt="" class="w-full h-full object-cover" style="min-height:140px;max-height:200px;"></div>'
+        ) if dithered else '<div class="md:col-span-1"></div>'
+
         rows.append(f"""\
-      <a href="blog-posts/{slug}.html" class="block border-b border-gray-900 py-10 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-10 group">
-        <div class="md:col-span-1">
-          <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">{post.get('category', '')}</span>
+      <a href="notes/{slug}.html" class="block border-b border-gray-900 py-10 grid grid-cols-1 md:grid-cols-4 gap-0 group">
+        <div class="md:col-span-1 pr-6">
+          <div class="flex flex-wrap">{tags_html}</div>
           <p class="mt-3 text-xs text-gray-500 font-sans">{date_str}</p>
         </div>
-        <div class="md:col-span-3">
+        <div class="md:col-span-2 md:px-6 mt-4 md:mt-0">
           <h2 class="font-display text-4xl font-bold leading-none text-gray-900 group-hover:underline">{post.get('title', '')}</h2>
           <p class="mt-4 text-base text-gray-900 leading-relaxed">{post.get('description', '')}</p>
         </div>
+        {img_col}
       </a>""")
 
     feed = "\n".join(rows)
 
-    return HTML_HEAD.format(title="Blog", font_path="") + f"""\
+    return HTML_HEAD.format(title="Research Notes", font_path="") + f"""\
 {NAV_INDEX}
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
-    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Blog</h1>
-    <p class="mt-3 text-gray-900 text-base max-w-xl">Books, conferences, workshops, interviews — the topic alive in the world today.</p>
+    <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Research Notes</h1>
+    <p class="mt-3 text-gray-900 text-base max-w-xl">Essays on data history, material culture, and the politics of classification.</p>
   </section>
   <main class="max-w-6xl mx-auto px-6 pb-24 flex-1 w-full border-t border-gray-900">
 {feed}
@@ -822,6 +892,10 @@ def build_blog(entries: list[dict]) -> str:
 </body>
 </html>
 """
+
+
+def build_blog(entries: list[dict]) -> str:
+    return build_notes_index(entries)
 
 
 # ---------------------------------------------------------------------------
@@ -930,6 +1004,7 @@ def build_about() -> str:
 
 def main() -> None:
     POSTS_DIR.mkdir(exist_ok=True)
+    NOTES_DIR.mkdir(exist_ok=True)
     process_images()
 
     entries = load_entries()
@@ -945,6 +1020,16 @@ def main() -> None:
         out = POSTS_DIR / f"{slug}.html"
         out.write_text(build_post(entry), encoding="utf-8")
         print(f"  Built posts/{slug}.html")
+
+    notes = load_blog_entries()
+    NOTES_FILE.write_text(build_notes_index(notes), encoding="utf-8")
+    print(f"Built notes.html ({len(notes)} entries)")
+
+    for note in notes:
+        slug = note["slug"]
+        out = NOTES_DIR / f"{slug}.html"
+        out.write_text(build_note_post(note), encoding="utf-8")
+        print(f"  Built notes/{slug}.html")
 
     print("Done.")
 
