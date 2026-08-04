@@ -498,7 +498,7 @@ def build_index(entries: list[dict]) -> str:
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
     <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Collection</h1>
     <div class="mt-5 max-w-2xl">
-      <p class="text-sm text-gray-600 leading-snug">The Collection is the companion archive to the <em>Datartefact</em> book series, bringing together the artifacts, instruments, recording systems, and material objects discussed throughout the project. Spanning early accounting devices, cartographic objects, textiles, scientific instruments, photography, sound recording, and computation, it explores how objects themselves can function as documents, or as systems of documents used to encode, store, measure, and transmit knowledge.</p>
+      <p class="text-sm text-gray-600 leading-snug">The Collection is the companion archive to the <em>Datartefact</em> book, bringing together the artifacts, instruments, recording systems, and material objects discussed throughout the project. Spanning early accounting devices, cartographic objects, textiles, scientific instruments, photography, sound recording, and computation, it explores how objects themselves can function as documents, or as systems of documents used to encode, store, measure, and transmit knowledge.</p>
       <p class="mt-2 text-sm text-gray-600 leading-snug">The collection can be browsed through a grid view or along a chronological timeline connecting artifacts across centuries and disciplines. Conceived as an expanding research archive, it will continue to grow over time alongside the development of the books.</p>
     </div>
   </section>
