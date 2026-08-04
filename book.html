@@ -126,44 +126,7 @@
       </div>
     </div>
 
-    <div class="border border-gray-900 border-t-0 overflow-hidden relative group">
-      <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
-        <img src="images/book-spread1.webp" alt="Datartefact — Book 1 interior spread" class="w-full flex-shrink-0 object-cover" />
-        <img src="images/toc.webp" alt="Datartefact — Book 1 table of contents" class="w-full flex-shrink-0 object-cover" />
-        <img src="images/mock-cover.webp" alt="Datartefact — Book 1 cover mockup" class="w-full flex-shrink-0 object-cover" />
-      </div>
-      <button onclick="carouselPrev()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#FFFBF5] border border-gray-900 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-900 hover:text-white">&#8592;</button>
-      <button onclick="carouselNext()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-[#FFFBF5] border border-gray-900 w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-900 hover:text-white">&#8594;</button>
-      <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"></div>
-    </div>
     <script>
-      const track = document.getElementById('carousel-track');
-      const dots = document.getElementById('carousel-dots');
-      let current = 0;
-      const total = track.children.length;
-
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'w-2 h-2 border border-white bg-transparent transition-colors';
-        dot.onclick = () => goTo(i);
-        dots.appendChild(dot);
-      }
-
-      function goTo(n) {
-        current = (n + total) % total;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        Array.from(dots.children).forEach((d, i) => {
-          d.className = i === current
-            ? 'w-2 h-2 border border-white bg-[#FFFBF5] transition-colors'
-            : 'w-2 h-2 border border-white bg-transparent transition-colors';
-        });
-      }
-
-      function carouselPrev() { goTo(current - 1); }
-      function carouselNext() { goTo(current + 1); }
-
-      goTo(0);
-
       document.getElementById('menu-toggle').addEventListener('click', function() {
         document.getElementById('mobile-menu').classList.toggle('hidden');
       });
