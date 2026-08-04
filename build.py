@@ -309,19 +309,18 @@ def type_label(key: str) -> str:
 
 _ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>'
 _NAV_LINKS = """\
-        <a href="{p}book" class="hover:text-[#B69188] transition-colors">Books</a>
-        <a href="{p}collection" class="hover:text-[#B69188] transition-colors">Collection</a>
-        <a href="{p}notes" class="hover:text-[#B69188] transition-colors">Research Notes</a>
-        <a href="{p}about" class="hover:text-[#B69188] transition-colors">About</a>
-        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram """ + _ARROW + """</a>
-        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Notebook """ + _ARROW + """</a>"""
+        <a href="{p}book" class="hover:text-[#ea7662] transition-colors">Book</a>
+        <a href="{p}collection" class="hover:text-[#ea7662] transition-colors">Collection</a>
+        <a href="{p}about" class="hover:text-[#ea7662] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Instagram """ + _ARROW + """</a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Notebook """ + _ARROW + """</a>"""
 
 def _build_nav(prefix: str) -> str:
     links = _NAV_LINKS.format(p=prefix)
     logo_img = f'<img src="{prefix}images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />'
     return f"""  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="{prefix}book" class="flex items-end gap-3 font-display text-5xl font-bold tracking-normal text-[#202020]">{logo_img}Datartefact</a>
+      <a href="{prefix}book" class="flex items-end gap-3 font-display text-4xl font-bold tracking-normal text-[#202020]">{logo_img}Datartefact</a>
       <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
 {links}
       </nav>
@@ -1004,7 +1003,6 @@ def build_about() -> str:
 
 def main() -> None:
     POSTS_DIR.mkdir(exist_ok=True)
-    NOTES_DIR.mkdir(exist_ok=True)
     process_images()
 
     entries = load_entries()
@@ -1021,15 +1019,8 @@ def main() -> None:
         out.write_text(build_post(entry), encoding="utf-8")
         print(f"  Built posts/{slug}.html")
 
-    notes = load_blog_entries()
-    NOTES_FILE.write_text(build_notes_index(notes), encoding="utf-8")
-    print(f"Built notes.html ({len(notes)} entries)")
-
-    for note in notes:
-        slug = note["slug"]
-        out = NOTES_DIR / f"{slug}.html"
-        out.write_text(build_note_post(note), encoding="utf-8")
-        print(f"  Built notes/{slug}.html")
+    # Research Notes section retired — no longer built. See build_notes_index()
+    # / build_note_post() / load_blog_entries() if this ever needs reviving.
 
     print("Done.")
 
