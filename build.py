@@ -308,19 +308,37 @@ def type_label(key: str) -> str:
 # ---------------------------------------------------------------------------
 
 _ARROW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg>'
-_NAV_LINKS = """\
-        <a href="{p}book" class="hover:text-[#ea7662] transition-colors">Book</a>
-        <a href="{p}collection" class="hover:text-[#ea7662] transition-colors">Collection</a>
-        <a href="{p}about" class="hover:text-[#ea7662] transition-colors">About</a>
-        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Instagram """ + _ARROW + """</a>
-        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Notebook """ + _ARROW + """</a>"""
 
-def _build_nav(prefix: str) -> str:
-    links = _NAV_LINKS.format(p=prefix)
-    logo_img = f'<img src="{prefix}images/round-dark.png" alt="" class="w-12 h-12 object-cover block" />'
+_NAV_ITEMS = [
+    ("book", "{p}book", "Book"),
+    ("collection", "{p}collection", "Collection"),
+    ("about", "{p}about", "About"),
+]
+_NAV_EXTERNAL = [
+    ("https://www.instagram.com/annelaurefre/", "Instagram"),
+    ("https://datartefacts.hypotheses.org/", "Notebook"),
+]
+
+def _nav_link_class(active: bool) -> str:
+    return "text-[#ea7662] transition-colors" if active else "hover:text-[#ea7662] transition-colors"
+
+def _build_nav_links(prefix: str, current: str) -> str:
+    lines = []
+    for key, href_tpl, label in _NAV_ITEMS:
+        href = href_tpl.format(p=prefix)
+        lines.append(f'        <a href="{href}" class="{_nav_link_class(key == current)}">{label}</a>')
+    for href, label in _NAV_EXTERNAL:
+        lines.append(
+            f'        <a href="{href}" target="_blank" rel="noopener noreferrer" '
+            f'class="{_nav_link_class(False)}">{label} {_ARROW}</a>'
+        )
+    return "\n".join(lines)
+
+def _build_nav(prefix: str, current: str = "") -> str:
+    links = _build_nav_links(prefix, current)
     return f"""  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="{prefix}book" class="flex items-end gap-3 font-display text-4xl font-bold tracking-normal text-[#202020]">{logo_img}Datartefact</a>
+      <a href="{prefix}book" class="flex items-end gap-3 font-display text-4xl font-bold tracking-normal text-[#202020]">Datartefact</a>
       <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
 {links}
       </nav>
@@ -476,7 +494,7 @@ def build_index(entries: list[dict]) -> str:
     year       = datetime.now().year
 
     return HTML_HEAD.format(title="Collection", font_path="") + f"""\
-{NAV_INDEX}
+{_build_nav("", "collection")}
   <section class="max-w-6xl mx-auto px-6 pt-16 pb-10">
     <h1 class="font-display text-7xl font-bold tracking-tight text-gray-900">Collection</h1>
     <div class="mt-5 max-w-2xl">
@@ -650,7 +668,7 @@ def build_post(entry: dict) -> str:
         sources_html = ""
 
     return HTML_HEAD.format(title=title, font_path="../") + f"""\
-{NAV}
+{_build_nav("../", "collection")}
   <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
     <a href="../collection.html" class="text-sm text-gray-900 hover:underline transition-colors">&larr; Back to collection</a>
     <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
