@@ -2,3 +2,4 @@
 *.af~lock~
 .DS_Store
 __pycache__/
+toc-preview.html

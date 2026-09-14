@@ -11,7 +11,7 @@ rsync -az --delete \
   --exclude='.git' \
   --exclude='.DS_Store' \
   --exclude='deploy.sh' \
-  "/Users/annefreant/Desktop/datartefact/" \
+  "/Users/alf/Desktop/datartefact website/" \
   debian@54.37.230.99:/tmp/datartefact-deploy/
 
 ssh debian@54.37.230.99 "
