@@ -5,7 +5,6 @@ author: Sumerian agriculturalists
 description: Clay envelop in which the accounting tokens were initially placed, then
   only imprinted on.
 slug: bulla
-book: 1
 chapter: 1
 image: images/bulla.jpg
 image_copyright: 'Image: Globular envelope with a cluster of accounting tokens. Clay

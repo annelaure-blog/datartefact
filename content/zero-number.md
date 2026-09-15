@@ -6,7 +6,6 @@ description: A Number Between Zero and One is a conceptual sculpture by Iranian-
   artist Siah Armajani, consisting of a stack of paper printouts of an imaginary number—10^-205,714,079—one
   requiring 25,974 sheets and twenty-eight hours to print.
 slug: zero-number
-book: 1
 chapter: 10
 image: images/zero.jpg
 image_copyright: 'Image: Photo by Larry Marcus. Courtesy of the Artist''s Estate and

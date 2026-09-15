@@ -5,7 +5,6 @@ author: Grégoire Eloy
 description: The Aster books show a fraction of the 1 million sattelite pictures taken
   by scientists for a global study on glaciers into 4,000 printed volumes.
 slug: aster
-book: 1
 chapter: 5
 image: images/aster.jpg
 image_copyright: 'Image: Grégoire Eloy, RVB Books, Reproduced with permission'

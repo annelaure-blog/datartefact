@@ -5,7 +5,6 @@ author: Anne Lacambre
 description: Reproduced from an ancient atlas for the visually impaired, the map is
   a tactile, white on white embroidered map of the Mississippi river.
 slug: mississippi-map
-book: 1
 chapter: 3
 image: images/mississippi.jpg
 image_copyright: 'Image: Anne Lacambre, Reproduced with permission'

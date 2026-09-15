@@ -5,7 +5,6 @@ author: Westtown School - by Girls in Sewing Class
 description: Silk globes made by young girls who attended sewing classes at the Westtown
   School in Pennsylvania, USA.
 slug: westtown-globe
-book: 1
 chapter: 3
 image: images/globe.jpg
 image_copyright: 'Image: Westtown School, West Chester, Pennsylvania; photographs

@@ -6,7 +6,6 @@ description: Accounting tokens that were used for farming goods exchange and acc
   in Mesopotamia. The tokens were used for thousands of years and led to the invention
   of cuneiform writing.
 slug: clay-tokens
-book: 1
 chapter: 1
 image: images/clay-tokens.jpg
 image_copyright: Image of Clay accounting tokens Susa Uruk period - Louvre Museum

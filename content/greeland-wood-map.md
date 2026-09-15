@@ -6,7 +6,6 @@ description: A sculpted guide to a stretch of coast north of Ammassalik, made by
   local hunter to explain navigation to the Danish expedition captain Gustav Holm,
   who later wrote his deep despise for Inuit geographical artefacts.
 slug: greeland-wood-map
-book: 1
 chapter: 2
 image: images/inuit-map.jpg
 image_copyright: Image:© Greenland National Museum and Archives

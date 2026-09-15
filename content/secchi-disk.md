@@ -5,7 +5,6 @@ author: Angelo Secchi
 description: An analog device used to measure water's turbidity levels by immersing
   a disk in lakes, seas and rivers.
 slug: secchi-disk
-book: 1
 chapter: 6
 image: images/secchi.jpg
 image_copyright: Image Public Domain

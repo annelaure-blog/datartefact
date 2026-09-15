@@ -5,7 +5,6 @@ author: Nazca Culture (central Andes)
 description: Ceremonial Paracas mantle encoding territorial, genealogical, and possibly
   calendrical information.
 slug: paracas
-book: 1
 chapter: 3
 image: images/paracas.jpg
 image_copyright: 'Image: Brooklyn Museum, John Thomas Underwood Memorial Fund, 38.121'
