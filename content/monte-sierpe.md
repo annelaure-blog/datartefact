@@ -1,10 +1,10 @@
 ---
 title: Monte Sierpe "Band of Holes"
 date: 1100-1600
-author: Chincha Kingdom & Inca Empire
+author: Chincha Kingdom & Inka Empire
 description: Exceptional topographical site in Peru containing approximately 5,000
   regularly spaced holes in the ground, used for goods exchange and accounting during
-  the Inca Empire.
+  the Inka Empire.
 slug: monte-sierpe
 chapter: 4
 image: images/monte.jpg

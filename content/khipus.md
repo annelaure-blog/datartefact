@@ -1,8 +1,8 @@
 ---
-title: Inca-Style Khipu
+title: Inka-Style Khipu
 date: 1300-1500
 author: Leland L. Locke's book
-description: Inca-style khipus illustrating one of the most important book in the
+description: Inka-style khipus illustrating one of the most important book in the
   history of khipus deciphering, in which L. Locke determined khipus were numerical
   devices encoded in base 10. The book was published in 1912.
 slug: khipus
