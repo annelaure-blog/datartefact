@@ -433,7 +433,6 @@ def render_card(entry: dict) -> str:
     chapter = entry.get("chapter")
     ch_title = chapter_title(book, chapter)
     chapter_str = f"Chapter {chapter} · {ch_title}" if ch_title else (f"Chapter {chapter}" if chapter else "")
-    book_chapter = f"Book {book} · {chapter_str}" if book and chapter_str else ""
     meta_parts = [p for p in [author, date_str] if p]
     meta_line = " · ".join(meta_parts)
 
@@ -453,7 +452,7 @@ def render_card(entry: dict) -> str:
           </a>
           <a href="posts/{slug}.html" class="card-back p-8 block overflow-hidden" style="background:#FFFBF5;">
             <div class="flex items-center justify-between">
-              {f'<span class="text-xs font-semibold uppercase tracking-widest text-gray-900">{book_chapter}</span>' if book_chapter else ''}
+              {f'<span class="text-xs font-semibold uppercase tracking-widest text-gray-900">{chapter_str}</span>' if chapter_str else ''}
             </div>
             <h2 class="card-title font-display mt-4 text-4xl font-bold leading-none text-gray-900">{title}</h2>
             <div class="mt-2 space-y-0.5">
@@ -636,19 +635,12 @@ def build_post(entry: dict) -> str:
     chapter = entry.get("chapter")
     image = entry.get("image", "")
 
-    chips_html = ""
-    if book:
-        chips_html += f'<span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2">Book {book}</span>'
-    if chapter:
-        chips_html += f'<span class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1">Chapter {chapter}</span>'
-
     dithered_image = f"images/dithered/{Path(image).stem}.png" if image else ""
     image_copyright = entry.get("image_copyright", "")
     copyright_html = f'<p class="mt-2 mb-4 text-xs text-gray-400 italic">{image_copyright}</p>' if image_copyright else ""
     image_html = (f'<img src="../{dithered_image}" alt="{title}" class="w-full">{copyright_html}') if dithered_image else ""
     ch_title = chapter_title(book, chapter)
     chapter_label = f"Chapter {chapter} · {ch_title}" if ch_title else f"Chapter {chapter}"
-    book_chip = f'<a href="../collection.html?book={book}" class="inline-block border border-gray-900 text-xs font-semibold uppercase tracking-widest px-3 py-1 mr-2 hover:bg-gray-900 hover:text-white transition-colors">Book {book}</a>' if book else ""
     chapter_chip = f'<a href="../collection.html?chapter={chapter}" class="inline-block border border-gray-900 text-xs font-bold uppercase tracking-widest px-3 py-1 hover:bg-gray-900 hover:text-white transition-colors">{chapter_label}</a>' if chapter else ""
 
     sources = parse_sources(entry.get("sources"))
@@ -674,7 +666,7 @@ def build_post(entry: dict) -> str:
     <div class="w-full border border-gray-900 mt-8 flex flex-col md:flex-row">
       <div class="p-6 md:w-1/4 border-b md:border-b-0 md:border-r border-gray-900">
         <div class="flex flex-wrap gap-2">
-          {book_chip}{chapter_chip}
+          {chapter_chip}
         </div>
         {f'<p class="mt-4 text-xs text-gray-500"><span class="font-semibold text-gray-900">Author</span> {author}</p>' if author else ''}
         {f'<p class="mt-1 text-xs text-gray-500"><span class="font-semibold text-gray-900">Date of creation</span> {date_str}</p>' if date_str else ''}
