@@ -1,7 +1,7 @@
 ---
 book: 1
 chapter: 4
-title: "Deciphering Khipus: A Research Journey into the Knotted Artefacts of the Inkas"
+title: "Deciphering Khipus: A Research Journey into the Knotted Artefacts of the Inka"
 status: reference-only
 ---
 
