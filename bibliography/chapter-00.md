@@ -1,7 +1,7 @@
 ---
 book: 1
 chapter: 0
-title: "How Tallying Began, Notches, Dots and Beads"
+title: "How Tallying Began: Notches, Dots and Beads"
 status: reference-only
 ---
 
