@@ -51,7 +51,7 @@ exists yet in the content file.
 | Paracas Polychrome Mantle | Brooklyn Museum, John Thomas Underwood Memorial Fund, 38.121 | To verify |
 | Westtown Samplers | Photographs © Rosamond Purcell | To verify |
 
-## Chapter 4 — Deciphering Khipus
+## Chapter 4 — Deciphering Khipu
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
@@ -83,7 +83,7 @@ exists yet in the content file.
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
-| Jaquard Loom Punched Cards | — | Image removed (Christopher Payne photo — rights unavailable) |
+| Jaquard Loom Punched Cards | Museum of Obsolete Media (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 
 ## Chapter 10 — Computing and Sculpting Data
 

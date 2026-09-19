@@ -1,7 +1,7 @@
 ---
 book: 1
 chapter: 9
-title: "Perforated Paper: From the Jacquard Loom to IBM Punched Cards"
+title: "Perforated Paper and Machines: From the Jacquard Loom to IBM Punched Cards"
 status: reference-only
 ---
 
