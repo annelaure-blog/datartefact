@@ -1,0 +1,93 @@
+---
+status: reference-only
+---
+
+Generated from `content/*.md` `image_copyright` fields. "To verify" means the field
+only has a credit line, not an explicit grant of permission — check your own records
+or contact the source before publishing. Empty rows mean no `image_copyright` field
+exists yet in the content file.
+
+## Chapter 0 — How Tallying Began
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Ishango Bone | Institut royal des Sciences naturelles de Belgique ([image](https://ishango.naturalsciences.be/en/baton1.gif)) | Pending — inquiry sent to the Institut |
+| Lebombo Bone | Robert Hart, The McGregor Museum, Kimberley, South Africa ([image](https://cacm.acm.org/wp-content/uploads/2024/05/051524_Bruderer_Fig.-4-baboon-fibula-fr-border-cave.jpg)) | Pending — inquiry sent to the McGregor Museum |
+| Les Pradelles Hyena Femur | © 2017 The Author(s), Published by the Royal Society, All rights reserved ([image](https://pmc.ncbi.nlm.nih.gov/articles/PMC5784044/figure/RSTB20160518F1/)) | Complicated — rights process unclear, likely won't pursue |
+| Abri Cellier Artefact | © Logan Museum of Anthropology, Beloit College (as credited in Schlaudt 2020) | Pending — inquiry sent to the Logan Museum |
+| Red Dots from Chauvet Cave, France | Grotte Chauvet 2 Ardèche, photos by Patrick Aventurier ([img 1](https://en.grottechauvet2ardeche.com/caverne-pont-arc/uploads/2023/05/22-panneau-points-mainsgrotte-chauvet-2-ardeche-patrick-aventurier.jpg), [img 2](https://en.grottechauvet2ardeche.com/caverne-pont-arc/uploads/2023/05/19-mama-rhino-faite-de-points-rouges-paumes-de-main-grotte-chauvet-2-ardeche-patrick-aventurier-.jpg)) | Pending — inquiry sent to Grotte Chauvet |
+
+## Chapter 1 — Mesopotamian Clay Tokens
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Bulla (Clay Round Seal) | Louvre Museum — Public Domain | Public domain |
+| Mesopotamian Clay Tokens | © Marie-Lan Nguyen (CC BY 2.5) | Open license (CC BY 2.5) |
+
+## Chapter 2 — Material Geographies
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Architecture of Return, Escape | Reproduced with permission of the artist | Acquired |
+| Forma Urbis Romae | Museo della Civiltà Romana / De Agostini Picture Library / Bridgeman Images (current image) | Won't pursue — Bridgeman licensing too expensive, sourcing a different image |
+| Ammassalik Coastline Sculpture | © Greenland National Museum and Archives | To verify |
+| Maikop Vessel | Courtesy of the State Hermitage Museum, St Petersburg | Acquired |
+| Mattang | Courtesy of the Museum für Völkerkunde, Berlin | To verify |
+| Sayhuite Monolith | — | Image on file, credit/rights source not yet recorded |
+| Tepe Gawra Funeral Jar | Courtesy of the Penn Museum | Acquired |
+| Pavlov Mammoth Tusk Engraving | Photographer: Zde (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Agricultural Map of Nippur | Photographer: Mary Harrsch, National Geographic Museum (CC BY-SA 2.0) | Open license (CC BY-SA 2.0) |
+| Plan of Nippur | Hilprecht, *Explorations in Bible Lands*, 1903 | Public domain |
+| Babylonian World Map | Photographer: Mike Peel (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Map Rock | Photographer: Jefferey Love (CC BY 2.0) | Open license (CC BY 2.0) |
+| Map of the Crown Prince Islands, Disko Bay | Library of Congress Geography and Map Division | Public domain |
+
+## Chapter 3 — Informative Textiles
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Crochet Topography | Noriko Takahama — Reproduced with permission | Acquired |
+| Mississippi Embroidered Map | Anne Lacambre — Reproduced with permission | Acquired |
+| Paracas Polychrome Mantle | Brooklyn Museum, John Thomas Underwood Memorial Fund, 38.121 | To verify |
+| Westtown Samplers | Photographs © Rosamond Purcell | To verify |
+
+## Chapter 4 — Deciphering Khipus
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Inequalities Quipus | Ewa Tuteja — Reproduced with permission | Acquired |
+| Inka-Style Khipu | Leslie Leland Locke, 1912 — Public Domain | Public domain |
+| Monte Sierpe "Band of Holes" | © C. Stanish | Acquired |
+| Yupana (Inca counting board) | Archivo Digital de Arte Peruano (ARCHI) — 3 images requested via their archive form: [obra/41581](https://archi.pe/obra/41581), [obra/41574](https://archi.pe/obra/41574), [obra/41530](https://archi.pe/obra/41530) | Pending — formal request submitted |
+
+## Chapter 5 — Photography as Autographic Systems
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Aster | Grégoire Eloy, RVB Books — Reproduced with permission | Acquired |
+| Flight of the Gull Bronze Model | RMN-Grand Palais (musée d'Orsay) — reproduced with permission | Acquired |
+| Light Sculptures: Matter of Impermanence | Dexter Callender III — reproduced with permission | Acquired |
+| Staring At Empty Space | Lea Wurthmann — reproduced with permission | Acquired |
+
+## Chapter 6 — Analog Instruments and the State
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Harappan Cubical Weights | — | Image on file, credit/rights source not yet recorded |
+| Korean Rain Gauge Ch'ŭgugi | Courtesy of the National Meteorological Museum of Korea | To verify |
+| Nilometer | — | Image on file, credit/rights source not yet recorded |
+| Qin Bronze Volume Measure (Shēng 升) | — | Image on file, credit/rights source not yet recorded |
+| Qin Bronze Weight (Quán 权) | Collection of the Tianjin Museum | To verify |
+
+## Chapter 9 — Perforated Paper
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Jaquard Loom Punched Cards | — | Image removed (Christopher Payne photo — rights unavailable) |
+
+## Chapter 10 — Computing and Sculpting Data
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| A Number Between Zero and One | Photo by Larry Marcus. Courtesy of the Artist's Estate and Rossi & Rossi — Reproduced with permission | Acquired |
+| Abacus | — | Planned, not yet added |
