@@ -6,7 +6,7 @@ description: Inka-style khipu illustrating one of the most important book in the
   history of khipu deciphering, in which L. Locke determined khipu were numerical
   devices encoded in base 10. The book was published in 1912.
 slug: khipu
-chapter: 4
+chapter: 5
 image: images/khipu.jpg
 image_copyright: Image:A Peruvian Knot Record by Leslie Leland Locke 1912 - Public
   Domain"

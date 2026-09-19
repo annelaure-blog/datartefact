@@ -5,7 +5,7 @@ author: Etienne-Jules Marey
 description: A bronze model made in Italy from Marey's chronophotographic work analyzing
   the flight of birds.
 slug: chronophotography-model
-chapter: 5
+chapter: 6
 image: images/marey.jpg
 image_copyright: Image RMN-Grand Palais (musée d'Orsay)(reproduced with permission)
 sources:

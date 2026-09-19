@@ -6,7 +6,7 @@ description: Glass sculptures designed from photographic captures of light patte
   moving through architecture during the day, from a selection of buildings in Boston
   (USA).
 slug: matter-of-impermanence
-chapter: 5
+chapter: 6
 image: images/matter.jpg
 image_copyright: Image Dexter Callender III (reproduced with permission)
 sources:

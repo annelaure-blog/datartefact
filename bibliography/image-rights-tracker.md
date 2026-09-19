@@ -16,6 +16,7 @@ exists yet in the content file.
 | Les Pradelles Hyena Femur | © 2017 The Author(s), Published by the Royal Society, All rights reserved ([image](https://pmc.ncbi.nlm.nih.gov/articles/PMC5784044/figure/RSTB20160518F1/)) | Complicated — rights process unclear, likely won't pursue |
 | Abri Cellier Artefact | © Logan Museum of Anthropology, Beloit College (as credited in Schlaudt 2020) | Pending — inquiry sent to the Logan Museum |
 | Red Dots from Chauvet Cave, France | Grotte Chauvet 2 Ardèche, photos by Patrick Aventurier ([img 1](https://en.grottechauvet2ardeche.com/caverne-pont-arc/uploads/2023/05/22-panneau-points-mainsgrotte-chauvet-2-ardeche-patrick-aventurier.jpg), [img 2](https://en.grottechauvet2ardeche.com/caverne-pont-arc/uploads/2023/05/19-mama-rhino-faite-de-points-rouges-paumes-de-main-grotte-chauvet-2-ardeche-patrick-aventurier-.jpg)) | Pending — inquiry sent to Grotte Chauvet |
+| "A Rib For Every Woman" (Lily Glass, 2021) | Contemporary artwork, 325+ hand-sculpted ceramic pieces | To verify — contact the artist |
 
 ## Chapter 1 — Mesopotamian Clay Tokens
 
@@ -23,6 +24,9 @@ exists yet in the content file.
 |---|---|---|
 | Bulla (Clay Round Seal) | Louvre Museum — Public Domain | Public domain |
 | Mesopotamian Clay Tokens | © Marie-Lan Nguyen (CC BY 2.5) | Open license (CC BY 2.5) |
+| Cylinder Seals, Surkh Dum-i-Luri (Erich Schmidt excavations) | ISACM Luristan LII-330 | To verify |
+| Naram-Sin Brick Stamp, Akkadian period | ISACM A457 | To verify |
+| Clay Envelopes, Chogha Mish, Late Susa II (~3500-3100 BCE) | ISACM A32566, A64606 | To verify |
 
 ## Chapter 2 — Material Geographies
 
@@ -41,6 +45,8 @@ exists yet in the content file.
 | Babylonian World Map | Photographer: Mike Peel (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 | Map Rock | Photographer: Jefferey Love (CC BY 2.0) | Open license (CC BY 2.0) |
 | Map of the Crown Prince Islands, Disko Bay | Library of Congress Geography and Map Division | Public domain |
+| Zhaoyu Tu (bronze plan, King Cuo's cemetery, Zhongshan, China) | — | To verify |
+| Greenland Wood Maps, Gustav Holm expedition (1883), "Trækort" | Gustav Holm & Vilhelm Garde, *Den danske Konebaads-Expedition til Grønlands Østkyst* — Public domain, Wikimedia Commons | Public domain |
 
 ## Chapter 3 — Informative Textiles
 
@@ -51,7 +57,18 @@ exists yet in the content file.
 | Paracas Polychrome Mantle | Brooklyn Museum, John Thomas Underwood Memorial Fund, 38.121 | To verify |
 | Westtown Samplers | Photographs © Rosamond Purcell | To verify |
 
-## Chapter 4 — Deciphering Khipu
+## Chapter 4 — Analog Instruments and the State
+
+| Artefact | Copyright / Credit | Rights Status |
+|---|---|---|
+| Harappan Cubical Weights | — | Image on file, credit/rights source not yet recorded |
+| Korean Rain Gauge Ch'ŭgugi (1441) | Courtesy of the National Meteorological Museum of Korea | To verify |
+| Gongju Chungcheong Provincial Office Rain Gauge (1837, National Treasure No. 329) | Courtesy of the National Meteorological Museum of Korea | To verify |
+| Nilometer | — | Image on file, credit/rights source not yet recorded |
+| Qin Bronze Volume Measure (Shēng 升) | — | Image on file, credit/rights source not yet recorded |
+| Qin Bronze Weight (Quán 权) | Collection of the Tianjin Museum | To verify |
+
+## Chapter 5 — Deciphering Khipu
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
@@ -60,7 +77,7 @@ exists yet in the content file.
 | Monte Sierpe "Band of Holes" | © C. Stanish | Acquired |
 | Yupana (Inca counting board) | Archivo Digital de Arte Peruano (ARCHI) — 3 images requested via their archive form: [obra/41581](https://archi.pe/obra/41581), [obra/41574](https://archi.pe/obra/41574), [obra/41530](https://archi.pe/obra/41530) | Pending — formal request submitted |
 
-## Chapter 5 — Photography as Autographic Systems
+## Chapter 6 — Photography as Autographic Systems
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
@@ -69,21 +86,38 @@ exists yet in the content file.
 | Light Sculptures: Matter of Impermanence | Dexter Callender III — reproduced with permission | Acquired |
 | Staring At Empty Space | Lea Wurthmann — reproduced with permission | Acquired |
 
-## Chapter 6 — Analog Instruments and the State
+## Chapter 7 — Materializing Sound
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
-| Harappan Cubical Weights | — | Image on file, credit/rights source not yet recorded |
-| Korean Rain Gauge Ch'ŭgugi | Courtesy of the National Meteorological Museum of Korea | To verify |
-| Nilometer | — | Image on file, credit/rights source not yet recorded |
-| Qin Bronze Volume Measure (Shēng 升) | — | Image on file, credit/rights source not yet recorded |
-| Qin Bronze Weight (Quán 权) | Collection of the Tianjin Museum | To verify |
+| Music Box Cylinder | [Museum of Obsolete Media](https://obsoletemedia.org/music-box-cylinder/music-box-cylinder-front/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Organ Cobs | [Museum of Obsolete Media](https://obsoletemedia.org/organ-cobs/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Phonograph Cylinder (Edison Gold Moulded Record) | [Museum of Obsolete Media](https://obsoletemedia.org/gold-moulded-record/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Speak-O-Phone | [Museum of Obsolete Media](https://obsoletemedia.org/speak-o-phone/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Sound-on-Slide System (3M) | [Museum of Obsolete Media](https://obsoletemedia.org/3m-sound-on-slide/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Timecode Vinyl (Serato) | [Museum of Obsolete Media](https://obsoletemedia.org/timecode-vinyl/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 
-## Chapter 9 — Perforated Paper
+## Chapter 8 — Perforated Paper and Machines
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
+| Jaquard Loom, Verdol Type (1883) | Photograph by David Monniaux, 2006, Musée des Arts et Métiers, Paris (CC BY-SA 3.0) | Open license (CC BY-SA 3.0) |
 | Jaquard Loom Punched Cards | Museum of Obsolete Media (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Macrame Lace Embroidery Loom Reel (French) | [Museum of Obsolete Media](https://obsoletemedia.org/jacquard-loom-card/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Knitting Machine Punch Cards | [Museum of Obsolete Media](https://obsoletemedia.org/knitting-machine-punchcards/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Organette Roll | [Museum of Obsolete Media](https://obsoletemedia.org/organette-roll/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Herophon | [Museum of Obsolete Media](https://obsoletemedia.org/herophon/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Organette Metal Disc | [Museum of Obsolete Media](https://obsoletemedia.org/organette-metal-disc/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Book-Music | [Museum of Obsolete Media](https://obsoletemedia.org/book-music/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Soviet Punched Paper Tape (SM EVM minicomputer) | Donated by Irina Lutskova, photo by Mitya Ganopolsky. Reproduced with permission from the IT Museum (museum.dataart.com) | Acquired |
+| Telephone Auto-Dialler Card (Western Electric) | [Museum of Obsolete Media](https://obsoletemedia.org/telephone-auto-dialler-card/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Catalogue Card | [Museum of Obsolete Media](https://obsoletemedia.org/catalogue-card/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| IBM Carriage Control Tape | [Museum of Obsolete Media](https://obsoletemedia.org/ibm-carriage-control-tape/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| IBM Record Card Storage, Alexandria VA (1959) | Wikimedia Commons | Public domain |
+| US Census Bureau Clerk, Pantograph/Key Punch (1890/1930s) | Wikimedia Commons | Public domain |
+| 1950 Census Punch Card Clerk (UNIVAC I era) | Wikimedia Commons | Public domain |
+| IBM 5081-Style Punched Card (1964 EBCDIC) | Wikimedia Commons | Public domain |
+| Magnetic Tape Canisters, National Library of Medicine (1966) | National Library of Medicine | Public domain |
 
 ## Chapter 10 — Computing and Sculpting Data
 

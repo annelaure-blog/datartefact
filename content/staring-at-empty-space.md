@@ -5,7 +5,7 @@ author: Lea Wurthmann
 description: A physical installation that showcases the 352 electromagnetic captures
   required by NASA to produce the 1995 Deep Space image.
 slug: staring-at-empty-space
-chapter: 5
+chapter: 6
 image: images/empty-spaces.jpg
 image_copyright: Image Lea Wurthmann (reproduced with permission)
 sources:

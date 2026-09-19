@@ -6,7 +6,7 @@ description: Exceptional topographical site in Peru containing approximately 5,0
   regularly spaced holes in the ground, used for goods exchange and accounting during
   the Inka Empire.
 slug: monte-sierpe
-chapter: 4
+chapter: 5
 image: images/monte.jpg
 image_copyright: 'Image: Monte Sierpe’s holes. © C. Stanish, reproduced with permission of the archaeologist.'
 sources:

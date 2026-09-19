@@ -6,7 +6,7 @@ description: The project compares through two inca-style quipus, the well-being 
   Latin America and Scandinavia. It encodes gendered data from the OECD Better Life
   Index.
 slug: inequality-quipus
-chapter: 4
+chapter: 5
 image: images/inequality.jpg
 image_copyright: 'Image: Ewa Tuteja, Reproduced with permission'
 sources:

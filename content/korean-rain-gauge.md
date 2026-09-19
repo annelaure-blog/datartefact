@@ -5,7 +5,7 @@ author: Joseon kingdom's Research Institute of Astronomy Geography Calendar and 
 description: Known as the 'most ancient rain gauge in the world', the Korean rain
   gauge system was one of the first state-wide rain measuring system.
 slug: korean-rain-gauge
-chapter: 6
+chapter: 4
 image: images/gauge.jpg
 image_copyright: Image Courtesy of the National Meteorological Museum of Korea
 sources:
