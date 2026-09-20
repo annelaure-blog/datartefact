@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="../images/round-dark.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On Research and Editing Down — Datartefact</title>
+  <meta name="description" content="350 datartefacts in, it's time to recenter the book around its core thesis — and resist the urge to keep adding more." />
+  <meta name="author" content="Anne-Laure Freant" />
+  <link rel="canonical" href="https://datartefact.com/blog-posts/research-and-editing-down" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['"IBM Plex Mono"', 'monospace'], display: ['Stedelijk', 'sans-serif'] } } } }</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>@font-face { font-family: 'Stedelijk'; src: url('../fonts/Stedelijk-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; }</style>
+  <style>
+    .prose a { text-decoration: underline; }
+    .prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    .prose p { font-size: 1.125rem; margin-bottom: 1.25rem; line-height: 1.85; }
+    .prose figure { margin: 2rem 0; }
+    .prose figcaption { font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem; line-height: 1.4; }
+    .prose strong { font-weight: 600; }
+  </style>
+</head>
+<body class="bg-[#FFFBF5] text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="border-b border-gray-900 sticky top-0 bg-[#FFFBF5] z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../book" class="flex items-end gap-3 font-display text-4xl font-bold tracking-normal text-[#202020]">Datartefact</a>
+      <nav class="hidden md:flex gap-8 text-base text-gray-900 font-medium font-sans">
+        <a href="../book" class="hover:text-[#ea7662] transition-colors">Book</a>
+        <a href="../collection" class="hover:text-[#ea7662] transition-colors">Collection</a>
+        <a href="../blog" class="text-[#ea7662] transition-colors">Blog</a>
+        <a href="../about" class="hover:text-[#ea7662] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden flex flex-col justify-center gap-1.5 p-1" aria-label="Toggle menu">
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+        <span class="block w-6 h-0.5 bg-[#202020]"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden border-t border-gray-900">
+      <nav class="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-5 text-base text-gray-900 font-medium font-sans">
+        <a href="../book" class="hover:text-[#ea7662] transition-colors">Book</a>
+        <a href="../collection" class="hover:text-[#ea7662] transition-colors">Collection</a>
+        <a href="../blog" class="text-[#ea7662] transition-colors">Blog</a>
+        <a href="../about" class="hover:text-[#ea7662] transition-colors">About</a>
+        <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Instagram <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+        <a href="https://datartefacts.hypotheses.org/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ea7662] transition-colors">Notebook <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" class="inline-block w-3 h-3 mb-1" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 8.5L8.5 1.5M4 1.5h4.5V6"/></svg></a>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-6xl mx-auto px-6 pt-16 pb-24 flex-1 w-full">
+    <a href="../blog" class="text-sm text-gray-900 hover:text-[#ea7662] transition-colors">&larr; Back to blog</a>
+    <div class="w-full border border-gray-900 mt-8 p-8">
+      <span class="inline-block bg-gray-900 text-white text-xs font-semibold uppercase tracking-widest px-3 py-1">Newsletter</span>
+      <p class="mt-3 text-xs text-gray-500">September 20, 2026</p>
+      <h1 class="mt-4 font-display text-4xl md:text-5xl font-bold leading-tight text-gray-900">On Research and Editing Down: the Difficult Act of Curating a Collection of Fascinating Objects</h1>
+    </div>
+    <div class="mt-10 prose text-gray-900 text-base max-w-3xl">
+<p>First of all, thank you for subscribing to this list, I am very honored that my ongoing research on "objects that function as documents" has piqued your interest. The following note is about the current state of my writing and curating process for the book.</p>
+<p>Since the beginning of my work on the book "Encoding and Recording the World - A Historical Journey Through Material Knowledge Systems" a year ago, I have researched and classified about 350 "datartefacts" (or what I define as "objects that function as documents"). A small curated selection is already visible on the "Collection" section of the website here: <a href="https://datartefact.com/collection">datartefact.com/collection</a>, and I constantly have to resist the urge to add too many entries in there, too fast.</p>
+<p>The full collection is divided between roughly 70% of historical and archeological objects (mostly found in museum collections and academic research papers), and 30% of contemporary art and data-sculptures (from galleries, art museums or artists' websites). The research has developed into many different sub-topics along the way, from the history of metrology to cognitive archeology, the history of mathematics and writing, the history of computing, the history of textile production, photography, sound recording, etc.</p>
+<p>After months of pushing the research and collecting process — and also building a rather heteroclite bibliography — I am faced with a collection that associates objects such as duck-shaped stone Mesopotamian weights, knitting machine punched cards, or the pieces of contemporary artists such as Lily Glass and her breathtaking series "Quantifying Care" and "A Rib for Every Woman," the latter being a snake skeleton made of ceramics, with each of its ribs representing a woman of importance in the life of the artist.</p>
+<p>Yet all 350 of them do match my selection criteria: they encode or record information about the world in a non-written form, and in that sense, they all do "function as documents."</p>
+
+<figure>
+  <img src="../images/hematite-weights.jpg" alt="Standard Hematite Weights" class="w-full border border-gray-900">
+  <figcaption>Standard Hematite Weights, Business, Trade, Commerce - from Iraq, dates to the Isin-Larsa period (2004-1763 BCE). Source: University of Chicago, Institute for the Study of Ancient Cultures</figcaption>
+</figure>
+<figure>
+  <img src="../images/knitting.jpg" alt="Brother knitting machines" class="w-full border border-gray-900">
+  <figcaption>Brother knitting machines, 24-stitch, No. 10S (1960s–2000s). Image: Museum of Obsolete Media</figcaption>
+</figure>
+<figure>
+  <img src="../images/lily-glass-rib.jpg" alt='Lily Glass, "A Rib For Every Woman"' class="w-full border border-gray-900">
+  <figcaption>Lily Glass art piece. "A Rib For Every Woman" (ceramic), from the "First you Are Mothered" series, (2022)</figcaption>
+</figure>
+
+<p>Now that I have the definitive table of contents, and this rather enormous collection, it is time to recenter the book around its core thesis. Then problems begin, because the book has a rather big ambition, which is to demonstrate that embedding information into physical objects is not recent, and is in fact a vast and diverse technical tendency spanning most cultures and eras that not only precedes the invention of writing, but continued alongside it.</p>
+<p>To achieve this demonstration, the book associates together historical objects, industrial artefacts and contemporary art work. It does NOT present a chronological progression from "primitive technologies" to the inevitable "progress" that is writing, counting and eventually computing. Instead, it tries to restore the complexity and ontological nature of each object in the context it was produced, while showing how those objects addressed a similar core problem or follow one same methodology to transpose information into matter.</p>
+<p>The Mesopotamian weights were made by the authorities to regulate taxes and trade around 2,000 BCE in Iraq. They were "state certified" and altering them was considered a criminal offense. They had a key role related to political power, the state and public affairs that is deeply informative about the Isin-Larsa period and society. The knitting punched cards are technical artefacts made of perforated paper, encoding a pattern for a machine. They were mass-produced in factories in the USA in the 1960s, and belong more to the history of industrial design or textile production than to state-powered metrology. And the contemporary snake sculpture by Lily Glass has been made as a unique piece of self-expression and artistic form in 2022, something that belongs more (or will belong) to the history of art.</p>
+<p>How to make sure the reader follows me through those rather surprising associations of ideas and objects? And how do I ensure they can do so with ease while traveling the full span of human history, and through topics like photography, Inka khipu, or how Korea was the first country in the world to establish a standardized rain gauge system in the 1400s?</p>
+<p>So the editing began, and it's tough.</p>
+<p>I basically have to rewrite the whole book with a stricter lens, cutting all the "scholars have said" and "as mentioned in this paper" citations to make more room for my own voice and thesis among the many prestigious artefacts that now surround me.</p>
+<p>It will likely take a few months to reach a steady and smaller selection while ensuring the cohesiveness throughout all 11 chapters. Surprisingly enough, the original inspiration for this book is my interest in data-sculpture and data-physicalization, so it is rather grounded in contemporary concepts. I want it to show this in every single chapter, not just at the end, as if sculpting data compiled by a computer was the "epiphany" of tangible information object making by humans. In fact, I'd like to demonstrate the opposite.</p>
+<p>I also need to make sure I am not providing the reader with a cool but very long exhibition catalog. Though I'll be absolutely interested in the idea of creating and presenting such an exhibition one day.</p>
+<p>More to come soon on my Instagram account or in your mailbox.</p>
+<p>Thank you for following this journey along. I will post about the next steps and pre-order opening when the time comes! I will also be looking for reviewers of the book so please reach out if you are interested at <a href="mailto:info@datartefact.com">info@datartefact.com</a>.</p>
+    </div>
+  </main>
+  <footer class="border-t border-gray-900 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center gap-6">
+      <p class="text-[#202020] text-center leading-relaxed tracking-wide md:whitespace-nowrap" style="font-family: 'Press Start 2P', monospace; font-size: 11px;">
+        01000100 01100001 01110100 01100001 01110010 01110100 01100101 01100110 01100001 01100011 01110100
+      </p>
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-900 border-t border-gray-200 pt-6">
+        <span>© 2026 Datartefact</span>
+        <div class="flex gap-6">
+          <a href="https://www.instagram.com/annelaurefre/" target="_blank" rel="noopener noreferrer" class="hover:text-[#B69188] transition-colors">Instagram</a>
+          <a href="../about#newsletter" class="hover:text-[#B69188] transition-colors">Newsletter</a>
+          <a href="mailto:info@datartefact.com" class="hover:text-[#B69188] transition-colors">Contact</a>
+          <a href="../legal" class="hover:text-[#B69188] transition-colors">Legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
