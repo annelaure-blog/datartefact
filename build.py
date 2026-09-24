@@ -110,7 +110,7 @@ def render_timeline_entry(entry: dict, margin_top: int) -> str:
         img_html = '<div class="bg-gray-100 border-r border-gray-900 flex-shrink-0 flex items-center justify-center" style="width:160px;height:200px;"><span class="text-xs text-gray-400">—</span></div>'
 
     return f"""\
-      <div class="timeline-entry flex items-start" data-chapter="{chapter or ''}" data-type="{type_key}" style="margin-top: {margin_top}px;">
+      <div class="timeline-entry flex items-start" data-chapter="{chapter if chapter is not None else ''}" data-type="{type_key}" style="margin-top: {margin_top}px;">
         <div class="flex-shrink-0 w-24 text-right pr-3 leading-tight pt-1.5 overflow-hidden">
           <span class="text-sm font-bold text-gray-900 font-sans">{year_label}</span>
         </div>
@@ -160,7 +160,7 @@ def render_timeline_h_entry(entry: dict, margin_left: int) -> str:
         img_html = '<div class="w-full flex-shrink-0 bg-gray-100 flex items-center justify-center" style="height:130px;"><span class="text-xs text-gray-400">—</span></div>'
 
     return f"""\
-          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="{chapter or ''}" data-type="{type_key}" style="width:{CARD_WIDTH}px; margin-left:{margin_left}px; padding-top:{CARD_TOP}px;">
+          <div class="timeline-h-entry relative flex-shrink-0 group" data-chapter="{chapter if chapter is not None else ''}" data-type="{type_key}" style="width:{CARD_WIDTH}px; margin-left:{margin_left}px; padding-top:{CARD_TOP}px;">
             <div class="absolute text-xs font-bold text-gray-900 whitespace-nowrap text-center font-sans" style="top:0;left:50%;transform:translateX(-50%);">{year_label}</div>
             <div class="absolute rounded-full border-2 border-gray-900 z-10" style="background:#FFFBF5;width:{DOT_SIZE}px;height:{DOT_SIZE}px;top:{SPINE_TOP - DOT_SIZE // 2}px;left:50%;transform:translateX(-50%);"></div>
             <div class="absolute" style="width:1px;background:#202020;left:50%;transform:translateX(-50%);top:{SPINE_TOP + DOT_SIZE // 2}px;height:{CONN_H}px;"></div>
@@ -441,9 +441,9 @@ def render_card(entry: dict) -> str:
     else:
         back_content = f'<div class="w-full h-full bg-gray-900 flex items-center justify-center"><span class="text-white text-xs font-semibold uppercase tracking-widest">No image yet</span></div>'
 
-    search_text = f"{title} {description} {label} chapter {chapter or ''}".lower()
+    search_text = f"{title} {description} {label} chapter {chapter if chapter is not None else ''}".lower()
     return f"""\
-      <div class="card-wrapper border border-gray-900" data-type="{type_key}" data-chapter="{chapter or ''}" data-search="{search_text}">
+      <div class="card-wrapper border border-gray-900" data-type="{type_key}" data-chapter="{chapter if chapter is not None else ''}" data-search="{search_text}">
         <div class="card-inner">
           <a href="posts/{slug}.html" class="card-front overflow-hidden">
             {back_content}
