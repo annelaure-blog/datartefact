@@ -6,5 +6,5 @@ description: Roughly 100 ochre palm-prints applied by hand in the Brunel Chamber
 slug: chauvet-palm-print-panel
 chapter: 0
 image: images/dots-chauvet.jpg
-image_copyright: 'Grotte Chauvet 2 Ardèche, photo by Patrick Aventurier — rights requested, pending confirmation.'
+image_copyright: 'Grotte Chauvet 2 Ardèche, photo by Patrick Aventurier'
 ---

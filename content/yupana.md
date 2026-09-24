@@ -6,5 +6,5 @@ description: An Inka counting board, used alongside the khipu for arithmetic —
 slug: yupana
 chapter: 5
 image: images/yupana.jpg
-image_copyright: 'Archivo Digital de Arte Peruano (ARCHI) — rights requested, pending confirmation.'
+image_copyright: 'Archivo Digital de Arte Peruano (ARCHI)'
 ---
