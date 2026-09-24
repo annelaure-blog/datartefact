@@ -96,6 +96,8 @@ exists yet in the content file.
 | Speak-O-Phone | [Museum of Obsolete Media](https://obsoletemedia.org/speak-o-phone/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 | Sound-on-Slide System (3M) | [Museum of Obsolete Media](https://obsoletemedia.org/3m-sound-on-slide/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 | Timecode Vinyl (Serato) | [Museum of Obsolete Media](https://obsoletemedia.org/timecode-vinyl/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| The Shape of the Sound of the Shape of the Sound (Stephen Barrass, 2012) | Stephen Barrass — [sonification.com](https://sonification.com/2012/05/18/the-shape-of-the-sound-of-the-shape-of-the-sound/) | Pending — permission requested today via his website |
+| A Duet of Blizzards (Nathalie Miebach, 2010) — wood, paper, data, 60"x96" | Nathalie Miebach — [nathaliemiebach.com](https://www.nathaliemiebach.com/) | Acquired — permission granted; still need to confirm final image selection with the artist |
 | Wanuskewin (Jonathon Adams, 1994) — beadwork graphic score, 11/0 glass seed beads, 4x6 c-print. "Wanuskewin" roughly translates to "seeking peace of mind" in Plains Cree; the artist's first musical score, exploring beads and tactility in graphic notation. Possibly Chapter 3 (Informative Textiles) instead | Contemporary artwork — artist: Jonathon Adams | Acquired — artist has agreed to the work being shared in the book, now emailing him for image/credit details |
 
 ## Chapter 8 — Perforated Paper and Machines
