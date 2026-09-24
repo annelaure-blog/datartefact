@@ -13,6 +13,8 @@ status: reference-only
 - Malafouris, Lambros. *How Things Shape the Mind: A Theory of Material Engagement.* Cambridge, MA: MIT Press, 2013.
 - Marshack, Alexander. "Lunar Notation on Upper Paleolithic Remains." *Science* 146, no. 3645 (1964): 743–745.
 - Overmann, Karenleigh A. "Materiality and Numerical Cognition: A Material Engagement Theory Perspective." In *Cognitive Models in Palaeolithic Archaeology*, edited by Thomas Wynn and Frederick L. Coolidge, 89–112. Oxford: Oxford University Press, 2017.
+- Overmann, Karenleigh A. "The Role of Materiality in Numerical Cognition." *Quaternary International* 405 (2016): 42–51.
+- Overmann, Karenleigh A. "The Taï Plaque." In *Cultural Number Systems: A Sourcebook*, 95–99. Cham: Springer, 2025.
 - Schlaudt, Oliver. "Type and Token in the Prehistoric Origins of Numbers." *Cambridge Archaeological Journal* 30, no. 4 (2020): 629–646.
 - Vanhaeren, Marian, Francesco d'Errico, Karen L. van Niekerk, Christopher S. Henshilwood, and Rudolph M. Erasmus. "Thinking Strings: Additional Evidence for Personal Ornament Use in the Middle Stone Age at Blombos Cave, South Africa." *Journal of Human Evolution* 64 (2013): 500–517.
 - Wynn, Thomas, Karenleigh A. Overmann, Frederick L. Coolidge, and Kathleen Janulis. "Bootstrapping Ordinal Thinking." In *Cognitive Models in Palaeolithic Archaeology*, edited by Thomas Wynn and Frederick L. Coolidge, 197–213. Oxford: Oxford University Press, 2017.

@@ -1,7 +1,7 @@
 ---
 book: 1
 chapter: 6
-title: "Photography as Autographic Systems: When Light Records Itself"
+title: "Sculpting Light: Photography and the Production of Physical Form"
 status: reference-only
 ---
 

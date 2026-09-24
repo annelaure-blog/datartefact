@@ -12,11 +12,12 @@ exists yet in the content file.
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
 | Ishango Bone | Institut royal des Sciences naturelles de Belgique ([image](https://ishango.naturalsciences.be/en/baton1.gif)) | Pending — inquiry sent to the Institut |
-| Lebombo Bone | Robert Hart, The McGregor Museum, Kimberley, South Africa ([image](https://cacm.acm.org/wp-content/uploads/2024/05/051524_Bruderer_Fig.-4-baboon-fibula-fr-border-cave.jpg)) | Pending — inquiry sent to the McGregor Museum |
+| Lebombo Bone | Robert Hart, The McGregor Museum, Kimberley, South Africa ([image](https://cacm.acm.org/wp-content/uploads/2024/05/051524_Bruderer_Fig.-4-baboon-fibula-fr-border-cave.jpg)) | Pending — Robert Hart replied, fee quoted at €8, process ongoing |
 | Les Pradelles Hyena Femur | © 2017 The Author(s), Published by the Royal Society, All rights reserved ([image](https://pmc.ncbi.nlm.nih.gov/articles/PMC5784044/figure/RSTB20160518F1/)) | Complicated — rights process unclear, likely won't pursue |
-| Abri Cellier Artefact | © Logan Museum of Anthropology, Beloit College (as credited in Schlaudt 2020) | Pending — inquiry sent to the Logan Museum |
+| Abri Cellier Artefact | © Logan Museum of Anthropology, Beloit College (as credited in Schlaudt 2020) | Pending — rights requested, quoted $75, awaiting their response |
 | Red Dots from Chauvet Cave, France | Grotte Chauvet 2 Ardèche, photos by Patrick Aventurier ([img 1](https://en.grottechauvet2ardeche.com/caverne-pont-arc/uploads/2023/05/22-panneau-points-mainsgrotte-chauvet-2-ardeche-patrick-aventurier.jpg), [img 2](https://en.grottechauvet2ardeche.com/caverne-pont-arc/uploads/2023/05/19-mama-rhino-faite-de-points-rouges-paumes-de-main-grotte-chauvet-2-ardeche-patrick-aventurier-.jpg)) | Pending — inquiry sent to Grotte Chauvet |
-| "A Rib For Every Woman" (Lily Glass, 2021) | Contemporary artwork, 325+ hand-sculpted ceramic pieces | To verify — contact the artist |
+| "A Rib For Every Woman" (Lily Glass, 2021) | Contemporary artwork, 325+ hand-sculpted ceramic pieces | Acquired — artist has agreed to the work being shared in the book, now emailing her for image/credit details |
+| Taï Plaque (engraved bovine rib, Grotte du Taï, ~12,000 BP, >1,000 marks) | Peabody Museum, Harvard ([784044](https://collections.peabody.harvard.edu/objects/details/784044), [784043](https://collections.peabody.harvard.edu/objects/details/784043)); also reproduced (Marshack 1991, Fig. 1, p. 26) with permission of Cambridge University Press in Overmann 2025 | Pending — rights request form submitted to the Peabody Museum on 2026-09-24, awaiting reply |
 
 ## Chapter 1 — Mesopotamian Clay Tokens
 
@@ -77,7 +78,7 @@ exists yet in the content file.
 | Monte Sierpe "Band of Holes" | © C. Stanish | Acquired |
 | Yupana (Inca counting board) | Archivo Digital de Arte Peruano (ARCHI) — 3 images requested via their archive form: [obra/41581](https://archi.pe/obra/41581), [obra/41574](https://archi.pe/obra/41574), [obra/41530](https://archi.pe/obra/41530) | Pending — formal request submitted |
 
-## Chapter 6 — Photography as Autographic Systems
+## Chapter 6 — Sculpting Light
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
@@ -96,6 +97,7 @@ exists yet in the content file.
 | Speak-O-Phone | [Museum of Obsolete Media](https://obsoletemedia.org/speak-o-phone/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 | Sound-on-Slide System (3M) | [Museum of Obsolete Media](https://obsoletemedia.org/3m-sound-on-slide/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 | Timecode Vinyl (Serato) | [Museum of Obsolete Media](https://obsoletemedia.org/timecode-vinyl/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
+| Wanuskewin (Jonathon Adams, 1994) — beadwork graphic score, 11/0 glass seed beads, 4x6 c-print. "Wanuskewin" roughly translates to "seeking peace of mind" in Plains Cree; the artist's first musical score, exploring beads and tactility in graphic notation. Possibly Chapter 3 (Informative Textiles) instead | Contemporary artwork — artist: Jonathon Adams | Acquired — artist has agreed to the work being shared in the book, now emailing him for image/credit details |
 
 ## Chapter 8 — Perforated Paper and Machines
 
