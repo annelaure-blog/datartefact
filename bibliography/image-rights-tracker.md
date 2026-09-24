@@ -34,7 +34,6 @@ exists yet in the content file.
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
 | Architecture of Return, Escape | Reproduced with permission of the artist | Acquired |
-| Forma Urbis Romae | Museo della Civiltà Romana / De Agostini Picture Library / Bridgeman Images (current image) | Won't pursue — Bridgeman licensing too expensive, sourcing a different image |
 | Ammassalik Coastline Sculpture | © Greenland National Museum and Archives | To verify |
 | Maikop Vessel | Courtesy of the State Hermitage Museum, St Petersburg | Acquired |
 | Mattang | Courtesy of the Museum für Völkerkunde, Berlin | To verify |
@@ -76,7 +75,7 @@ exists yet in the content file.
 | Inequalities Quipus | Ewa Tuteja — Reproduced with permission | Acquired |
 | Inka-Style Khipu | Leslie Leland Locke, 1912 — Public Domain | Public domain |
 | Monte Sierpe "Band of Holes" | © C. Stanish | Acquired |
-| Yupana (Inca counting board) | Archivo Digital de Arte Peruano (ARCHI) — 3 images requested via their archive form: [obra/41581](https://archi.pe/obra/41581), [obra/41574](https://archi.pe/obra/41574), [obra/41530](https://archi.pe/obra/41530) | Pending — formal request submitted |
+| Yupana (Inca counting board) | Archivo Digital de Arte Peruano (ARCHI) — 3 images requested via their archive form: [obra/41581](https://archi.pe/obra/41581), [obra/41574](https://archi.pe/obra/41574), [obra/41530](https://archi.pe/obra/41530) | Pending — in touch with Diana Vicente Munarriz (ARCHI / Museo de Arte de Lima, MALI), awaiting their quote |
 
 ## Chapter 6 — Sculpting Light
 
