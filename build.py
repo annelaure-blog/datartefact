@@ -464,30 +464,34 @@ def render_card(entry: dict) -> str:
 
 
 def build_filter_tabs(entries: list[dict]) -> str:
-    EXCLUDE_FROM_FILTERS = {"article"}
-    types = [e.get("type", "article") for e in entries]
-    tabs = [('all', 'All')]
-    tabs += [(f'type:{t}', type_label(t)) for t in sorted(set(types)) if t not in EXCLUDE_FROM_FILTERS]
-
+    used_chapters = set()
+    for e in entries:
+        try:
+            used_chapters.add(int(e.get("chapter")))
+        except (TypeError, ValueError):
+            pass
+    tabs = []
     for ch_num in sorted(CHAPTERS):
+        if ch_num not in used_chapters:
+            continue
         ch_t = CHAPTERS[ch_num]
-        label = f"Chapter {ch_num} · {ch_t}"
+        label = f"Ch. {ch_num} · {ch_t}"
         tabs.append((f'chapter:{ch_num}', label))
 
     buttons = []
-    for i, (key, label) in enumerate(tabs):
-        active = 'bg-gray-900 text-white border-gray-900' if i == 0 else 'text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white'
+    for key, label in tabs:
         buttons.append(
             f'      <button onclick="filter(\'{key}\')" data-filter="{key}" '
-            f'class="filter-btn {active} px-4 py-1.5 rounded-full text-sm font-medium border transition-all">{label}</button>'
+            f'class="filter-btn text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white px-4 py-1.5 text-xs font-medium border transition-all whitespace-nowrap">{label}</button>'
         )
     return "\n".join(buttons)
 
 
 def build_index(entries: list[dict]) -> str:
-    cards      = "\n".join(render_card(e) for e in entries)
-    timeline_h = build_timeline_h(entries)
-    year       = datetime.now().year
+    cards       = "\n".join(render_card(e) for e in entries)
+    timeline_h  = build_timeline_h(entries)
+    filter_tabs = build_filter_tabs(entries)
+    year        = datetime.now().year
 
     return HTML_HEAD.format(title="Collection", font_path="") + f"""\
 {_build_nav("", "collection")}
@@ -508,6 +512,9 @@ def build_index(entries: list[dict]) -> str:
         class="border border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white transition-all">⇄ Shuffle</button>
       <button onclick="setView('timeline-h')" id="btn-timeline-h"
         class="border border-gray-900 px-6 py-2 text-sm font-medium text-gray-900 hover:bg-gray-900 hover:text-white transition-all">↔ Timeline</button>
+  </section>
+  <section class="max-w-6xl mx-auto px-6 pb-8 flex flex-wrap justify-center gap-2">
+{filter_tabs}
   </section>
 
   <main class="w-full pb-24 flex-1 px-4">

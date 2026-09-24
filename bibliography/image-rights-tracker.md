@@ -81,7 +81,6 @@ exists yet in the content file.
 
 | Artefact | Copyright / Credit | Rights Status |
 |---|---|---|
-| Aster | Grégoire Eloy, RVB Books — Reproduced with permission | Acquired |
 | Flight of the Gull Bronze Model | RMN-Grand Palais (musée d'Orsay) — reproduced with permission | Acquired |
 | Light Sculptures: Matter of Impermanence | Dexter Callender III — reproduced with permission | Acquired |
 | Staring At Empty Space | Lea Wurthmann — reproduced with permission | Acquired |
@@ -98,6 +97,7 @@ exists yet in the content file.
 | Timecode Vinyl (Serato) | [Museum of Obsolete Media](https://obsoletemedia.org/timecode-vinyl/) (CC BY-SA 4.0) | Open license (CC BY-SA 4.0) |
 | The Shape of the Sound of the Shape of the Sound (Stephen Barrass, 2012) | Stephen Barrass — [sonification.com](https://sonification.com/2012/05/18/the-shape-of-the-sound-of-the-shape-of-the-sound/) | Pending — permission requested today via his website |
 | A Duet of Blizzards (Nathalie Miebach, 2010) — wood, paper, data, 60"x96" | Nathalie Miebach — [nathaliemiebach.com](https://www.nathaliemiebach.com/) | Acquired — permission granted; still need to confirm final image selection with the artist |
+| Cylinder series (Andy Huntington & Drew Allan, 2003) — rapid-prototyped sculptures from sound-frequency data | Andy Huntington — [extraversion.co.uk/2003/cylinder](https://extraversion.co.uk/2003/cylinder/) | Pending — reached out to Andy Huntington to request |
 | Wanuskewin (Jonathon Adams, 1994) — beadwork graphic score, 11/0 glass seed beads, 4x6 c-print. "Wanuskewin" roughly translates to "seeking peace of mind" in Plains Cree; the artist's first musical score, exploring beads and tactility in graphic notation. Possibly Chapter 3 (Informative Textiles) instead | Contemporary artwork — artist: Jonathon Adams | Acquired — artist has agreed to the work being shared in the book, now emailing him for image/credit details |
 
 ## Chapter 8 — Perforated Paper and Machines
@@ -128,3 +128,4 @@ exists yet in the content file.
 |---|---|---|
 | A Number Between Zero and One | Photo by Larry Marcus. Courtesy of the Artist's Estate and Rossi & Rossi — Reproduced with permission | Acquired |
 | Abacus | — | Planned, not yet added |
+| Aster | Grégoire Eloy, RVB Books — Reproduced with permission | Acquired |

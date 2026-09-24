@@ -6,6 +6,9 @@ status: reference-only
 ---
 
 - Dragicevic, Pierre, Yvonne Jansen, and Andrew Vande Moere. "Data Physicalization." In *Springer Handbook of Human-Computer Interaction*, edited by Jean Vanderdonckt, Philippe Palanque, and Marco Winckler. Cham: Springer, 2021.
+- Eloy, Grégoire. *ASTER 1.* Paris: RVB Books, 2021.
+- Eloy, Grégoire. *ASTER 2.* Paris: RVB Books, 2023.
+- Hugonnet, R., R. McNabb, E. Berthier, et al. "Accelerated Global Glacier Mass Loss in the Early Twenty-First Century." *Nature* 592 (2021): 726–731.
 - Jansen, Yvonne, Pierre Dragicevic, Petra Isenberg, Jason Alexander, Abhijit Karnik, Johan Kildal, Sriram Subramanian, and Kasper Hornbæk. "Opportunities and Challenges for Data Physicalization." In *Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI 2015).* New York: ACM, 2015.
 - Jansen, Yvonne, Pierre Dragicevic, and Jean-Daniel Fekete. "Evaluating the Efficiency of Physical Visualizations." In *Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI 2013).* New York: ACM, 2013.
 - Moere, Andrew Vande. "Beyond the Tyranny of the Pixel: Exploring the Physicality of Information Visualization." In *2008 12th International Conference Information Visualisation*, 469–474. London, 2008.
